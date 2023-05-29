@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav_a_style>a {
+            padding: 0 2rem !important;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .nav_input {
+            width: 40%;
+            
+            > * {
+                display: flex;
+                
+                > * {
+                    border: none;
+                    background: none;
+                    outline: none;
+                    border: solid 0.01rem silver;
+                }
+                
+                > input {        
+                    padding-left: 10px;
+                    padding-block: 5px;
+                    width: 80%;
+                    border-right: 0;
+                    border-radius: 1rem 0 0 1rem;
+                }
+
+                > button {        
+                    width: 20%;
+                    border-radius: 0 1rem 1rem 0;
+                    background-color: green;
+                    color: white;
+                }
+
+                > button:active {
+                    background-color: forestgreen;
+                }
+            }
+        }
+
+        .nav_border {
+            border-bottom: solid 1px darkgray;
+            box-shadow: 0 0.4rem 0.4rem gainsboro;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            padding: 2% 1% 1%;
+        }
+
+        .main_scroll {
+            height: 69vh;
+            padding-top: 1%;
+            overflow-y: scroll;
+            padding-right: 2vw;
+        }
+
+        #register {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #register_topbar {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            > div {
+                width: 7%;
+                aspect-ratio: 1 / 1;
+                display: block;
+                border-radius: 50%;
+                background-size: cover;
+                background-position: center;
+                margin-right: 3%;
+            }
+
+            > input {
+                width: 88%;
+            }
+            
+        }
+
+        #register_list {
+            padding-left: 1%;  
+            > button {
+                margin: auto;
+            }
+            
+        }
+
+        #category {
+            display: flex;  
+            > p {
+                margin-block: auto;
+            }
+
+            > .btn-group {
+                margin-left: auto;
+                > button {
+                    border: solid 1px darkgray;
+                    border-radius: 1rem;
+                    box-shadow: none;
+                }
+
+                > button.show {
+                    background-color: gainsboro;
+                }
+            }
+
+        }
+
+        #register_books {
+            margin-block: 5%;
+            border-top: dashed 1px black;
+            > * {
+                border-bottom: dashed 1px black;
+                aspect-ratio: 5 / 1;
+                display: flex;
+            }
+        }
+
+        .delete_button {
+            width: 8%;
+            display: flex;
+            > button {
+                padding-block: 0;
+                margin: auto;
+            }
+        }
+
+        .book_img {
+            width: 20%;
+            display: flex;
+            overflow: hidden;
+            > img {
+                height: 80%;
+                width: auto;
+                margin: auto;
+            }
+        }
+
+        .book_info {
+            width: 32%;
+            height: 100%;
+            justify-content: center;
+            padding: 1%;
+            margin-block: auto;
+            display: flex;
+            flex-direction: column;
+            > h3 {
+                width: 100%;
+                max-height: 75%;
+                margin-bottom: 2%;
+                font-size: 1.5vw;
+                word-break: break-all;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+
+            > h5 {
+                color: dimgray;
+                margin: 0;
+                font-size: 1vw;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .book_introduction {
+            width: 39%;
+            margin: 1%;
+            resize: none;
+        }
+
+        #save_button {
+            display: flex;
+            padding-bottom: 3%;
+            > button {
+                padding-inline: 3%;
+                margin: auto;
+            }
+        }
+
+
+
+
+
+
+
+
+        .search_book {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            padding-left: 1%;
+            flex-direction: column;
+        }
+
+        #search_box {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+
+            > * {
+                width: 80%;
+            }
+        }
+
+        #search {
+            > p {
+                padding-left: 1%;
+                font-size: 1.2vw;
+            }
+
+            > div {    
+                padding: 1%;
+                aspect-ratio: 5 / 2;
+                position: relative;
+
+                > div {
+                    background-color: white;
+                    border: solid 0.1rem gainsboro;
+                    border-radius: 1rem;
+                    padding: 1%;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                }
+
+                > p {
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    z-index: -1;
+                    position: absolute;
+                }
+            }
+        }
+
+        .search_img {
+            width: 40%;
+            overflow: hidden;
+            display: flex;
+
+            > img {    
+                height: 90%;
+                width: auto;
+                margin: auto;
+            }
+        }
+
+        .search_info {
+            width: 60%;
+            padding: 1%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+    
+            > h3 {
+                width: 100%;
+                font-size: 1.8vw;
+                margin-bottom: 2%;
+                max-height: 70%;
+                word-break: break-all;    
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+
+            > h5 {
+                margin: 0;
+                font-size: 1.3vw;
+                color: dimgray;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            
+            > button {     
+                position: absolute;
+                bottom: 1%;
+                right: 1%;
+                height: 20%;
+                font-size: 1.5vw;
+                padding: 0 1rem;
+                margin-left: auto;
+            }
+        }
+
+        @keyframes leftTransAnimation{ 
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .lTAnim {
+            animation-name: leftTransAnimation;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-play-state: running;
+        }
+        
+        @keyframes rTolTransAnimation {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .rTolTAnim {
+            animation-name: rTolTransAnimation;
+            animation-duration: 0.5s;
+            animation-delay: 0s;
+            animation-play-state: running;            
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2 nav_border">
+        <a href="#" class="navbar-brand"><img src="./img/ロゴ1.png" style="display: flex; height: 4rem; width: auto;" /></a>
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <div class="navbar-nav nav_a_style">
+                <a class="nav-item nav-link" href="#">サービス概要</a>
+                <a class="nav-item nav-link" href="#">新規登録</a>
+                <a class="nav-item nav-link" href="#">ログイン</a>
+                <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div id="register">
+            <div id="register_topbar">
+                <div style="background-image: url('./img/user_icon.png');"></div>
+                <input type="text" class="form-control" placeholder="このリストのタイトルを入力してください">
+            </div>
+            <div id="register_list" class="main_scroll">
+                <div class="pt-4" id="category">
+                    <p>カテゴリーを選択してください</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle drop_b_style" data-bs-toggle="dropdown" aria-expanded="false">カテゴリー</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">ミステリー</a></li>
+                            <li><a class="dropdown-item" href="#">ファンタジー</a></li>
+                            <li><a class="dropdown-item" href="#">歴史</a></li>
+                            <li><a class="dropdown-item" href="#">SF</a></li>
+                            <li><a class="dropdown-item" href="#">コメディ</a></li>
+                            <li><a class="dropdown-item" href="#">子供向け</a></li>
+                            <li><a class="dropdown-item" href="#">ノンフィクション</a></li>
+                            <li><a class="dropdown-item" href="#">図鑑</a></li>
+                            <li><a class="dropdown-item" href="#">エッセイ（随筆）</a></li>
+                            <li><a class="dropdown-item" href="#">短編小説</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">その他</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-1 py-4">
+                    <label class="form-label">このリストの紹介文を入力してください</label>
+                    <textarea class="form-control" rows="6" style="resize: none;"></textarea>
+                </div>
+                <div id="register_books">
+                    <!--
+                    <div>
+                        <div class="delete_button">
+                            <button type="button" class="btn btn-danger btn-sm">-</button>
+                        </div>
+                        <div class="book_img">    
+                            <img src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                        </div>
+                        <div class="book_info">
+                            <h3>太宰治</h3>
+                            <h5>太宰治</h5>
+                            <input type="hidden" value="">
+                        </div>
+                        <textarea class="form-control book_introduction" placeholder="この本の紹介文を入力してください"></textarea> 
+                    </div>
+                    -->
+                </div>
+                <div id="save_button">
+                    <button type="button" class="btn btn-primary btn-lg" onclick="test()">保存</button>
+                </div>
+            </div>
+        </div>
+        <div class="search_book">
+            <div id="search_box">
+                <div class="mx-auto input-group">
+                    <input type="text" class="form-control" placeholder="キーワードを入力">
+                    <button class="btn btn-outline-success bg-success text-white" type="button" onclick="bookSearch()">&emsp;検索&emsp;</button>
+                </div>
+            </div>
+            <div id="search" class="main_scroll">
+            </div>
+        </div>
+    </main> 
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        let regiCount = 0;
+
+
+        function bookSearch() {
+            let data = {
+                count:5,
+                books:[
+                    {"id":1,"title":"1\u592a\u5bb0","authors":"1\u6cbb","link":"http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"},
+                    {"id":2,"title":"2\u592a\u5bb0","authors":"2\u6cbb","link":"http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"},
+                    {"id":3,"title":"3\u592a\u5bb0","authors":"3\u6cbb","link":"http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"},
+                    {"id":4,"title":"4\u592a\u5bb0","authors":"4\u6cbb","link":"http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"},
+                    {"id":5,"title":"5\u592a\u5bb0","authors":"5\u6cbb","link":"http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"}
+                ]
+            };
+            let json = JSON.parse(JSON.stringify(data));
+
+            (async () => {
+                let p = Promise.resolve();
+                let search_div = document.getElementById('search');
+                search_div.childNodes.forEach(node => {
+                    if(node.nodeType == 1) {
+                        p = p.then(() => node.remove());
+                    }
+                });
+                let hitNum = document.createElement('p');
+                hitNum.innerText = data.count + '件ヒットしました';
+                await p;
+                search_div.appendChild(hitNum);
+                let i = 0;
+                json.books.forEach(book => {
+                    search_div.appendChild(create_search_book(book.id,i,book.title,book.authors,book.link));
+                    ++i;
+                });
+                search_div.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            })();       
+        }
+
+        function create_search_book(id,i,title,authors,link) {
+            let searchImg = document.createElement('div');
+            searchImg.classList.add('search_img');
+            let img = document.createElement('img');
+            img.src = link;
+            searchImg.appendChild(img);
+            
+            let infoDiv = document.createElement('div');
+            infoDiv.classList.add('search_info');
+
+            let h3 = document.createElement('h3');
+            h3.innerText = title;
+            let h5 = document.createElement('h5');
+            h5.innerText = authors;
+            let button = document.createElement('button');
+            button.classList.add('btn','btn-primary');
+            button.type = ' button';
+            button.innerText = '登録';
+            button.addEventListener('click',bookRegisterListener(id,i));
+            let inputId = document.createElement('input');
+            inputId.type = 'hidden';
+            inputId.value = id;
+            infoDiv.append(h3,h5,button,inputId)
+
+            let div = document.createElement('div');
+            div.id = 'search_' + i;
+            div.append(searchImg,infoDiv);
+
+            let reg = document.createElement('p');
+            reg.innerText = '登録しました';
+
+            let parent = document.createElement('div');
+            parent.append(div,reg);
+
+            return parent;
+        }
+
+        function bookRegisterListener(id,i) {
+            return function(e) {
+                let div = document.getElementById('search_' + i);
+                let anim = () => {
+                    div.classList.remove('lTAnim');         
+                    div.id = 'regi_' + regiCount;
+                    
+                    div.querySelector('.search_img').classList.replace('search_img','book_img');
+                    
+                    let info = div.querySelector('.search_info');
+                    info.classList.replace('search_info','book_info');
+                    info.querySelector('button').remove();
+                    
+                    let deleteBtnDiv = document.createElement('div');
+                    deleteBtnDiv.classList.add('delete_button');
+                    let deleteBtn = document.createElement('button');
+                    deleteBtn.type = 'button';
+                    deleteBtn.classList.add('btn','btn-danger','btn-sm','fw-bold');
+                    deleteBtn.innerText = '-';
+                    deleteBtn.addEventListener('click',bookRegiDelete(regiCount));
+                    deleteBtnDiv.append(deleteBtn);
+
+                    let textarea = document.createElement('textarea');
+                    textarea.classList.add('form-control','book_introduction');
+                    textarea.placeholder = "この本の紹介文を入力してください";
+                    
+                    div.prepend(deleteBtnDiv);
+                    div.append(textarea);
+
+                    document.getElementById('register_books').appendChild(div);
+
+                    div.scrollIntoView({behavior: "smooth"});
+                    div.removeEventListener('animationend',anim);
+
+                    ++regiCount;
+
+                    anim = () => {
+                        div.removeEventListener('animationend',anim);
+                        div.classList.remove('rTolTAnim');
+                    };
+                    div.addEventListener('animationend',anim);
+                    div.classList.add('rTolTAnim');
+
+                };
+                div.addEventListener('animationend',anim);
+                div.classList.add('lTAnim');
+            }
+        }
+
+        function bookRegiDelete(i) {
+            return function(e) {
+                let delNode = document.getElementById('regi_' + i);
+                delNode.addEventListener('animationend',() => {
+                    delNode.remove();
+                });
+
+                delNode.classList.add('lTAnim');
+            }
+        }
+
+        function test() {
+            let i = 0;
+            document.getElementById('register_books').childNodes.forEach(node => {
+                if(node.nodeType == 1) {
+                    node.querySelector('input').name = 'id_' + i;
+                    node.querySelector('textarea').name = 'ta_' + i;
+                    ++i;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
