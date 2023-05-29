@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  
+    <meta charset="UTF-8">
+    <link href="login.css" rel="stylesheet" >
+    <link href="./css/bootstrap.min.css" rel="stylesheet" >
+
+    
+</head>
+<body>
+  
+        <nav class="navbar navbar-expand-sm navbar-light  px-3 py-2" >
+            <a href="#" class="navbar-brand "><img src="./imgs/ロゴ1.png" style="display: flex; height: 4rem; width: auto;"/></a>
+            
+        </nav>
+
+<div class="form-wrapper">
+
+  <h1>新規登録</h1>
+<div class ="midashi">ようこそ、ぶんごう！へ。</div>	
+  <form>
+	<div class="form-item">
+		<label for="username"></label>
+		<input type="username" name="username" required="required" placeholder="ユーザー名"></input>
+	  </div>
+    <div class="form-item">
+      <label for="email"></label>
+      <input type="email" name="email" required="required" placeholder="メールアドレス"></input>
+    </div>
+	<p> <font color="#696969"><font size="2"><span>※</span>既に登録のあるメールアドレスは利用できません</p>
+    <div class="form-item">
+      <label for="password"></label>
+      <input type="password" name="password" id="password" required="required" placeholder="パスワード"></input>
+    </div>
+	<div class="form-item">
+		<label for="orm-item"></label>
+		<input type="password" name="password" id="passwordConfirm" required="required" placeholder="パスワード再確認"></input>
+	</div>
+	<p> <font color="#696969"><font size="2"><span>※</span>半角英数・記号：8～16文字</p>
+		<div class="check">
+			<input type="checkbox" id="scales" name="scales" checked>
+			<label for="scales">利用規約・個人情報の取り扱いに同意する</label>
+		  </div>
+    <div class="button-panel">
+      <input type="submit" class="button bg-success" title="Sign In" value="登録する"></input>
+    </div>
+
+    <!--<script>
+      function CheckPassword(password_confimation){
+
+        var input1 =password.value;
+        var input2 =password_confimation.value;
+
+        if(input1=!input2){
+          password_confimation.setCustomValidity("確認入力されたパスワードが異なります")
+        }else{
+          password_confimation.setCustomValidity('');
+        }
+      }
+      これじゃあだめのはなぜ～
+      </script>
+      -->
+      <script>
+        var input1 = document.getElementById("passwordConfirm");
+
+        input1.addEventListener("input", function() {
+        if (this.value != document.getElementById('password').value) {
+            this.setCustomValidity('確認入力されたパスワードが異なります');
+        } else {
+   
+        this.setCustomValidity('');
+        }
+        var elem = document.getElementById("form");
+         elem.addEventListener("submit", function() {
+         elem.reportValidity();
+});
+
+        });  
+        </script>
+
+
+  </form>
+  
+  
+</div>
+
+</body>
+</html>
