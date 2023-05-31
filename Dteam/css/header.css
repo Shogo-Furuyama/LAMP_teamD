@@ -1,0 +1,83 @@
+    @charset "utf-8";
+
+    #site_logo { 
+        height: auto; 
+        width: 13vw;
+    }
+
+    #nav_a_style> li > a {
+        padding: 1.5vw !important;
+        font-size: 1.4vw;
+    }
+
+    #nav_input {
+        width: 50%;
+
+        >* {
+            display: flex;
+
+            >* {
+                background: none;
+                outline: none;
+                border: solid 0.01rem silver;
+                font-size: 1vw;
+            }
+
+            >input {
+                padding-left: 1vw;
+                padding-block: 0.8vw;
+                width: 80%;
+                border-right: 0;
+                border-radius: 3vh 0 0 3vh;
+            }
+
+            >button {
+                width: 20%;
+                border-radius: 0 3vh 3vh 0;
+                transition: all 0.3s ease;
+                background-color: green;
+                color: white;
+            }
+
+            >button:hover {
+                background-color: forestgreen;
+            }
+        }
+    }
+
+    #nav_border {
+        border-bottom: solid 1px darkgray;
+        box-shadow: 0 0.4rem 0.4rem gainsboro;
+    }
+
+    /*
+    ======== このヘッダー要素をコピーして使用してね♪ ===============================================================================================
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" id="nav_border">
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+        <form id="nav_input">
+            <div>
+                <input type="search" placeholder="キーワードを入力" aria-label="Search">
+                <button type="submit">検索</button>
+            </div>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav" id="nav_a_style">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">サービス概要</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">新規登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">ログイン</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    =================================================================================================================================================
+    */
