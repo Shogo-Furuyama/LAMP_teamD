@@ -20,7 +20,7 @@
                 background: none;
                 outline: none;
                 border: solid 0.01rem silver;
-                font-size: 1vw;
+                font-size: 0.8vw;
             }
 
             >input {
@@ -28,12 +28,12 @@
                 padding-block: 0.8vw;
                 width: 80%;
                 border-right: 0;
-                border-radius: 3vh 0 0 3vh;
+                border-radius: 100px 0 0 100px;
             }
 
             >button {
                 width: 20%;
-                border-radius: 0 3vh 3vh 0;
+                border-radius: 0 100px 100px 0;
                 transition: all 0.3s ease;
                 background-color: green;
                 color: white;
@@ -45,15 +45,20 @@
         }
     }
 
-    #nav_border {
+    #nav_style {
+        padding: 1vh 2vw;
         border-bottom: solid 1px darkgray;
         box-shadow: 0 0.4rem 0.4rem gainsboro;
+    }
+
+    #nav_none_border_style {
+        padding: 1vh 2vw;
     }
 
     /*
     ======== このヘッダー要素をコピーして使用してね♪ ===============================================================================================
 
-    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" id="nav_border">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
         <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
         <form id="nav_input">
             <div>
@@ -78,6 +83,12 @@
             </ul>
         </div>
     </nav>
+    =================================================================================================================================================
+    
 
+    ======== ハンバーガーメニューが展開するために必要なJavascriptも忘れずに (body要素の中の一番下に書くのが好ましい) ================================
+    
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    
     =================================================================================================================================================
     */

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+
+        #book_lists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .book_list {
+            width: 30rem;
+            aspect-ratio: 3 / 2;
+            padding: 2%;
+        }
+
+        .list_anchor {
+            width: 100%;
+            height: 100%;
+            padding: 2%;
+            display: block;
+            color: inherit;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: solid 0.1rem gainsboro;
+            border-radius: 1rem;
+        }
+
+        .list_anchor:active {
+            box-shadow: 0.5rem 0.5rem 0.5rem gainsboro;
+        }
+
+        .list_anchor:hover {
+            color: inherit;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .book_list_title {
+            height: 35%;
+            display: flex;
+            flex-direction: column;
+
+            > * {
+                word-break: break-all;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-block: auto;
+            }
+            
+            > h3 {
+                font-size: 1.3rem;
+                max-height: 3rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            > h5 {
+                font-size: 1rem;
+                color: dimgray;
+                white-space: nowrap;
+            }
+        }
+
+        .book_list_img {
+            display: flex;
+            align-items: center;
+            height: 50%;
+            overflow: hidden;
+            > * {    
+                width: auto;
+                height: 100%;
+                padding-inline: 5%;
+            }
+        }
+
+        .list_user {
+            height: 15%;
+            padding-top: 2%;
+            display: flex;
+            > * {
+                align-items: center;
+                display: flex;
+            }
+        }
+
+        .list_user_info {
+            width: 80%;
+            > div {
+                width: 10%;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                background-size: cover;
+                background-position: center;
+                display: inline-block;
+            }
+
+            > p {
+                margin: 0 5%;
+                width: 80%;
+                word-break: break-all;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;    
+            }
+        }
+
+        .list_user_thumbs {
+            width: 7%;
+            aspect-ratio: 1 / 1;
+            margin-right: 3%;
+        }
+
+        .list_user_thumbs_num {
+            width: 10%;
+        }
+
+        #category {
+            margin-left: auto;
+            >button {
+                border: solid 1px darkgray;
+                border-radius: 1rem;
+            }
+
+            >button.show {
+                box-shadow: none;
+                background-color: gainsboro;
+            }
+
+            >button:hover {
+                background-color: gainsboro;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+        <form id="nav_input">
+            <div>
+                <input type="search" placeholder="キーワードを入力" aria-label="Search">
+                <button type="submit">検索</button>
+            </div>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav" id="nav_a_style">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">サービス概要</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">新規登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">ログイン</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="px-5 pt-5 pb-3">
+        <div class="btn-group mb-5" id="category">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="c_btn">カテゴリー</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)"
+                        id="cl_1">ミステリー</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)"
+                        id="cl_2">ファンタジー</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)"
+                        id="cl_3">歴史</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)"
+                        id="cl_4">SF</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)"
+                        id="cl_5">コメディ</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)"
+                        id="cl_6">子供向け</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(7)"
+                        id="cl_7">ノンフィクション</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(8)"
+                        id="cl_8">図鑑</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(9)"
+                        id="cl_9">エッセイ（随筆）</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
+                        id="cl_10">短編小説</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(0)"
+                        id="cl_0">その他</a></li>
+            </ul>
+        </div>
+        <h3>太宰治に関する検索結果</h3>
+        <h5>&emsp;&emsp;約1000件のリスト</h5>
+    </div>
+    <div id="book_lists">
+        <div class="book_list">
+            <a class="list_anchor" href="#">
+                <div class="book_list_title">
+                    <h3>太宰コレクションあああああああ</h3>
+                    <h5>太宰はいいぞー</h5>
+                </div>
+                <div class="book_list_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <img
+                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">                        
+                        <div style="background-image: url('./img/user_icon.png');"></div>
+                        <p>ミルクココア</p>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
+                    <div class="list_user_thumbs_num">
+                        1000
+                    </div>      
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+        let sCategory = 0;
+
+        function selectCategory(i) {
+            if (i != sCategory) {
+                let ctgy = document.getElementById('cl_' + i);
+                ctgy.classList.add('active');
+                document.getElementById('c_btn').innerText = ctgy.innerText;
+                document.getElementById('cl_' + sCategory).classList.remove('active');
+                sCategory = i;
+            }
+        }
+    </script>
+</body>
+
+</html>
