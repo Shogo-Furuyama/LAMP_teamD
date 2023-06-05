@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
     <title>Document</title>
     <style>
-        
         #t_t {
             height: 20vh;
             display: flex;
@@ -43,22 +43,25 @@
         #detail {
             width: 100%;
             margin-bottom: 10vh;
-            > tbody {
-                > tr {
-                    > th {
+
+            >tbody {
+                >tr {
+                    >th {
                         width: 50%;
                         text-align: center;
-                        > img {
+
+                        >img {
                             height: auto;
                             width: 40%;
                             margin-block: 4rem;
                         }
                     }
 
-                    > td {
+                    >td {
                         width: 50%;
                         font-size: 1.5vw;
-                        > span {
+
+                        >span {
                             font-size: 2vw;
                             font-weight: bold;
                         }
@@ -71,14 +74,15 @@
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
-        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
         <form id="nav_input">
             <div>
                 <input type="search" placeholder="キーワードを入力" aria-label="Search">
                 <button type="submit">検索</button>
             </div>
         </form>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+            aria-controls="navmenu" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
@@ -142,6 +146,21 @@
             </tbody>
         </table>
     </main>
+
+
+    <footer class="footer">
+        <div class="footer_nav">
+            <ul class="footer_navi">
+                <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
+                <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
+                <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
+                <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
+            </ul>
+            <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
+        </div>
+    </footer>
+
     <script src="./js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
