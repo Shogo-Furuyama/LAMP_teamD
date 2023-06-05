@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./css/login.css" rel="stylesheet">
+  <link href="./css/cart.css" rel="stylesheet">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .nav_input {
+      width: 40%;
+
+      >* {
+        display: flex;
+
+        >* {
+          border: none;
+          background: none;
+          outline: none;
+          border: solid 0.01rem silver;
+        }
+
+        >input {
+          padding-left: 10px;
+          padding-block: 5px;
+          width: 80%;
+          border-right: 0;
+          border-radius: 1rem 0 0 1rem;
+        }
+
+        >button {
+          width: 20%;
+          border-radius: 0 1rem 1rem 0;
+          background-color: green;
+          color: white;
+        }
+
+        >button:active {
+          background-color: forestgreen;
+          color: white;
+        }
+      }
+    }
+
+
+
+    .stepper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-top: 20px;
+
+
+      width: 70%;
+
+
+
+    }
+
+    .stepper-step {
+      flex: 1;
+      text-align: center;
+
+      color: #333333;
+      padding: 10px;
+      border: solid 1px #009900;
+      ;
+      border-radius: 40px;
+      background-color: #009900;
+      ;
+      color: aliceblue;
+
+
+    }
+
+    .stepper-step.active {
+      color: #333333;
+      color: aliceblue;
+    }
+
+    .stepper-line {
+      flex: 1;
+      height: 2px;
+      background-color: #999999;
+    }
+
+    .stepper-line.active {
+      background-color: #333333;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-light  px-3 py-2">
+      <a href="#" class="navbar-brand "><img src="./img/logo1.png"
+          style="display: flex; height: 4rem; width: auto;" /></a>
+
+      <form class="nav_input">
+        <div>
+          <input type="search" placeholder="キーワードを入力" aria-label="Search">
+          <button type="submit">検索</button>
+        </div>
+      </form>
+      <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+        <div class="navbar-nav nav_a_style">
+          <a class="nav-item nav-link" href="#">サービス概要</a>
+          <a class="nav-item nav-link" href="#">新規登録</a>
+          <a class="nav-item nav-link" href="#">ログイン</a>
+          <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="stepper">
+      <div class="stepper-step active">ショッピングカート</div>
+      <div class="stepper-line active"></div>
+      <div class="stepper-step">支払いと配送方法</div>
+      <div class="stepper-line"></div>
+      <div class="stepper-step">注文確認</div>
+    </div>
+
+    <div class="display1">
+      <div class="basket">
+
+        
+        <i class="bi bi-cart4"></i>
+        <h2>ショッピングカート</h2>
+
+
+        <div class="basket-labels">
+          <ul>
+            <li class="item item-heading">商品</li>
+            <li class="price">価格</li>
+            <li class="quantity">個数</li>
+            <li class="subtotal">小計</li>
+          </ul>
+        </div>
+        <div class="basket-product" id="bp_0">
+          <div class="item">
+            <div class="product-image">
+              <img src="./img/500_Ehon_23.jpg" alt="Placholder Image 2" class="product-frame">
+            </div>
+            <div class="product-details">
+              <h5><strong>はらぺこあおむし</strong></h5>
+              <p>著書:太宰治</p>
+              <p>在庫あり</p>
+            </div>
+          </div>
+          <div class="price">240</div>
+          <div class="quantity">
+            <input type="number" value="4" min="1" class="quantity-field" onchange="updateSubtotal(this)">
+          </div>
+          <div class="subtotal">960</div>
+          <div class="remove">
+            <button class="button" onclick="removeProduct(0)">消去</button>
+          </div>
+        </div>
+        <div class="basket-product" id="bp_1">
+          <div class="item">
+            <div class="product-image">
+              <img src="./img/ダウンロード.jpg" alt="Placholder Image 2" class="product-frame">
+            </div>
+            <div class="product-details">
+              <h5><strong>人間失格</strong></h5>
+              <p>著書:太宰治</p>
+              <p>在庫あり</p>
+            </div>
+          </div>
+          <div class="price">480</div>
+          <div class="quantity">
+            <input type="number" value="1" min="1" class="quantity-field" onchange="updateSubtotal(this)">
+          </div>
+          <div class="subtotal">480</div>
+          <div class="remove">
+            <button class="button" onclick="removeProduct(1)">消去</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="display2">
+      <div class="payment-delivery-method" style="display: none;">
+
+
+      </div>
+      </div>
+
+      <div class ="display3">
+      <div class="order-confirmation" style="display: none;">
+        <!-- order confirmation content -->
+      </div>
+      </div>
+
+      <div id="cart-empty-message" style="display: none;">
+        現在カートの中身には商品が入っておりません。またご利用お待ちしております。
+
+      </div>
+    </div>
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span>
+          <h5>
+            <font color="#333333"> お支払い金額</font>
+          </h5>
+        </div>
+        <div class="summary-subtotal">
+          <div class="subtotal-title">商品小計 2点</div>
+          <div class="subtotal-value final-value" id="basket-subtotal">1440</div>
+
+        </div>
+
+        <div class="summary-total">
+          <div class="total-title">合計金額(税込)</div>
+          <div class="total-value final-value" id="basket-total">1440</div>
+        </div>
+        <div class="summary-checkout">
+          <button class="checkout-cta onclick=proceedToPaymentDelivery()">次へ進む</button>
+        </div>
+
+      </div>
+    </aside>
+
+    <script>
+      // 初期の小計を計算して表示する関数
+      function calculateSubtotal() {
+        var productRows = document.getElementsByClassName("basket-product");
+        var subtotal = 0;
+
+        for (var i = 0; i < productRows.length; i++) {
+          var quantityField = productRows[i].getElementsByClassName("quantity-field")[0];
+          var price = productRows[i].getElementsByClassName("price")[0].innerText;
+          var subtotalField = productRows[i].getElementsByClassName("subtotal")[0];
+
+          var quantity = parseInt(quantityField.value);
+          var productSubtotal = quantity * parseInt(price);
+          subtotal += productSubtotal;
+
+          subtotalField.innerText = productSubtotal;
+        }
+
+        var subtotalValue = document.getElementById("basket-subtotal");
+        var totalValue = document.getElementById("basket-total");
+
+        subtotalValue.innerText = subtotal;
+        totalValue.innerText = subtotal;
+      }
+
+      // 商品の個数が変更された時に小計を更新する関数
+      function updateSubtotal(input) {
+        var quantity = parseInt(input.value);
+        var price = parseInt(input.parentNode.parentNode.getElementsByClassName("price")[0].innerText);
+        var subtotal = quantity * price;
+
+        input.parentNode.parentNode.getElementsByClassName("subtotal")[0].innerText = subtotal;
+
+        calculateSubtotal();
+      }
+
+      // 商品を削除する関数
+      function removeProduct(index) {
+        document.getElementById("bp_" + index).remove();
+
+
+
+        calculateSubtotal();
+        // カートの中身をチェック
+        checkCartEmpty();
+      }
+
+      // 初期の小計を計算して表示する
+      calculateSubtotal();
+
+      // ステップごとの表示切り替え
+      const stepperSteps = document.querySelectorAll('.stepper-step');
+      const stepperLines = document.querySelectorAll('.stepper-line');
+      const basket = document.querySelector('.basket');
+      const paymentDeliveryMethod = document.querySelector('.payment-delivery-method');
+      const orderConfirmation = document.querySelector('.order-confirmation');
+      const display1=document.querySelector('.display1');
+
+      stepperSteps.forEach((step, index) => {
+        step.addEventListener('click', () => {
+          updateStepper(index);
+        });
+      });
+
+      function updateStepper(activeStep) {
+        stepperSteps.forEach((step, index) => {
+          if (index <= activeStep) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
+
+        stepperLines.forEach((line, index) => {
+          if (index < activeStep) {
+            line.classList.add('active');
+          } else {
+            line.classList.remove('active');
+          }
+        });
+
+        if (activeStep === 0) {
+          display1.style.display = 'block';
+          paymentDeliveryMethod.style.display = 'none';
+          orderConfirmation.style.display = 'none';
+        } else if (activeStep === 1) {
+          display1.style.display = 'none';
+          paymentDeliveryMethod.style.display = 'block';
+          orderConfirmation.style.display = 'none';
+        } else if (activeStep === 2) {
+          display1.style.display = 'none';
+          paymentDeliveryMethod.style.display = 'none';
+          orderConfirmation.style.display = 'block';
+        }
+      }
+      function proceedToPaymentDelivery() {
+        updateStepper(1); // 遷移先を支払いと配送方法に設定
+        // 商品小計の更新
+
+
+      }
+      function checkCartEmpty() {
+        var productRows = document.getElementsByClassName("basket-product");
+        var cartEmptyMessage = document.getElementById("cart-empty-message");
+
+        if (productRows.length === 0) {
+          cartEmptyMessage.style.display = 'block';
+          basket.style.display = 'none';
+          paymentDeliveryMethod.style.display = 'none';
+          orderConfirmation.style.display = 'none';
+        } else {
+          cartEmptyMessage.style.display = 'none';
+          basket.style.display = 'block';
+          paymentDeliveryMethod.style.display = 'none';
+          orderConfirmation.style.display = 'none';
+        }
+      }
+
+
+
+
+
+    </script>
+  </main>
+</body>
+
+</html>
