@@ -22,6 +22,14 @@
                 > * {
                     height: 100%;
                     background-size: cover;
+                    text-align: end;
+                    display: flex;
+                    > img {
+                        height: 40%;
+                        width: auto;
+                        margin-top: auto;
+                        margin-left: auto;
+                    }
                 }
             }
         }
@@ -180,10 +188,9 @@
     <header class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
         <div class="carousel-inner" id="header_images">
             <div class="carousel-item active" data-bs-interval="4000">
-                <div style="background-image: url('./img/top_image.jpg');"></div>
-            </div>
-            <div class="carousel-item" data-bs-interval="4000">
-                <div style="background-image: url('./img/top_image2.jpeg');"></div>
+                <div style="background-image: url('./img/top_image.jpg');">
+                    <img src="./img/test.png">
+                </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_none_border_style">
