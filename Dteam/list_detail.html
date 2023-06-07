@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        main {
+            padding: 2%;
+        }
+
+        #l_info {
+            width: 100%;
+            display: flex;
+        }
+
+        #l_info_1 {
+            width: 70%;
+        }
+
+        #l_info_2 {
+            width: 30%;
+        }
+
+        #thumbs {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            >img {
+                height: auto;
+                margin-left: 30%;
+                margin-right: 5%;
+                width: 10%;
+            }
+
+            >div {
+                width: 55%;
+                font-size: 2vw;
+            }
+        }
+
+        #list_user_info {
+            display: flex;
+            align-items: center;
+            border: solid gray 5px;
+            border-radius: 10px;
+            margin: 10% 5%;
+            padding: 5%;
+            > div {
+                width: 25%;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                background-size: cover;
+                background-position: center;
+                display: inline-block;
+            }
+            
+            > p {
+                margin: 0 5%;
+                width: 70%;
+                font-size: 2vw;
+                word-break: break-all;
+            }
+        }
+
+        #register_books {
+            margin-block: 5%;
+            border-top: dashed 1px black;
+
+            >* {
+                padding-block: 1%;
+                border-bottom: dashed 1px black;
+                aspect-ratio: 6 / 1;
+                display: flex;
+            }
+        }
+
+        .reg_num {
+            margin-block: auto;
+            width: 5%;
+            text-align: center;
+            font-size: 1.3vw;
+        }
+
+        .book_img {
+            width: 20%;
+            display: flex;
+            overflow: hidden;
+
+            >img {
+                height: 80%;
+                width: auto;
+                margin: auto;
+            }
+        }
+
+        .book_info {
+            width: 32%;
+            height: 100%;
+            justify-content: center;
+            padding-inline: 1%;
+            margin-block: auto;
+            display: flex;
+            flex-direction: column;
+
+            >h3 {
+                width: 100%;
+                max-height: 75%;
+                margin-bottom: 2%;
+                font-size: 1.5vw;
+                word-break: break-all;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+            }
+
+            >h5 {
+                color: dimgray;
+                margin: 0;
+                font-size: 1vw;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" id="nav_style">
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+            aria-controls="navmenu" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav" id="nav_a_style">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">サービス概要</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">新規登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">ログイン</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div id="l_info">
+            <div id="l_info_1">
+                <h1>タイトル</h1>
+                <h3 class="text-muted">ジャンル</h3>
+                <h5>共感必至のアラサー青春小説！芳野荘介28歳。彼女いない歴も28年。田圃と山しかない地元・夜越町で冴えない広告デザイナーをしている。一方、河合裕紀32歳。超一流クリエイター・南波仁志の右腕でありながら、独立や彼女との結婚には二の足を踏み続けていた。そんな真逆の二人が《夜越町農業王国》プロジェクトでチームを組むことに。迎えた人生の転換期、「できない男」たちが出した結論とは？頑張る大人のための青春小説。
+                </h5>
+            </div>
+            <div id="l_info_2">
+                <div id="thumbs">
+                    <img src="./img/thumbsup.png" />
+                    <div>
+                        1000
+                    </div>
+                </div>
+                <div id="list_user_info">
+                    <div style="background-image: url('./img/user_icon.png');"></div>
+                    <p>ミルクココア</p>
+                </div>
+            </div>
+        </div>
+        <div id="register_books">
+            <div>
+                <div class="reg_num">
+                    1
+                </div>
+                <div class="book_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                </div>
+                <div class="book_info">
+                    <h3>太宰治</h3>
+                    <h5>太宰治</h5>
+                    <input type="hidden" value="">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer_nav">
+            <ul class="footer_navi">
+                <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
+                <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
+                <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
+                <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
+            </ul>
+            <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
+        </div>
+    </footer>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>
