@@ -97,7 +97,8 @@
     }
 
     .popup {
-      display: none;
+
+      display: flex;
       position: fixed;
       top: 50%;
       left: 50%;
@@ -109,6 +110,10 @@
       padding: 20px;
       text-align: center;
       z-index: 2;
+
+      justify-content: center;
+      align-items: center;
+
     }
 
 
@@ -136,8 +141,15 @@
       color: #ff0000;
     }
 
-    footer {
-     
+    .d-flex {
+      width: 20em;
+    }
+
+    .table {
+      margin-top: 20px;
+    }
+    .payment-section{
+      
     }
   </style>
 </head>
@@ -233,64 +245,48 @@
       </div>
       <div id="cart-empty-message" style="display: none;">
         現在カートの中身には商品が入っておりません。またご利用お待ちしております。<br>
-       <a href="#">トップページはこちら</a>
+        <a href="#">トップページはこちら</a>
       </div>
     </div>
 
     <div class="display2 " style="display: none;">
       <div class="" style="width: 70%; float: left;">
-        <h2>支払い方法</h2>
-        <form>
+        <h4>お支払い方法の選択</h4>
+ 
+
+
+        <div class="payment-section">
+        <form  style="border: 1px solid#EEEEEE; border-radius: 5px;">
           <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
-          <label for="creditCard">クレジットカード</label><br>
+          <label for="creditCard">クレジットカード</label>
+          <img src ="./img/logoCard_visa_v2.png" style="display: inline;width: 35px;height: auto;">
+          <img src ="./img/logoCard_master.png" style="display: inline;width: 35px;height: auto;">
+          <img src ="./img/logoCard_jcb2.png" style="display: inline;width: 35px;height: auto;"><br>
+          <img src ="./img/PlusIcon._CB485933946_.gif" style="display: inline;width: 13px;height: auto;">
           <a href="#" onclick="openPopup()">クレジットカードまたはデビットカードを追加</a><br>
+         
 
 
-          <div class="popup-overlay" id="popup-overlay">
-            <div class="window">
-              <div class="popup" id="popup">
 
-                <a href="#" onclick="closePopup()"><span class="close-btn">&times;</span></a>
-              </div>
-            </div>
-          </div>
-
-
-          <script>
-            function openPopup() {
-              var overlay = document.getElementById('popup-overlay');
-              var popup = document.getElementById('popup');
-              overlay.style.display = 'block';
-              popup.style.display = 'block';
-            }
-
-            function closePopup() {
-              var overlay = document.getElementById('popup-overlay');
-              var popup = document.getElementById('popup');
-              overlay.style.display = 'none';
-              popup.style.display = 'none';
-
-            }
-          </script>
-
-          <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
-          <label for="bankTransfer">銀行振込</label><br>
+          <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer" >
+          <label for="bankTransfer">コンビニ前払い</label><br>
 
           <input type="radio" id="cod" name="paymentMethod" value="cod">
-          <label for="cod">代金引換</label><br>
+          <label for="cod">PayPay</label><br>
           <a href="#">支払い方法に関する詳細</a><br>
         </form>
-
-        <div class="">
-          <h2>配送方法とお届け日時の選択</h2>
-
-          <h5>配送方法</h5>
+        </div>
+       
+          <h4>配送方法とお届け日時の選択</h4>
+           
+          <div class="delivery-section" style="border: 1px solid#EEEEEE; border-radius: 5px;" >
+          <h6>配送方法</h6>
           <form>
             <input type="radio" id="delivery" name="deliveryMethod" checked="checked">
             <label for=" delivery">通常配達</label><br>
             <a href="#">配送方法に関する詳細</a><br>
           </form>
-          <h5>お届け日時</h5>
+          <h6>お届け日時</h6>
           <form>
             <input type="radio" id="date_specification" name="deliveryDate" checked="checked">
             <label for=" date">日時指定</label><br>
@@ -298,8 +294,198 @@
             <label for=" date">指定なし</label><br>
 
           </form>
+          </div>
 
+       
+        <div class="popup-overlay" id="popup-overlay">
+          <div class="window">
+            <div class="popup" id="popup">
+              <h5>クレジットカードまたはデビットカード追加</h5>
+              <form method="post" asp-controller="Home" asp-action="Login" novalidate>
+
+                <table class="table ">
+
+                  <tbody class="tableSize">
+
+                    <tr class="align-middle">
+
+                      <th>
+
+                        カード番号<span class="span">*</span>
+
+                      </th>
+
+                      <td>
+
+                        <div class="d-flex ">
+
+                          <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+
+                          <div id="id_error"></div>
+
+                          &nbsp;-
+
+                          <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+
+                          <div id="id_error"></div>
+
+                          &nbsp;-
+
+                          <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+
+                          <div id="id_error"></div>
+
+                          &nbsp;-
+
+                          <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+
+                          <div id="id_error"></div>
+
+                        </div>
+
+                      </td>
+
+                    </tr>
+
+                    <tr class="align-middle">
+
+                      <th>
+
+                        クレジットカード<br>名義人<span class="span">*</span>
+
+                      </th>
+
+                      <td>
+
+                        <input type="text" name="name" id="name" class="form-control">
+
+                        <div id="pass_error"></div>
+
+                      </td>
+
+                    </tr>
+
+                    <tr class="align-middle">
+
+                      <th>
+
+                        有効期限<span class="span">*</span>
+
+                      </th>
+
+                      <td>
+                        <div class="dicide ">
+                          <select name="month">
+
+                            <option slot="month">--</option>
+
+                            <option slot="month">01</option>
+
+                            <option slot="month">02</option>
+
+                            <option slot="month">03</option>
+
+                            <option slot="month">04</option>
+
+                            <option slot="month">05</option>
+
+                            <option slot="month">06</option>
+
+                            <option slot="month">07</option>
+
+                            <option slot="month">08</option>
+
+                            <option slot="month">09</option>
+
+                            <option slot="month">11</option>
+
+                            <option slot="month">12</option>
+
+                          </select>
+
+                          &nbsp;月
+
+                          <select name="year">
+
+                            <option slot="year">--</option>
+
+                            <option slot="year">2023</option>
+
+                            <option slot="year">2024</option>
+
+                            <option slot="year">2025</option>
+
+                            <option slot="year">2026</option>
+
+                            <option slot="year">2027</option>
+
+                            <option slot="year">2028</option>
+
+                            <option slot="year">2029</option>
+
+                            <option slot="year">2030</option>
+
+                            <option slot="year">2031</option>
+
+                            <option slot="year">2032</option>
+
+                            <option slot="year">2033</option>
+
+                            <option slot="year">2034</option>
+
+                            <option slot="year">2035</option>
+
+                            <option slot="year">2036</option>
+
+                            <option slot="year">2037</option>
+
+                            <option slot="year">2038</option>
+
+                            <option slot="year">2039</option>
+
+                            <option slot="year">2040</option>
+
+                            <option slot="year">2041</option>
+
+                            <option slot="year">2042</option>
+
+                            <option slot="year">2043</option>
+
+                          </select>
+
+                          &nbsp;年
+                        </div>
+                      </td>
+
+                  </tbody>
+
+                </table>
+
+
+              </form>
+
+              <a href="#" onclick="closePopup()"><span class="close-btn">&times;</span></a>
+            </div>
+          </div>
         </div>
+
+
+        <script>
+          function openPopup() {
+            var overlay = document.getElementById('popup-overlay');
+            var popup = document.getElementById('popup');
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+          }
+
+          function closePopup() {
+            var overlay = document.getElementById('popup-overlay');
+            var popup = document.getElementById('popup');
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+
+          }
+        </script>
 
       </div>
     </div>
@@ -330,13 +516,15 @@
           <div class="total-value final-value" id="basket-total">1440</div>
         </div>
         <div class="summary-checkout">
-          <button class="checkout-cta onclick=proceedToPaymentDelivery()">次へ進む</button>
+          <button class="checkout-cta onclick=proceedToPaymentDelivery()" id="nextButton">次へ進む</button>
         </div>
 
       </div>
     </aside>
 
     <script>
+
+
       // 初期の小計を計算して表示する関数
       function calculateSubtotal() {
         var productRows = document.getElementsByClassName("basket-product");
@@ -386,6 +574,7 @@
       // 初期の小計を計算して表示する
       calculateSubtotal();
 
+
       // ステップごとの表示切り替え
       const stepperSteps = document.querySelectorAll('.stepper-step');
       const stepperLines = document.querySelectorAll('.stepper-line');
@@ -393,6 +582,22 @@
       const paymentDeliveryMethod = document.querySelector('.display2');
       const orderConfirmation = document.querySelector('.order-confirmation');
       const display1 = document.querySelector('.display1');
+      let currentStep = 0;
+
+      const steps = [display1, paymentDeliveryMethod, orderConfirmation];
+
+      const nextButton = document.getElementById('nextButton');
+      nextButton.addEventListener('click', () => {
+        // 現在のステップを非表示にする
+        steps[currentStep].style.display = 'none';
+        stepperSteps[currentStep].classList.remove('active');
+        currentStep++;
+        if (currentStep >= steps.length) {
+          currentStep = 0; // 最後のステップの次は最初に戻る
+        }
+        steps[currentStep].style.display = 'block';
+        stepperSteps[currentStep].classList.add('active');
+      });
 
       stepperSteps.forEach((step, index) => {
         step.addEventListener('click', () => {
@@ -401,45 +606,26 @@
       });
 
       function updateStepper(activeStep) {
-        stepperSteps.forEach((step, index) => {
-          if (index <= activeStep) {
-            step.classList.add('active');
+        currentStep = activeStep;
+        steps.forEach((step, index) => {
+          if (index === activeStep) {
+            step.style.display = 'block';
+            stepperSteps[index].classList.add('active');
           } else {
-            step.classList.remove('active');
+            step.style.display = 'none';
+            stepperSteps[index].classList.remove('active');
           }
         });
-
-        stepperLines.forEach((line, index) => {
-          if (index < activeStep) {
-            line.classList.add('active');
-          } else {
-            line.classList.remove('active');
-          }
-        });
-
-        if (activeStep === 0) {
-          display1.style.display = 'block';
-          paymentDeliveryMethod.style.display = 'none';
-          orderConfirmation.style.display = 'none';
-        } else if (activeStep === 1) {
-          display1.style.display = 'none';
-          paymentDeliveryMethod.style.display = 'block';
-          orderConfirmation.style.display = 'none';
-        } else if (activeStep === 2) {
-          display1.style.display = 'none';
-          paymentDeliveryMethod.style.display = 'none';
-          orderConfirmation.style.display = 'block';
-        }
       }
+
       function proceedToPaymentDelivery() {
         updateStepper(1); // 遷移先を支払いと配送方法に設定
         // 商品小計の更新
-
-
       }
+
       function checkCartEmpty() {
-        var productRows = document.getElementsByClassName("basket-product");
-        var cartEmptyMessage = document.getElementById("cart-empty-message");
+        var productRows = document.getElementsByClassName('basket-product');
+        var cartEmptyMessage = document.getElementById('cart-empty-message');
 
         if (productRows.length === 0) {
           cartEmptyMessage.style.display = 'block';
@@ -453,7 +639,6 @@
           orderConfirmation.style.display = 'none';
         }
       }
-
 
 
 
