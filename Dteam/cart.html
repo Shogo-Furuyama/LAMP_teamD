@@ -91,6 +91,54 @@
     .stepper-line.active {
       background-color: #333333;
     }
+
+    .popup-container {
+      position: relative;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background-color: white;
+      border: 1px solid black;
+      padding: 20px;
+      text-align: center;
+      z-index: 2;
+    }
+
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      display: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .close-btn:hover {
+      color: #ff0000;
+    }
+
+    footer {
+     
+    }
   </style>
 </head>
 
@@ -128,7 +176,7 @@
     <div class="display1">
       <div class="basket">
 
-        
+
         <i class="bi bi-cart4"></i>
         <h2>ショッピングカート</h2>
 
@@ -144,7 +192,7 @@
         <div class="basket-product" id="bp_0">
           <div class="item">
             <div class="product-image">
-              <img src="./img/500_Ehon_23.jpg" alt="Placholder Image 2" class="product-frame">
+              <img src="./img/book1.jpg" alt="Placholder Image 2" class="product-frame">
             </div>
             <div class="product-details">
               <h5><strong>はらぺこあおむし</strong></h5>
@@ -164,7 +212,7 @@
         <div class="basket-product" id="bp_1">
           <div class="item">
             <div class="product-image">
-              <img src="./img/ダウンロード.jpg" alt="Placholder Image 2" class="product-frame">
+              <img src="./img/book2.jpg" alt="Placholder Image 2" class="product-frame">
             </div>
             <div class="product-details">
               <h5><strong>人間失格</strong></h5>
@@ -180,36 +228,89 @@
           <div class="remove">
             <button class="button" onclick="removeProduct(1)">消去</button>
           </div>
+
         </div>
       </div>
+      <div id="cart-empty-message" style="display: none;">
+        現在カートの中身には商品が入っておりません。またご利用お待ちしております。<br>
+       <a href="#">トップページはこちら</a>
+      </div>
+    </div>
 
-      <div class="display2">
-      <div class="payment-delivery-method" style="display: none;">
+    <div class="display2 " style="display: none;">
+      <div class="" style="width: 70%; float: left;">
         <h2>支払い方法</h2>
         <form>
-          <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+          <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
           <label for="creditCard">クレジットカード</label><br>
-      
+          <a href="#" onclick="openPopup()">クレジットカードまたはデビットカードを追加</a><br>
+
+
+          <div class="popup-overlay" id="popup-overlay">
+            <div class="window">
+              <div class="popup" id="popup">
+
+                <a href="#" onclick="closePopup()"><span class="close-btn">&times;</span></a>
+              </div>
+            </div>
+          </div>
+
+
+          <script>
+            function openPopup() {
+              var overlay = document.getElementById('popup-overlay');
+              var popup = document.getElementById('popup');
+              overlay.style.display = 'block';
+              popup.style.display = 'block';
+            }
+
+            function closePopup() {
+              var overlay = document.getElementById('popup-overlay');
+              var popup = document.getElementById('popup');
+              overlay.style.display = 'none';
+              popup.style.display = 'none';
+
+            }
+          </script>
+
           <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
           <label for="bankTransfer">銀行振込</label><br>
-      
+
           <input type="radio" id="cod" name="paymentMethod" value="cod">
           <label for="cod">代金引換</label><br>
+          <a href="#">支払い方法に関する詳細</a><br>
         </form>
 
-      </div>
-      </div>
+        <div class="">
+          <h2>配送方法とお届け日時の選択</h2>
 
-      <div class ="display3">
+          <h5>配送方法</h5>
+          <form>
+            <input type="radio" id="delivery" name="deliveryMethod" checked="checked">
+            <label for=" delivery">通常配達</label><br>
+            <a href="#">配送方法に関する詳細</a><br>
+          </form>
+          <h5>お届け日時</h5>
+          <form>
+            <input type="radio" id="date_specification" name="deliveryDate" checked="checked">
+            <label for=" date">日時指定</label><br>
+            <input type="radio" id="date_no" name="deliveryDate">
+            <label for=" date">指定なし</label><br>
+
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="display3">
       <div class="order-confirmation" style="display: none;">
         <!-- order confirmation content -->
       </div>
-      </div>
+    </div>
 
-      <div id="cart-empty-message" style="display: none;">
-        現在カートの中身には商品が入っておりません。またご利用お待ちしております。
 
-      </div>
     </div>
     <aside>
       <div class="summary">
@@ -289,9 +390,9 @@
       const stepperSteps = document.querySelectorAll('.stepper-step');
       const stepperLines = document.querySelectorAll('.stepper-line');
       const basket = document.querySelector('.basket');
-      const paymentDeliveryMethod = document.querySelector('.payment-delivery-method');
+      const paymentDeliveryMethod = document.querySelector('.display2');
       const orderConfirmation = document.querySelector('.order-confirmation');
-      const display1=document.querySelector('.display1');
+      const display1 = document.querySelector('.display1');
 
       stepperSteps.forEach((step, index) => {
         step.addEventListener('click', () => {
@@ -361,15 +462,15 @@
   </main>
   <footer class="footer">
     <div class="footer_nav">
-        <ul class="footer_navi">
-            <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
-            <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
-            <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
-            <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
-        </ul>
-        <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
+      <ul class="footer_navi">
+        <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
+        <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
+        <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
+        <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
+      </ul>
+      <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
     </div>
-</footer>
+  </footer>
 </body>
 
 </html>
