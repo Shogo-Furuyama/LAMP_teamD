@@ -10,42 +10,60 @@
   <link href="./css/footer.css" rel="stylesheet">
   <link href="./css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .nav_input {
-      width: 40%;
+    #site_logo {
+      height: auto;
+      width: 13vw;
+    }
+
+    #nav_a_style>li>a {
+      padding: 1.5vw !important;
+      font-size: 1.4vw;
+    }
+
+    #nav_input {
+      width: 50%;
 
       >* {
         display: flex;
 
         >* {
-          border: none;
           background: none;
           outline: none;
           border: solid 0.01rem silver;
+          font-size: 0.8vw;
         }
 
         >input {
-          padding-left: 10px;
-          padding-block: 5px;
+          padding-left: 1vw;
+          padding-block: 0.8vw;
           width: 80%;
           border-right: 0;
-          border-radius: 1rem 0 0 1rem;
+          border-radius: 100px 0 0 100px;
         }
 
         >button {
           width: 20%;
-          border-radius: 0 1rem 1rem 0;
+          border-radius: 0 100px 100px 0;
+          transition: all 0.3s ease;
           background-color: green;
           color: white;
         }
 
-        >button:active {
+        >button:hover {
           background-color: forestgreen;
-          color: white;
         }
       }
     }
 
+    #nav_style {
+      padding: 1vh 2vw;
+      border-bottom: solid 1px darkgray;
+      box-shadow: 0 0.4rem 0.4rem gainsboro;
+    }
 
+    #nav_none_border_style {
+      padding: 1vh 2vw;
+    }
 
     .stepper {
       display: flex;
@@ -65,11 +83,11 @@
       flex: 1;
       text-align: center;
 
-      color: #333333;
+      border: solid 1px #999999;
       padding: 10px;
       border: solid 1px #009900;
       ;
-      border-radius: 40px;
+      border-radius: 10px;
       background-color: #009900;
       ;
       color: aliceblue;
@@ -89,7 +107,7 @@
     }
 
     .stepper-line.active {
-      background-color: #333333;
+      background-color: #999999;
     }
 
     .popup-container {
@@ -106,7 +124,7 @@
       width: 600px;
       height: 400px;
       background-color: white;
-      border: 1px solid black;
+      border: 1px solid white;
       padding: 20px;
       text-align: center;
       z-index: 2;
@@ -148,31 +166,69 @@
     .table {
       margin-top: 20px;
     }
+
+    a:hover {
+      color: #009900;
+    }
+
+    button.add {
+      background-color: #009900;
+      color: #fff;
+      width: 10em;
+      height: 3em;
+      border-radius: 10%;
+
+
+    }
+
+    button.add:hover {
+      opacity: 0.7;
+      color: white;
+
+    }
+
+    button.cancel {
+      background-color: #AAAAAA;
+      color: #fff;
+      width: 10em;
+      height: 3em;
+      margin-right: 5%;
+      border-radius: 10%;
+
+
+    }
     .payment-section{
-      
+      line-height: 2.0;
     }
   </style>
 </head>
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-sm navbar-light  px-3 py-2">
-      <a href="#" class="navbar-brand "><img src="./img/logo1.png"
-          style="display: flex; height: 4rem; width: auto;" /></a>
-
-      <form class="nav_input">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
+      <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+      <form id="nav_input">
         <div>
           <input type="search" placeholder="キーワードを入力" aria-label="Search">
           <button type="submit">検索</button>
         </div>
       </form>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+        aria-controls="navmenu" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-        <div class="navbar-nav nav_a_style">
-          <a class="nav-item nav-link" href="#">サービス概要</a>
-          <a class="nav-item nav-link" href="#">新規登録</a>
-          <a class="nav-item nav-link" href="#">ログイン</a>
-          <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
-        </div>
+        <ul class="navbar-nav" id="nav_a_style">
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="#">サービス概要</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="#">新規登録</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="#">ログイン</a>
+          </li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -251,39 +307,68 @@
 
     <div class="display2 " style="display: none;">
       <div class="" style="width: 70%; float: left;">
+
+
         <h4>お支払い方法の選択</h4>
- 
+
 
 
         <div class="payment-section">
-        <form  style="border: 1px solid#EEEEEE; border-radius: 5px;">
-          <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
-          <label for="creditCard">クレジットカード</label>
-          <img src ="./img/logoCard_visa_v2.png" style="display: inline;width: 35px;height: auto;">
-          <img src ="./img/logoCard_master.png" style="display: inline;width: 35px;height: auto;">
-          <img src ="./img/logoCard_jcb2.png" style="display: inline;width: 35px;height: auto;"><br>
-          <img src ="./img/PlusIcon._CB485933946_.gif" style="display: inline;width: 13px;height: auto;">
-          <a href="#" onclick="openPopup()">クレジットカードまたはデビットカードを追加</a><br>
-         
+          <form style="border: 1px solid#EEEEEE; border-radius: 5px;">
+            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
+            <label for="creditCard">クレジットカード</label>
+            <img src="./img/logoCard_visa_v2.png" style="display: inline;width: 35px;height: auto;">
+            <img src="./img/logoCard_master.png" style="display: inline;width: 35px;height: auto;">
+            <img src="./img/logoCard_jcb2.png" style="display: inline;width: 35px;height: auto;"><br>
+            <a href="#" onclick="openPopup()"><img src="./img/PlusIcon._CB485933946_.gif"
+                style="display: inline;width: 20px;height: auto;padding: 3px;"></a>
+            <a href="#" onclick="openPopup()">クレジットカードまたはデビットカードを追加</a><br>
 
 
 
-          <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer" >
-          <label for="bankTransfer">コンビニ前払い</label><br>
 
-          <input type="radio" id="cod" name="paymentMethod" value="cod">
-          <label for="cod">PayPay</label><br>
-          <a href="#">支払い方法に関する詳細</a><br>
-        </form>
+            <input type="radio" id="convenience" name="paymentMethod" value="bankTransfer" onclick="hideTextBox()">
+            <label for="bankTransfer">コンビニ前払い</label><br>
+
+            <input type="radio" id="paypay" name="paymentMethod" value="cod" onclick="showTextBox()">
+            <label for="paypay">PayPay</label><br>
+
+            <div id="textBoxContainer" style="display: none;">
+              <input type="text" id="textBox" placeholder="利用する金額"><br>
+            </div>
+
+            <script>
+              function showTextBox() {
+                var textBoxContainer = document.getElementById("textBoxContainer");
+                textBoxContainer.style.display = "block";
+              }
+
+              function hideTextBox() {
+                var textBoxContainer = document.getElementById("textBoxContainer");
+                textBoxContainer.style.display = "none";
+              }
+            </script>
+
+
+
+
+
+
+
+
+            <img src="./img/インフォメーションアイコン3.png" style="display: inline;width: 20px;height: auto;padding: 3px;">
+            <a href="#">支払い方法に関する詳細</a><br>
+          </form>
         </div>
-       
-          <h4>配送方法とお届け日時の選択</h4>
-           
-          <div class="delivery-section" style="border: 1px solid#EEEEEE; border-radius: 5px;" >
+
+        <h4>配送方法とお届け日時の選択</h4>
+
+        <div class="delivery-section" style="border: 1px solid#EEEEEE; border-radius: 5px;">
           <h6>配送方法</h6>
           <form>
             <input type="radio" id="delivery" name="deliveryMethod" checked="checked">
             <label for=" delivery">通常配達</label><br>
+            <img src="./img/インフォメーションアイコン3.png" style="display: inline;width: 20px;height: auto;padding: 3px;">
             <a href="#">配送方法に関する詳細</a><br>
           </form>
           <h6>お届け日時</h6>
@@ -294,13 +379,13 @@
             <label for=" date">指定なし</label><br>
 
           </form>
-          </div>
+        </div>
 
-       
+
         <div class="popup-overlay" id="popup-overlay">
           <div class="window">
-            <div class="popup" id="popup">
-              <h5>クレジットカードまたはデビットカード追加</h5>
+            <div class="popup" id="popup" style="border-radius: 20px;">
+              <h5 style="margin-bottom: 50px;margin-top:20px ;">クレジットカードまたはデビットカード追加</h5>
               <form method="post" asp-controller="Home" asp-action="Login" novalidate>
 
                 <table class="table ">
@@ -460,6 +545,11 @@
                   </tbody>
 
                 </table>
+                <div class="addCard-btn ">
+                  <button type="button" class="cancel ">キャンセル</button>
+
+                  <button type="button" class="add">カードを追加</button>
+                </div>
 
 
               </form>
@@ -640,7 +730,7 @@
         }
       }
 
-
+      //paypay選択
 
 
     </script>
@@ -656,6 +746,7 @@
       <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
     </div>
   </footer>
+  <script src="./js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
