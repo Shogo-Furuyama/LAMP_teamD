@@ -197,9 +197,6 @@
 
 
     }
-    .payment-section{
-      line-height: 2.0;
-    }
   </style>
 </head>
 
@@ -305,27 +302,23 @@
       </div>
     </div>
 
-    <div class="display2 " style="display: none;">
+    <div class="display2" style="display: none;">
       <div class="" style="width: 70%; float: left;">
 
-
-        <h4>お支払い方法の選択</h4>
-
-
+        <h4 style="margin-bottom: 10px;">お支払い方法の選択</h4>
 
         <div class="payment-section">
-          <form style="border: 1px solid#EEEEEE; border-radius: 5px;">
+          <form style="border: 1px solid #EEEEEE; border-radius: 5px;">
             <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
             <label for="creditCard">クレジットカード</label>
-            <img src="./img/logoCard_visa_v2.png" style="display: inline;width: 35px;height: auto;">
-            <img src="./img/logoCard_master.png" style="display: inline;width: 35px;height: auto;">
-            <img src="./img/logoCard_jcb2.png" style="display: inline;width: 35px;height: auto;"><br>
-            <a href="#" onclick="openPopup()"><img src="./img/PlusIcon._CB485933946_.gif"
-                style="display: inline;width: 20px;height: auto;padding: 3px;"></a>
+            <img src="./img/logoCard_visa_v2.png" style="display: inline; width: 35px; height: auto;">
+            <img src="./img/logoCard_master.png" style="display: inline; width: 35px; height: auto;">
+            <img src="./img/logoCard_jcb2.png" style="display: inline; width: 35px; height: auto;"><br>
+            <a href="#" onclick="openPopup()">
+              <img src="./img/PlusIcon._CB485933946_.gif"
+                style="display: inline; width: 20px; height: auto; padding: 3px;">
+            </a>
             <a href="#" onclick="openPopup()">クレジットカードまたはデビットカードを追加</a><br>
-
-
-
 
             <input type="radio" id="convenience" name="paymentMethod" value="bankTransfer" onclick="hideTextBox()">
             <label for="bankTransfer">コンビニ前払い</label><br>
@@ -349,234 +342,110 @@
               }
             </script>
 
-
-
-
-
-
-
-
-            <img src="./img/インフォメーションアイコン3.png" style="display: inline;width: 20px;height: auto;padding: 3px;">
+            <img src="./img/インフォメーションアイコン3.png" style="display: inline; width: 20px; height: auto; padding: 3px;">
             <a href="#">支払い方法に関する詳細</a><br>
           </form>
         </div>
 
         <h4>配送方法とお届け日時の選択</h4>
 
-        <div class="delivery-section" style="border: 1px solid#EEEEEE; border-radius: 5px;">
+        <div class="delivery-section" style="border: 1px solid #EEEEEE; border-radius: 5px;">
           <h6>配送方法</h6>
           <form>
             <input type="radio" id="delivery" name="deliveryMethod" checked="checked">
-            <label for=" delivery">通常配達</label><br>
-            <img src="./img/インフォメーションアイコン3.png" style="display: inline;width: 20px;height: auto;padding: 3px;">
+            <label for="delivery">通常配達</label><br>
+            <img src="./img/インフォメーションアイコン3.png" style="display: inline; width: 20px; height: auto; padding: 3px;">
             <a href="#">配送方法に関する詳細</a><br>
           </form>
           <h6>お届け日時</h6>
           <form>
             <input type="radio" id="date_specification" name="deliveryDate" checked="checked">
-            <label for=" date">日時指定</label><br>
+            <label for="date">日時指定</label><br>
             <input type="radio" id="date_no" name="deliveryDate">
-            <label for=" date">指定なし</label><br>
-
+            <label for="date">指定なし</label><br>
           </form>
         </div>
-
 
         <div class="popup-overlay" id="popup-overlay">
           <div class="window">
             <div class="popup" id="popup" style="border-radius: 20px;">
-              <h5 style="margin-bottom: 50px;margin-top:20px ;">クレジットカードまたはデビットカード追加</h5>
+              <h5 style="margin-bottom: 50px; margin-top: 20px;">クレジットカードまたはデビットカード追加</h5>
               <form method="post" asp-controller="Home" asp-action="Login" novalidate>
-
-                <table class="table ">
-
+                <table class="table">
                   <tbody class="tableSize">
-
                     <tr class="align-middle">
-
-                      <th>
-
-                        カード番号<span class="span">*</span>
-
-                      </th>
-
+                      <th>カード番号<span class="span">*</span></th>
                       <td>
-
-                        <div class="d-flex ">
-
+                        <div class="d-flex">
                           <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
-
                           <div id="id_error"></div>
-
                           &nbsp;-
-
                           <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
-
                           <div id="id_error"></div>
-
                           &nbsp;-
-
                           <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
-
                           <div id="id_error"></div>
-
                           &nbsp;-
-
                           <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
-
                           <div id="id_error"></div>
-
                         </div>
-
                       </td>
-
                     </tr>
-
                     <tr class="align-middle">
-
-                      <th>
-
-                        クレジットカード<br>名義人<span class="span">*</span>
-
-                      </th>
-
+                      <th>クレジットカード<br>名義人<span class="span">*</span></th>
                       <td>
-
                         <input type="text" name="name" id="name" class="form-control">
-
                         <div id="pass_error"></div>
-
                       </td>
-
                     </tr>
-
                     <tr class="align-middle">
-
-                      <th>
-
-                        有効期限<span class="span">*</span>
-
-                      </th>
-
+                      <th>有効期限<span class="span">*</span></th>
                       <td>
-                        <div class="dicide ">
+                        <div class="dicide">
                           <select name="month">
-
                             <option slot="month">--</option>
-
                             <option slot="month">01</option>
-
                             <option slot="month">02</option>
-
                             <option slot="month">03</option>
-
                             <option slot="month">04</option>
-
                             <option slot="month">05</option>
-
                             <option slot="month">06</option>
-
                             <option slot="month">07</option>
-
                             <option slot="month">08</option>
-
                             <option slot="month">09</option>
-
                             <option slot="month">11</option>
-
                             <option slot="month">12</option>
-
                           </select>
-
                           &nbsp;月
-
                           <select name="year">
-
                             <option slot="year">--</option>
-
                             <option slot="year">2023</option>
-
                             <option slot="year">2024</option>
-
                             <option slot="year">2025</option>
-
                             <option slot="year">2026</option>
-
                             <option slot="year">2027</option>
-
                             <option slot="year">2028</option>
-
-                            <option slot="year">2029</option>
-
-                            <option slot="year">2030</option>
-
-                            <option slot="year">2031</option>
-
-                            <option slot="year">2032</option>
-
-                            <option slot="year">2033</option>
-
-                            <option slot="year">2034</option>
-
-                            <option slot="year">2035</option>
-
-                            <option slot="year">2036</option>
-
-                            <option slot="year">2037</option>
-
-                            <option slot="year">2038</option>
-
-                            <option slot="year">2039</option>
-
-                            <option slot="year">2040</option>
-
-                            <option slot="year">2041</option>
-
-                            <option slot="year">2042</option>
-
-                            <option slot="year">2043</option>
-
                           </select>
-
                           &nbsp;年
                         </div>
                       </td>
-
+                    </tr>
+                    <tr class="align-middle">
+                      <th>セキュリティコード<span class="span">*</span></th>
+                      <td>
+                        <input type="text" name="code" id="code" class="form-control">
+                        <div id="code_error"></div>
+                      </td>
+                    </tr>
                   </tbody>
-
                 </table>
-                <div class="addCard-btn ">
-                  <button type="button" class="cancel ">キャンセル</button>
-
-                  <button type="button" class="add">カードを追加</button>
-                </div>
-
-
+                <br>
+                <button type="button" class="btn btn-secondary" onclick="closePopup()">キャンセル</button>
+                <button type="submit" class="btn btn-primary">登録</button>
               </form>
-
-              <a href="#" onclick="closePopup()"><span class="close-btn">&times;</span></a>
             </div>
           </div>
         </div>
-
-
-        <script>
-          function openPopup() {
-            var overlay = document.getElementById('popup-overlay');
-            var popup = document.getElementById('popup');
-            overlay.style.display = 'block';
-            popup.style.display = 'block';
-          }
-
-          function closePopup() {
-            var overlay = document.getElementById('popup-overlay');
-            var popup = document.getElementById('popup');
-            overlay.style.display = 'none';
-            popup.style.display = 'none';
-
-          }
-        </script>
-
       </div>
     </div>
 
