@@ -43,15 +43,6 @@ button {
   outline: 0 none;
 }
 
-button {
-  background-color:#009900;
-  color: #fff;
-}
-
-button:hover,
-button:focus {
-  background-color: #555;
-}
 
 img,
 .basket-module,
@@ -223,7 +214,7 @@ li.subtotal:before {
 
 .quantity-field {
   background-color: #ccc;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc ;
   border-radius: 4px;
   font-size: 0.625rem;
   padding: 2px;
@@ -238,7 +229,7 @@ aside {
 
 .summary {
   background-color: #eee;
-  border: 1px solid #aaa;
+  border: 1px solid #eee;
   padding: 1rem;
   position: fixed;
   width: 250px;
@@ -319,6 +310,15 @@ aside {
   text-transform: uppercase;
   padding: 0.625rem 0;
   width: 100%;
+  background-color:#009900;
+  color:#fff;
+ 
+}
+
+
+.checkout-cta:hover{
+  opacity: 0.7;
+  color: white;
 }
 
 .summary-delivery-selection {
