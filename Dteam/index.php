@@ -28,17 +28,24 @@ require_once($CMS_COMMON_INCLUDE_DIR . "libs.php");
 <br />
 <table >
 <tr>
-<td ><a href="member_list.php">会員一覧</a></td>
+<td ><a href="prefecture_list.php">都道府県管理</a></td>
 </tr>
 <tr>
-<td><a href="prefecture_list.php">本一覧</a></td>
+<td><a href="member_list.php">メンバー管理</a></td>
 </tr>
 <tr>
-<td><a href="member_list_smarty.php">購入履歴</a></td>
+<td><a href="member_list_smarty.php">メンバー管理(Smarty版)</a></td>
 </tr>
 <tr>
-<td class="nobottom"><a href="prefecture_list_json.html">問い合わせ一覧</a></td>
+<td class="nobottom"><a href="prefecture_list_json.html">都道府県一覧(JSON版)</a></td>
 </tr>
+<tr>
+<td ><a href="#">売上照会</a></td>
+</tr>
+<tr>
+<td ><a href="#">お問い合わせ履歴</a></td>
+</tr>
+
 </table>
 <p>&nbsp;</p>
 </div>

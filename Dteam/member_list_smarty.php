@@ -128,19 +128,14 @@ function deljob(){
 		$chenge->delete(false,"member","member_id=" . $_POST['param']);
 	}
 }
-$str='Hello,World!';
+
 
 //--------------------------------------------------------------------------------------
 /*!
-@brief	ページャのアサイン
+@brief	ページャーのアサイン
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function assign_str(){
-    global $str;
-    global $smarty;
-    $smarty->assign('str',$str);
-}
 function assign_page_block(){
 	//$smartyをグローバル宣言（必須）
 	global $smarty;
@@ -188,10 +183,9 @@ $smarty->assign('ERR_STR',$ERR_STR);
 assign_page_block();
 assign_member_list();
 assign_tgt_uri();
-assign_str();
 
 //Smartyを使用した表示(テンプレートファイルの指定)
-$smarty->display('login_.tmpl');
+$smarty->display('member_list_smarty.tmpl');
 
 
 ?>
