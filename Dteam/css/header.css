@@ -1,13 +1,38 @@
     @charset "utf-8";
 
+    #nav_style {
+        padding: 1vh 2vw;
+        border-bottom: solid 1px darkgray;
+        box-shadow: 0 0.4rem 0.4rem gainsboro;
+        --input_font_size: 1vw;
+        --anchor_font_size: 1.4vw;
+        --logo_width: 13vw;
+    }
+
+    #nav_min_style {
+        padding: 1vh 2vw;
+        border-bottom: solid 1px darkgray;
+        box-shadow: 0 0.4rem 0.4rem gainsboro;
+        --input_font_size: 0.4vw;
+        --anchor_font_size: 1vw;
+        --logo_width: 6vw;
+    }
+
+    #nav_none_border_style {
+        padding: 1vh 2vw;
+        --input_font_size: 1vw;
+        --anchor_font_size: 1.4vw;
+        --logo_width: 13vw;
+    }
+
     #site_logo { 
         height: auto; 
-        width: 13vw;
+        width: var(--logo_width);
     }
 
     #nav_a_style> li > a {
         padding: 1.5vw !important;
-        font-size: 1.4vw;
+        font-size: var(--anchor_font_size);
     }
 
     #nav_input {
@@ -20,12 +45,12 @@
                 background: none;
                 outline: none;
                 border: solid 0.01rem silver;
-                font-size: 0.8vw;
+                font-size: var(--input_font_size);
             }
 
             >input {
                 padding-left: 1vw;
-                padding-block: 0.8vw;
+                padding-block: 0.6vw;
                 width: 80%;
                 border-right: 0;
                 border-radius: 100px 0 0 100px;
@@ -37,22 +62,13 @@
                 transition: all 0.3s ease;
                 background-color: green;
                 color: white;
+                font-weight: bold;
             }
 
             >button:hover {
                 background-color: forestgreen;
             }
         }
-    }
-
-    #nav_style {
-        padding: 1vh 2vw;
-        border-bottom: solid 1px darkgray;
-        box-shadow: 0 0.4rem 0.4rem gainsboro;
-    }
-
-    #nav_none_border_style {
-        padding: 1vh 2vw;
     }
 
     /*
@@ -83,6 +99,7 @@
             </ul>
         </div>
     </nav>
+
     =================================================================================================================================================
     
 
