@@ -14,8 +14,8 @@ $admin_master_id = "";
 $admin_name = "";
 
 session_start();
-if(isset($_SESSION['tmD2023_member']['err']) && $_SESSION['tmD2023_member']['err'] != ""){
-    $ERR_STR = $_SESSION['tmD2023_member']['err'];
+if(isset($_SESSION['tmD2023_adm']['err']) && $_SESSION['tmD2023_adm']['err'] != ""){
+    $ERR_STR = $_SESSION['tmD2023_adm']['err'];
 }
 
 //このセッションをクリア
@@ -26,9 +26,9 @@ if(isset($_POST['admin_login']) && isset($_POST['admin_password'])){
         strip_tags($_POST['admin_login']),
         strip_tags($_POST['admin_password']))){
         session_start();
-        $_SESSION['tmD2023_member']['admin_login'] = strip_tags($_POST['admin_login']);
-        $_SESSION['tmD2023_member']['admin_master_id'] = $admin_master_id;
-        $_SESSION['tmD2023_member']['admin_name'] = $admin_name;
+        $_SESSION['tmD2023_adm']['admin_login'] = strip_tags($_POST['admin_login']);
+        $_SESSION['tmD2023_adm']['admin_master_id'] = $admin_master_id;
+        $_SESSION['tmD2023_adm']['admin_name'] = $admin_name;
         cutil::redirect_exit("index.php");
     }
 }
