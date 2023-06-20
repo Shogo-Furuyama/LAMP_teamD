@@ -74,10 +74,17 @@
             align-items: center;
             height: 50%;
             overflow: hidden;
-            > * {    
+            position: relative;
+            > img {    
                 width: auto;
                 height: 100%;
                 padding-inline: 5%;
+            }
+            
+            > span {
+                position: absolute;
+                right: 0;
+                font-size: 1.5rem;
             }
         }
 
@@ -143,7 +150,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_min_style">
         <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
         <form id="nav_input">
             <div>
@@ -192,9 +199,7 @@
                         id="cl_9">エッセイ（随筆）</a></li>
                 <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
                         id="cl_10">短編小説</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(0)"
                         id="cl_0">その他</a></li>
             </ul>
@@ -207,13 +212,13 @@
             <a class="list_anchor" href="#">
                 <div class="book_list_title">
                     <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
                 </div>
                 <div class="book_list_img">
                     <img
                         src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
                     <img
                         src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <span>...+40</span>
                 </div>
                 <div class="list_user">
                     <div class="list_user_info">                        
@@ -227,6 +232,79 @@
                 </div>
             </a>
         </div>
+        <div class="book_list">
+            <a class="list_anchor" href="#">
+                <div class="book_list_title">
+                    <h3>太宰コレクションあああああああ</h3>
+                </div>
+                <div class="book_list_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <img
+                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <span>...+40</span>
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">                        
+                        <div style="background-image: url('./img/user_icon.png');"></div>
+                        <p>ミルクココア</p>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
+                    <div class="list_user_thumbs_num">
+                        1000
+                    </div>      
+                </div>
+            </a>
+        </div>
+        <div class="book_list">
+            <a class="list_anchor" href="#">
+                <div class="book_list_title">
+                    <h3>太宰コレクションあああああああ</h3>
+                </div>
+                <div class="book_list_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <img
+                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <span>...+40</span>
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">                        
+                        <div style="background-image: url('./img/user_icon.png');"></div>
+                        <p>ミルクココア</p>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
+                    <div class="list_user_thumbs_num">
+                        1000
+                    </div>      
+                </div>
+            </a>
+        </div>
+        <div class="book_list">
+            <a class="list_anchor" href="#">
+                <div class="book_list_title">
+                    <h3>太宰コレクションあああああああ</h3>
+                </div>
+                <div class="book_list_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <img
+                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                    <span>...+40</span>
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">                        
+                        <div style="background-image: url('./img/user_icon.png');"></div>
+                        <p>ミルクココア</p>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
+                    <div class="list_user_thumbs_num">
+                        1000
+                    </div>      
+                </div>
+            </a>
+        </div>
+        <!--
         <div class="book_list">
             <a class="list_anchor" href="#">
                 <div class="book_list_title">
@@ -251,270 +329,7 @@
                 </div>
             </a>
         </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションあああああああ</h3>
-                    <h5>太宰はいいぞー</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">                        
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png"/>
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>      
-                </div>
-            </a>
-        </div>
+        -->
     </div>
     <footer class="footer">
         <div class="footer_nav">
