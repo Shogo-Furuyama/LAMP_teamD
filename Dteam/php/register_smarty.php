@@ -90,7 +90,7 @@ function is_func_active(){
 */
 //--------------------------------------------------------------------------------------
 function param_chk(){
-	 global $ERR_STR;
+	global $ERR_STR;
 	if(!isset($_POST['param']) 
 	|| !cutil::is_number($_POST['param'])
 	|| $_POST['param'] <= 0){
