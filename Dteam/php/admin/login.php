@@ -54,7 +54,7 @@ function chk_admin_login($admin_login,$admin_password){
 }
 
 //Smartyを使用した表示(テンプレートファイルの指定)
-$smarty->display('admin/login.tmpl');
+$smarty->display('Smarty/templates/login.tmpl');
 
 
 ?>

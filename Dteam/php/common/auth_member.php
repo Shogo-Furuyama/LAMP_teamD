@@ -9,7 +9,7 @@ auth_member.php
 *複数のサイトが同居または管理者管理と混同しないため
 $_SESSIONは多次元配列にする
 
-             2020/6/20 Y.YAMANOI
+            2020/6/20 Y.YAMANOI
 *********************************/
 session_start();
 if((!isset($_SESSION['tmD2023_mem']['member_login'])) 
