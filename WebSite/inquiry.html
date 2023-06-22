@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .hr{ 
+            border-bottom:solid 1px darkgrey;
+            box-shadow: 0 0.4rem 0.4rem gainsboro;
+        }
+
+        #page-link>a{
+            padding: 0 2rem ;
+
+        }
+
+        #QandA-1 {
+	width: 100%;
+	font-family: メイリオ;
+	font-size: 14px; 
+}
+#QandA-1 h2 {
+
+}
+#QandA-1 dt {
+	background: #5cb85c; 
+	color: #fff; 
+	padding: 8px;
+	border-radius: 2px;
+}
+#QandA-1 dt:before {
+	content: "Q.";
+	font-weight: bold;
+	margin-right: 8px;
+}
+#QandA-1 dd {
+	margin: 24px 16px 40px 32px;
+	line-height: 140%;
+	text-indent: -24px;
+}
+#QandA-1 dd:before {
+	content: "A.";
+	font-weight: bold;
+	margin-right: 8px;
+}
+
+.btn{
+    border-radius: 10px;
+}
+
+    </style>
+</head>
+
+<body>
+    <header class="nav_image hr">
+        <div class="nav_bg">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" >
+                <a href="#" class="navbar-brand"><img src="ロゴ1.png" style="display: flex; height: 4rem; width: auto;"/></a>
+                <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                    <div class="navbar-nav nav_a_style" >
+                        <a class="nav-item nav-link" href="#">サービス概要</a>
+                        <a class="nav-item nav-link" href="#">新規登録</a>
+                        <a class="nav-item nav-link" href="#">ログイン</a>
+                        <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+    </header>
+
+    <div class="Main_head">
+        <h1 class="pt-4 px-5">お問い合わせ</h1>
+    </div>
+    <div class="Main_body">
+        <p class="pt-4 px-5 text-center fs-4">当サイトにおける問題の解決方法、お問い合わせ窓口をご案内いたします</p>
+    </div>
+
+    
+    <div id="page-link" class="page-link text-center">
+        <a href="#FAQ"> よくあるご質問（FAQ）</a>
+        
+        <a href="#inquiry">お問い合わせ</a>
+    </div>
+
+    <div class="Main_head" >
+        <h1 class="pt-4 px-5" id="FAQ">よくあるご質問（FAQ）</h1>
+    </div>
+
+    <div id="QandA-1" class="QandA-1 px-5">
+        <dl>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            <dt>質問タイトル</dt>
+            <dd>回答内容<br>回答内容</dd>
+            
+        </dl>
+    </div>
+
+    <div class="Main_head">
+        <h1 class="pt-4 px-5 text-center" id="inquiry">各ご意見、ご質問、ご提案はこちらから</h1>
+    </div>
+
+    <div class="button text-center py-5 px-5 ">
+        <button type="button" class="btn btn-dark btn-lg px-4 py-4 ">お問い合わせフォーム</button>
+    </div>
+    
+    
+    <footer><a class="copy textdanger">copyright</a></footer>
+
+</body>
+</html>
