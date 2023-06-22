@@ -55,6 +55,7 @@
       }
     }
 
+
     #nav_style {
       padding: 1vh 2vw;
       border-bottom: solid 1px darkgray;
@@ -67,7 +68,7 @@
 
     .stepper {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       margin-bottom: 40px;
       margin-top: 20px;
@@ -194,6 +195,7 @@
       width: 10em;
       height: 3em;
       margin-right: 5%;
+      margin-left: 45%;
       border-radius: 10%;
 
 
@@ -239,12 +241,17 @@
       <div class="stepper-step">注文確認</div>
     </div>
 
+
+
     <div class="display1">
       <div class="basket">
 
 
         <i class="bi bi-cart4"></i>
+        <div style="display: flex; align-items: center;">
+        <img src="./img/cart.png" style="width: 32px; height: auto;margin-right: 7px;" alt="ショッピングカートアイコン" >
         <h2>ショッピングカート</h2>
+        </div>
 
 
         <div class="basket-labels">
@@ -306,15 +313,19 @@
     <div class="display2" style="display: none;">
       <div class="" style="width: 70%; float: left;">
 
-        <h4 style="margin-bottom: 10px;">お支払い方法の選択</h4>
+        
+        <h4 style="margin-bottom: 20px;">お支払い方法の選択</h4>
 
-        <div class="payment-section">
+        <div class="payment-section" style="margin-bottom: 20px;">
           <form style="border: 1px solid #EEEEEE; border-radius: 5px;">
-            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked">
-            <label for="creditCard">クレジットカード</label>
-            <img src="./img/logoCard_visa_v2.png" style="display: inline; width: 35px; height: auto;">
-            <img src="./img/logoCard_master.png" style="display: inline; width: 35px; height: auto;">
-            <img src="./img/logoCard_jcb2.png" style="display: inline; width: 35px; height: auto;"><br>
+            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked="checked"
+              onclick="hideTextBox()">
+
+            <label for="creditCard"><img src="./img/logoCard_visa_v2.png"
+                style="display: inline; width: 35px; height: auto;">Visa末尾 1552
+              　　　　　Ayu Kobayashi　　　　　　　<span style="color: #ff0000;">!08/2021に期限切れ</span></label>
+
+            <br>
             <a href="#" onclick="openPopup()">
               <img src="./img/PlusIcon._CB485933946_.gif"
                 style="display: inline; width: 20px; height: auto; padding: 3px;">
@@ -325,10 +336,12 @@
             <label for="bankTransfer">コンビニ前払い</label><br>
 
             <input type="radio" id="paypay" name="paymentMethod" value="cod" onclick="showTextBox()">
-            <label for="paypay">PayPay</label><br>
+            <label for="paypay"><img src="./img/paypay.png"
+                style="display: inline; width: 18px; height: auto;margin-right: 4px;margin-left: 4px;">PayPay残高:　456円
+            </label><br>
 
-            <div id="textBoxContainer" style="display: none;">
-              <input type="text" id="textBox" placeholder="利用する金額"><br>
+            <div id="textBoxContainer" style="display: none; margin-left:4px;">
+              <input type="text" id="textBox" placeholder="　　　　　利用する金額">円<br>
             </div>
 
             <script>
@@ -348,9 +361,9 @@
           </form>
         </div>
 
-        <h4>配送方法とお届け日時の選択</h4>
+        <h4 style="margin-bottom: 20px;">配送方法とお届け日時の選択</h4>
 
-        <div class="delivery-section" style="border: 1px solid #EEEEEE; border-radius: 5px;">
+        <div class="delivery-section" style="border: 1px solid #EEEEEE; border-radius: 5px; margin-bottom: 20px;">
           <h6>配送方法</h6>
           <form>
             <input type="radio" id="delivery" name="deliveryMethod" checked="checked">
@@ -441,24 +454,107 @@
                   </tbody>
                 </table>
                 <br>
-                <button type="button" class="btn btn-secondary" onclick="closePopup()">キャンセル</button>
-                <button type="submit" class="btn btn-primary">登録</button>
+                <button type="button" class="cancel" onclick="closePopup()">キャンセル</button>
+                <button type="submit" class="add">登録</button>
               </form>
+              <a href="#" onclick="closePopup()"><span class="close-btn">&times;</span></a>
             </div>
           </div>
         </div>
+        <script>
+          function openPopup() {
+            var overlay = document.getElementById('popup-overlay');
+            var popup = document.getElementById('popup');
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+          }
+
+          function closePopup() {
+            var overlay = document.getElementById('popup-overlay');
+            var popup = document.getElementById('popup');
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+
+          }
+        </script>
       </div>
     </div>
 
-    <div class="display3">
-      <div class="order-confirmation" style="display: none;">
+
+    <div class="display3" style="display: none;">
+
+      <div class="order-confirmation" style="width: 70%; float: left;">
+
+        <h4>受取場所 </h4>
+        <div class="address">
+          <a>〒963-8811</a>
+          <a>福島県郡山市方八町２丁目４－１５</a>
+          <a href="#">変更</a>
+        </div>
+
+        <h4>お支払い方法 </h4>
+        コンビニ前払い
+        <h4>ご注文商品</h4>
         <!-- order confirmation content -->
+        <div class="basket">
+
+
+          <i class="bi bi-cart4"></i>
+
+
+
+          <div class="basket-labels">
+            <ul>
+              <li class="item item-heading">商品</li>
+              <li class="price">価格</li>
+              <li class="quantity">個数</li>
+              <li class="subtotal">小計</li>
+            </ul>
+          </div>
+          <div class="basket-product" id="bp_0">
+            <div class="item">
+              <div class="product-image">
+                <img src="./img/book1.jpg" alt="Placholder Image 2" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h5><strong>はらぺこあおむし</strong></h5>
+                <p>著書:太宰治</p>
+              </div>
+            </div>
+            <div class="price">240</div>
+            <div class="quantity">
+              <input type="number" value="4" min="1" class="quantity-field" onchange="updateSubtotal(this)">
+            </div>
+            <div class="subtotal">960</div>
+
+          </div>
+          <div class="basket-product" id="bp_1">
+            <div class="item">
+              <div class="product-image">
+                <img src="./img/book2.jpg" alt="Placholder Image 2" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h5><strong>人間失格</strong></h5>
+                <p>著書:太宰治</p>
+                
+              </div>
+            </div>
+            <div class="price">480</div>
+            <div class="quantity">
+              <input type="number" value="1" min="1" class="quantity-field" onchange="updateSubtotal(this)">
+            </div>
+            <div class="subtotal">480</div>
+
+
+          </div>
+        </div>
+
       </div>
     </div>
 
 
-    </div>
-    <aside>
+
+    <aside id="confirmButtonContainer">
       <div class="summary">
         <div class="summary-total-items"><span class="total-items"></span>
           <h5>
@@ -538,22 +634,23 @@
       // ステップごとの表示切り替え
       const stepperSteps = document.querySelectorAll('.stepper-step');
       const stepperLines = document.querySelectorAll('.stepper-line');
-      const basket = document.querySelector('.basket');
       const paymentDeliveryMethod = document.querySelector('.display2');
-      const orderConfirmation = document.querySelector('.order-confirmation');
+      const orderConfirmation = document.querySelector('.display3');
       const display1 = document.querySelector('.display1');
+
       let currentStep = 0;
 
-      const steps = [display1, paymentDeliveryMethod, orderConfirmation];
-
       const nextButton = document.getElementById('nextButton');
+
+
+      const steps = [display1, paymentDeliveryMethod, orderConfirmation];
       nextButton.addEventListener('click', () => {
         // 現在のステップを非表示にする
         steps[currentStep].style.display = 'none';
         stepperSteps[currentStep].classList.remove('active');
         currentStep++;
         if (currentStep >= steps.length) {
-          currentStep = 0; // 最後のステップの次は最初に戻る
+          currentStep = 2; // 最後のステップの次は最初に戻る
         }
         steps[currentStep].style.display = 'block';
         stepperSteps[currentStep].classList.add('active');
@@ -578,6 +675,7 @@
         });
       }
 
+
       function proceedToPaymentDelivery() {
         updateStepper(1); // 遷移先を支払いと配送方法に設定
         // 商品小計の更新
@@ -599,8 +697,19 @@
           orderConfirmation.style.display = 'none';
         }
       }
+      // display3要素が表示されたときにnextButtonのテキストを変更する関数
+      function changeButtonText() {
+        if (orderConfirmation.style.display === 'block') {
+          nextButton.textContent = '注文確定';
+        } else {
+          nextButton.textContent = '次へ進む';
+        }
+      }
 
-      //paypay選択
+      // display3要素が表示/非表示に切り替わるたびにchangeButtonText関数を呼び出す
+      const observer = new MutationObserver(changeButtonText);
+      observer.observe(orderConfirmation, { attributes: true, attributeFilter: ['style'] });
+
 
 
     </script>
