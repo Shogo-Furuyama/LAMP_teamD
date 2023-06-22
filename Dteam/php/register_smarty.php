@@ -90,7 +90,7 @@ function is_func_active(){
 */
 //--------------------------------------------------------------------------------------
 function param_chk(){
-	 global $ERR_STR;
+	global $ERR_STR;
 	if(!isset($_POST['param']) 
 	|| !cutil::is_number($_POST['param'])
 	|| $_POST['param'] <= 0){
@@ -179,6 +179,8 @@ function assign_tgt_uri(){
 	global $page;
 	$smarty->assign('tgt_uri',$_SERVER['PHP_SELF'] . '?page=' . $page);
 }
+
+
 
 
 /////////////////////////////////////////////////////////////////
