@@ -7,38 +7,76 @@
     <link href="./css/header.css" rel="stylesheet">
     <title>Document</title>
     <style>
+        :root {
+            --regi_num_f_size: 1.3vw;
+            --regi_h3_f_size: 1.5vw;
+            --regi_h5_f_size: 1vw;
+            --regi_intro_f_size: 1vw;
+
+            --search_hit_f_size: 1.2vw;
+            --search_info_f_size_h3: 1.4vw;
+            --search_info_f_size_h5: 1.3vw;
+            --search_info_f_size_btn: 1.3vw;
+        }
+
+        @media (max-width: 800px) {
+            :root {
+                --regi_num_f_size: 2vw;
+                --regi_h3_f_size: 2.5vw;
+                --regi_h5_f_size: 2vw;
+                --regi_intro_f_size: 2vw;
+
+                --search_hit_f_size: 3vw;
+                --search_info_f_size_h3: 4vw;
+                --search_info_f_size_h5: 3.5vw;
+                --search_info_f_size_btn: 4vw;
+            }
+        }
+
         body {
             margin: 0;
             height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         main {
             flex-grow: 1;
             display: flex;
-            padding: 2% 1% 1%;
+            padding: 0 1% 1%;
+            position: relative;
+
         }
 
         .main_scroll {
-            height: 69vh;
+            height: 70vh;
             padding-top: 1%;
             overflow-y: scroll;
             padding-right: 2vw;
         }
 
-        #register {
-            width: 60%;
-            height: 100%;
+        #register,
+        #search_book {
+            height: 98%;
+            margin-top: 2%;
             display: flex;
             flex-direction: column;
+        }
+
+
+        /*ここから登録====================================================================================================*/
+
+
+        #register {
+            width: 60%;
         }
 
         #register_topbar {
             flex-grow: 1;
             display: flex;
             align-items: center;
-            padding-right: 15%;
+            padding-right: 1%;
 
             >div {
                 width: 7%;
@@ -51,9 +89,16 @@
             }
 
             >input {
-                width: 88%;
+                width: 75%;
+                margin-right: 5%;
             }
+        }
 
+        #open_search {
+            display: none;
+            width: 13%;
+            font-size: 2.2vw;
+            text-align: center;
         }
 
         #register_list {
@@ -65,7 +110,7 @@
 
         }
 
-        #category {
+        .regi_dropdown {
             display: flex;
 
             >p {
@@ -107,7 +152,7 @@
             margin-block: auto;
             width: 5%;
             text-align: center;
-            font-size: 1.3vw;
+            font-size: var(--regi_num_f_size);
         }
 
         .book_img {
@@ -135,7 +180,7 @@
                 width: 100%;
                 max-height: 75%;
                 margin-bottom: 2%;
-                font-size: 1.5vw;
+                font-size: var(--regi_h3_f_size);
                 word-break: break-all;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -147,7 +192,7 @@
             >h5 {
                 color: dimgray;
                 margin: 0;
-                font-size: 1vw;
+                font-size: var(--regi_h5_f_size);
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
@@ -157,7 +202,7 @@
         .book_introduction {
             width: 33%;
             margin-inline: 1%;
-            font-size: 1vw;
+            font-size: var(--regi_intro_f_size);
             resize: none;
         }
 
@@ -171,12 +216,12 @@
                 border: solid 0.1vw gray;
                 height: 50%;
                 transition: all 0.3s ease;
-	            box-shadow: 0.3vw 0.3vw 0.3vw gray;
+                box-shadow: 0.3vw 0.3vw 0.3vw gray;
                 padding: 0;
             }
 
             >button:first-child {
-                border-radius: 2vh 2vh 0 0;     
+                border-radius: 2vh 2vh 0 0;
             }
 
             >button:last-child {
@@ -189,7 +234,7 @@
         }
 
         .book_delete {
-            width: 1.5vw;
+            width: 3%;
             display: block;
             margin-bottom: auto;
 
@@ -197,8 +242,8 @@
                 width: 100%;
                 height: auto;
             }
-            
-            > img:hover {
+
+            >img:hover {
                 filter: opacity(80%);
             }
         }
@@ -215,18 +260,13 @@
         }
 
 
+        /*ここから検索=======================================================================================================*/
 
 
-
-
-
-
-        .search_book {
+        #search_book {
             width: 40%;
-            height: 100%;
-            display: flex;
             padding-left: 1%;
-            flex-direction: column;
+            background-color: white;
         }
 
         #search_box {
@@ -239,16 +279,23 @@
             }
         }
 
+        #return_regi {
+            display: none;
+            width: 10%;
+            font-size: 2.2vw;
+        }
+
         #search {
             >p {
                 padding-left: 1%;
-                font-size: 1.2vw;
+                font-size: var(--search_hit_f_size);
             }
 
             >div {
                 padding: 1%;
-                aspect-ratio: 5 / 2;
+                aspect-ratio: 3 / 1;
                 position: relative;
+                z-index: 1;
 
                 >div {
                     background-color: white;
@@ -260,7 +307,7 @@
                     display: flex;
                 }
 
-                >p {
+                >span {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
@@ -271,7 +318,7 @@
         }
 
         .search_img {
-            width: 40%;
+            width: 35%;
             overflow: hidden;
             display: flex;
 
@@ -283,7 +330,7 @@
         }
 
         .search_info {
-            width: 60%;
+            width: 65%;
             padding: 1%;
             display: flex;
             flex-direction: column;
@@ -291,7 +338,7 @@
 
             >h3 {
                 width: 100%;
-                font-size: 1.8vw;
+                font-size: var(--search_info_f_size_h3);
                 margin-bottom: 2%;
                 max-height: 70%;
                 word-break: break-all;
@@ -304,7 +351,7 @@
 
             >h5 {
                 margin: 0;
-                font-size: 1.3vw;
+                font-size: var(--search_info_f_size_h5);
                 color: dimgray;
                 overflow: hidden;
                 white-space: nowrap;
@@ -315,10 +362,9 @@
                 position: absolute;
                 bottom: 1%;
                 right: 1%;
-                height: 20%;
-                font-size: 1.5vw;
+                height: 22%;
+                font-size: var(--search_info_f_size_btn);
                 padding: 0 1rem;
-                margin-left: auto;
             }
         }
 
@@ -386,13 +432,36 @@
             animation-delay: 0s;
             animation-play-state: running;
         }
+
+        .sb_hidden {
+            width: 100% !important;
+            display: none !important;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .sb_hidden_reg {
+            width: 100% !important;
+        }
+
+
+        .sb_show_flex {
+            display: flex !important;
+        }
+
+        .sb_show_block {
+            display: block !important;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" id="nav_style">
-        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+    <nav class="navbar navbar-expand-sm" id="nav_min_style">
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+            aria-controls="navmenu" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navmenu">
@@ -414,46 +483,87 @@
             <div id="register_topbar">
                 <div style="background-image: url('./img/user_icon.png');"></div>
                 <input type="text" class="form-control" placeholder="このリストのタイトルを入力してください">
+                <button type="button" class="btn btn-primary" id="open_search" onclick="open_book_search()">本検索
+                </button>
             </div>
             <div id="register_list" class="main_scroll">
-                <div class="pt-4" id="category">
+                <div class="pt-4 regi_dropdown">
                     <p>カテゴリーを選択してください</p>
                     <div class="btn-group">
                         <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
                             aria-expanded="false" id="c_btn">カテゴリー</button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)"
-                                    id="cl_1">ミステリー</a></li>
+                                    id="cl_1">ホラー</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)"
-                                    id="cl_2">ファンタジー</a></li>
+                                    id="cl_2">エッセイ</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)"
-                                    id="cl_3">歴史</a></li>
+                                    id="cl_3">ファンタジー</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)"
-                                    id="cl_4">SF</a></li>
+                                    id="cl_4">歴史</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)"
-                                    id="cl_5">コメディ</a></li>
+                                    id="cl_5">ミステリー</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)"
-                                    id="cl_6">子供向け</a></li>
+                                    id="cl_6">SF</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(7)"
-                                    id="cl_7">ノンフィクション</a></li>
+                                    id="cl_7">図鑑</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(8)"
-                                    id="cl_8">図鑑</a></li>
+                                    id="cl_8">ビジネス</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(9)"
-                                    id="cl_9">エッセイ（随筆）</a></li>
+                                    id="cl_9">参考書</a></li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
-                                    id="cl_10">短編小説</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
+                                    id="cl_10">専門書</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
+                                    id="cl_11">コミックス</a></li>
+                            <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(0)"
                                     id="cl_0">その他</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-1 py-4">
-                    <label class="form-label">このリストの紹介文を入力してください</label>
-                    <textarea class="form-control" rows="6" style="resize: none;"></textarea>
+                <div class="pt-4 regi_dropdown">
+                    <p>ターゲットを選択してください</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="t_btn">その他</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(1)"
+                                    id="tl_1">小～中学生向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(2)"
+                                    id="tl_2">高～大学生向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(3)"
+                                    id="tl_3">新社会人向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(4)"
+                                    id="tl_4">社会人向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(5)"
+                                    id="tl_5">シニア世代向け</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(6)"
+                                    id="tl_6">初心者向け</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(7)"
+                                    id="tl_7">感動したい人向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(8)"
+                                    id="tl_8">癒されたい人向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(8)"
+                                    id="tl_8">励まされたい人向け</a></li>
+                            <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectTarget(9)"
+                                    id="tl_9">発見したい人向け</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item active" href="javascript:void(0)" onclick="selectTarget(10)"
+                                    id="tl_0">その他</a></li>
+                        </ul>
+                    </div>
                 </div>
+                <textarea class="form-control my-5" rows="6" style="resize: none;"
+                    placeholder="このリストの紹介文を入力してください"></textarea>
                 <div id="register_books">
                     <!--
                     <div>
@@ -483,8 +593,9 @@
                 </div>
             </div>
         </div>
-        <div class="search_book">
+        <div id="search_book">
             <div id="search_box">
+                <button type="button" class="btn btn-primary" id="return_regi" onclick="back_regi()">戻る</button>
                 <div class="mx-auto input-group">
                     <input type="text" class="form-control" placeholder="キーワードを入力">
                     <button class="btn btn-outline-success bg-success text-white" type="button"
@@ -499,17 +610,32 @@
     <script>
         const regiOrder = [];
 
-        let sCategory = 0;
+        let sCategory = -1;
 
         function selectCategory(i) {
             if (i != sCategory) {
                 let ctgy = document.getElementById('cl_' + i);
                 ctgy.classList.add('active');
                 document.getElementById('c_btn').innerText = ctgy.innerText;
-                document.getElementById('cl_' + sCategory).classList.remove('active');
+                if (sCategory != -1) {
+                    document.getElementById('cl_' + sCategory).classList.remove('active');
+                }
                 sCategory = i;
             }
         }
+
+        let sTarget = 0;
+
+        function selectTarget(i) {
+            if (i != sTarget) {
+                let tgt = document.getElementById('tl_' + i);
+                tgt.classList.add('active');
+                document.getElementById('t_btn').innerText = tgt.innerText;
+                document.getElementById('tl_' + sTarget).classList.remove('active');
+                sTarget = i;
+            }
+        }
+
 
         let regiCount = 0;
 
@@ -579,7 +705,7 @@
             div.id = 'search_' + i;
             div.append(searchImg, infoDiv);
 
-            let reg = document.createElement('p');
+            let reg = document.createElement('span');
             reg.innerText = '登録しました';
 
             let parent = document.createElement('div');
@@ -620,7 +746,7 @@
                     repDown.innerText = '▼';
                     repDown.addEventListener('click', regiReplace(regiCount, false));
                     repDiv.append(repUp, repDown);
-                    
+
                     let delAnchor = document.createElement('a');
                     delAnchor.href = 'javascript:void(0)';
                     delAnchor.addEventListener('click', bookRegiDelete(regiCount));
@@ -628,7 +754,7 @@
                     let delImg = document.createElement('img');
                     delImg.src = './img/dBox.png';
                     delAnchor.append(delImg);
-                    
+
                     div.prepend(numDiv);
                     div.append(textarea, repDiv, delAnchor);
 
@@ -665,7 +791,7 @@
                 let iIndex = regiOrder.indexOf(i);
                 regiOrder.splice(iIndex, 1);
                 let numClass = '.reg_num';
-                for(let ii = regiOrder.length; iIndex < ii; ++iIndex) {
+                for (let ii = regiOrder.length; iIndex < ii; ++iIndex) {
                     document.getElementById('regi_' + regiOrder[iIndex]).querySelector(numClass).innerText = iIndex + 1;
                 }
             }
@@ -678,13 +804,13 @@
                     if (iS > 0) {
                         let iN = document.getElementById('regi_' + i);
                         let sN = document.getElementById('regi_' + regiOrder[iS - 1]);
-                        
+
                         let numClass = '.reg_num';
                         let iNum = iN.querySelector(numClass);
-                        let sNum = sN.querySelector(numClass);       
+                        let sNum = sN.querySelector(numClass);
                         iN.prepend(sNum);
                         sN.prepend(iNum);
-                        
+
                         document.getElementById('register_books').insertBefore(iN, sN);
                         [regiOrder[iS], regiOrder[iS - 1]] = [regiOrder[iS - 1], regiOrder[iS]];
                         repAnimation(iN, sN);
@@ -696,7 +822,7 @@
 
                         let numClass = '.reg_num';
                         let iNum = iN.querySelector(numClass);
-                        let sNum = sN.querySelector(numClass);       
+                        let sNum = sN.querySelector(numClass);
                         iN.prepend(sNum);
                         sN.prepend(iNum);
 
@@ -733,6 +859,67 @@
                 }
             });
         }
+
+        function open_book_search() {
+            const search_book = document.getElementById('search_book');
+            let anim = () => {
+                search_book.removeEventListener('animationend', anim);
+                search_book.classList.remove('rTolTAnim');
+            };
+            search_book.addEventListener('animationend', anim);
+            search_book.classList.add('sb_show_flex', 'rTolTAnim');
+        }
+
+        function back_regi() {
+            const search_book = document.getElementById('search_book');
+            let anim = () => {
+                search_book.removeEventListener('animationend', anim);
+                search_book.classList.remove('lTAnim', 'sb_show_flex');
+            };
+            search_book.addEventListener('animationend', anim);
+            search_book.classList.add('lTAnim');
+        }
+
+        const DISPLAY_JUD_SIZE = 800;
+        let displaySwitch = true;
+        window.addEventListener('DOMContentLoaded', function () {
+            displaySwitch = window.innerWidth > DISPLAY_JUD_SIZE;
+            if (!displaySwitch) {
+                resizeMaxProcess();
+            }
+
+        });
+
+        window.addEventListener('resize', function () {
+            let wid = window.innerWidth;
+            if (displaySwitch) {
+                if (wid <= DISPLAY_JUD_SIZE) {
+                    resizeMaxProcess();
+                    displaySwitch = false;
+                }
+            } else {
+                if (wid > DISPLAY_JUD_SIZE) {
+                    resizeMinProcess();
+                    displaySwitch = true;
+                }
+            }
+        });
+
+        function resizeMaxProcess() {
+            document.getElementById('search_book').classList.add('sb_hidden');
+            document.getElementById('open_search').classList.add('sb_show_block');
+            document.getElementById('register').classList.add('sb_hidden_reg');
+            document.getElementById('return_regi').classList.add('sb_show_block');
+        }
+
+
+        function resizeMinProcess() {
+            document.getElementById('search_book').classList.remove('sb_hidden', 'sb_show_flex');
+            document.getElementById('open_search').classList.remove('sb_show_block');
+            document.getElementById('register').classList.remove('sb_hidden_reg');
+            document.getElementById('return_regi').classList.remove('sb_show_block');
+        }
+
     </script>
 </body>
 
