@@ -37,6 +37,9 @@ require_once($CMS_COMMON_INCLUDE_DIR . "libs.php");
 <td><a href="member_list_smarty.php">メンバー管理(Smarty版)</a></td>
 </tr>
 <tr>
+<td><a href="#">本一覧</a></td>
+</tr>
+<tr>
 <td class="nobottom"><a href="prefecture_list_json.html">都道府県一覧(JSON版)</a></td>
 </tr>
 <tr>
