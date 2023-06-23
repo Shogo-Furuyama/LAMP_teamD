@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8" />
 <link href="css/main.css" rel="stylesheet" type="text/css">
 <title>メンバー詳細</title>
 {literal}
@@ -14,21 +15,23 @@ function set_func_form(fn,pm){
 }
 
 
- -->
+// -->
 </script>
 {/literal}
 </head>
 <body>
 <!-- 全体コンテナ　-->
 <div id="container">
-{include file='gmenu.tmpl'}
+{include file='./gmenu.tmpl'}
 <div id="headTitle">
-<h2>メンバー詳細(Smarty版)</h2>
+<h2>メンバー詳細</h2>
 </div>
 <!-- コンテンツ　-->
 <div id="inquiry">
-{$err_flag}
-<form name="form1" action="{$smarty.server.PHP_SELF}" method="post" >
+{if $err_flag != '' }
+<p>{$err_flag}</p>
+{/if}
+<form name="form1" action="{$smarty.server.PHP_SELF}" method="post" enctype="multipart/form-data" >
 <a href="member_list_smarty.php{$page}">一覧に戻る</a><br />
 <span class="red">＊</span>は必須項目
 <table>
@@ -40,6 +43,31 @@ function set_func_form(fn,pm){
 <th>メンバー名<span class="red">＊</span></th>
 <td width="70%"><input type="text" name="member_name" size="50" value="{$smarty.post.member_name|escape}" />
 {if isset($err_array.member_name) }<br /><span class="red">{$err_array.member_name}</span>{/if}
+</td>
+</tr>
+
+<tr>
+<th>ログイン</th>
+<td width="70%"><input type="text"   name="member_login" value="{$smarty.post.member_login|escape}"></td>
+</tr>
+
+<tr>
+<th>パスワード（変更するとき入力）</th>
+<td width="70%"><input type="password"  name="enc_password" value="{$smarty.post.enc_password|escape}" ></td>
+</tr>
+<tr>
+<th>パスワード確認（変更するとき入力）</th>
+<td width="70%"><input type="password"  name="enc_password_chk" value="{$smarty.post.enc_password_chk|escape}" ></td>
+</tr>
+
+<tr>
+<th>メンバーイメージ</th>
+<td width="70%">
+{if $smarty.post.main_image != ''}
+<img src="{$updir}{$smarty.post.main_image}" width="200px" /><br />
+{/if}
+<input type="hidden" name="main_image" value="{$smarty.post.main_image|escape}" />
+<input type="file"  name="main_image" >
 </td>
 </tr>
 <tr>
