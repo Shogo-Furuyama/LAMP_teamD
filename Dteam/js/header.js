@@ -1,14 +1,15 @@
 const hed = document.getElementById('header_fixed_jud');
 const nav = hed.querySelector('.navbar');
+const dNedId = nav.id;
 
 let pos = false;
 
-function hedFixed() {
+function navFixed() {
     let result = false;
     if (pos) {
         if(hed.clientHeight > window.scrollY) {
             nav.classList.remove('header_fixed');
-            nav.id = 'nav_style';
+            nav.id = dNedId;
             pos = false;
             result = true;
         }
@@ -22,20 +23,24 @@ function hedFixed() {
     return result;
 }
 
+function hedResize() {
+    hed.style.height = nav.clientHeight + 'px';
+}
+
 window.addEventListener('scroll',function(){
-    if (hedFixed()) {
-        hed.style.height = nav.clientHeight + 'px';
+    if (navFixed()) {
+        hedResize();
     }
 });
 
 window.addEventListener('resize', function () {
     pos = false;
     nav.classList.remove('header_fixed');
-    hed.style.height = nav.clientHeight + 'px';
-    hedFixed();
+    hedResize();
+    navFixed();
 });
 
 window.addEventListener('DOMContentLoaded', function () {   
-    hed.style.height = nav.clientHeight + 'px';
-    hedFixed();
+    hedResize();
+    navFixed();
 });

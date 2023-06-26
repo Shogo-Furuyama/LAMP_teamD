@@ -9,6 +9,15 @@
     <link href="./css/book_list.css" rel="stylesheet">
     <title>Document</title>
     <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
 
         #book_lists {
             display: flex;
@@ -18,6 +27,7 @@
 
         #category {
             margin-left: auto;
+
             >button {
                 border: solid 1px darkgray;
                 border-radius: 1rem;
@@ -32,21 +42,21 @@
                 background-color: gainsboro;
             }
         }
-
     </style>
 </head>
 
 <body>
     <header id="header_fixed_jud">
         <nav class="navbar navbar-expand-sm" id="nav_style">
-            <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+            <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
             <form id="nav_input">
                 <div>
                     <input type="search" placeholder="キーワードを入力" aria-label="Search">
                     <button type="submit">検索</button>
                 </div>
             </form>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+                aria-controls="navmenu" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navmenu">
@@ -66,52 +76,57 @@
     </header>
     <div class="ps-3 ps-md-5 pt-3 pb-3">
         <div class="btn-group mb-4" id="category">
-            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="c_btn">カテゴリー</button>
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                id="c_btn">カテゴリー</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)"
-                        id="cl_1">ホラー</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)"
-                        id="cl_2">エッセイ</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)"
-                        id="cl_3">ファンタジー</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)"
-                        id="cl_4">歴史</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)"
-                        id="cl_5">ミステリー</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)"
-                        id="cl_6">SF</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(7)"
-                        id="cl_7">図鑑</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(8)"
-                        id="cl_8">ビジネス</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(9)"
-                        id="cl_9">参考書</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
-                        id="cl_10">専門書</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
-                        id="cl_11">コミックス</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(0)"
-                        id="cl_0">その他</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)" id="cl_1">ホラー</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)" id="cl_2">エッセイ</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)" id="cl_3">ファンタジー</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)" id="cl_4">歴史</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)" id="cl_5">ミステリー</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)" id="cl_6">SF</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(7)" id="cl_7">図鑑</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(8)" id="cl_8">ビジネス</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(9)" id="cl_9">参考書</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)" id="cl_10">専門書</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)" id="cl_11">コミックス</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(0)" id="cl_0">その他</a>
+                </li>
             </ul>
         </div>
         <div class="btn-group mb-4 ms-5" id="category">
-            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="c_btn">ターゲット</button>
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                id="c_btn">ターゲット</button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)"
-                        id="cl_1">小～中学生向け</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)"
-                        id="cl_2">高～大学生向け</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)"
-                        id="cl_3">新社会人向け</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)"
-                        id="cl_4">社会人向け</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)"
-                        id="cl_5">シニア世代向け</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)"
-                        id="cl_6">初心者向け</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(1)" id="cl_1">小～中学生向け</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(2)" id="cl_2">高～大学生向け</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(3)" id="cl_3">新社会人向け</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(4)" id="cl_4">社会人向け</a>
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(5)" id="cl_5">シニア世代向け</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(6)" id="cl_6">初心者向け</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
                 <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(7)"
                         id="cl_7">感動したい人向け</a></li>
                 <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(8)"
@@ -120,9 +135,11 @@
                         id="cl_8">励まされたい人向け</a></li>
                 <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(9)"
                         id="cl_9">発見したい人向け</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)"
-                        id="cl_10">その他</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectCategory(10)" id="cl_10">その他</a>
+                </li>
             </ul>
         </div>
         <h3>太宰治に関する検索結果</h3>
@@ -145,87 +162,12 @@
                 <div class="list_user">
                     <div class="list_user_info">
                         <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
+                        <span>ミルクココア</span>
                     </div>
                     <img class="list_user_thumbs" src="./img/thumbsup.png" />
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクションaaaaaaaaaaああああああああああああああああああああああああああああああああああああああああああ</h3>
-                    <h5><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <span>...+40</span>
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png" />
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクション</h3>
-                    <h5><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <span>...+40</span>
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png" />
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="book_list">
-            <a class="list_anchor" href="#">
-                <div class="book_list_title">
-                    <h3>太宰コレクション</h3>
-                    <h5><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h5>
-                </div>
-                <div class="book_list_img">
-                    <img
-                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <img
-                        src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-                    <span>...+40</span>
-                </div>
-                <div class="list_user">
-                    <div class="list_user_info">
-                        <div style="background-image: url('./img/user_icon.png');"></div>
-                        <p>ミルクココア</p>
-                    </div>
-                    <img class="list_user_thumbs" src="./img/thumbsup.png" />
-                    <div class="list_user_thumbs_num">
-                        1000
-                    </div>
+                    <span class="list_user_thumbs_num">
+                        1
+                    </span>
                 </div>
             </a>
         </div>

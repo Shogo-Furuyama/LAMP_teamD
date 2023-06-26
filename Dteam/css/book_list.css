@@ -87,15 +87,12 @@
     height: 15%;
     padding-top: 2%;
     display: flex;
-
-    >* {
-        align-items: center;
-        display: flex;
-    }
 }
 
 .list_user_info {
     width: 80%;
+    display: flex;
+    align-items: center;
 
     >div {
         width: 10%;
@@ -106,9 +103,10 @@
         display: inline-block;
     }
 
-    >p {
-        margin: 0 5%;
+    >span {
+        margin-inline: 5%;
         width: 80%;
+        font-weight: bold;
         word-break: break-all;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -117,46 +115,47 @@
 }
 
 .list_user_thumbs {
-    width: 7%;
-    aspect-ratio: 1 / 1;
-    margin-right: 3%;
+    width: 5%;
+    height: auto;
+    margin-block: auto;
+    margin-right: 1%;
 }
 
 .list_user_thumbs_num {
-    width: 10%;
+    max-width: 14%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
 }
 
 /*
 
 =====================================================================================================================================
 
-<a class="list_anchor" href="#">
-    <div class="book_list_title">
-        <h3>太宰コレクション</h3>
-        <h5>
-            <img src="./img/genre_icon.png">
-            ホラー
-            &emsp;
-            <img src="./img/target_icon.png">
-            子供向け
-        </h5>
-    </div>
-    <div class="book_list_img">
-        <img src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-        <img src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
-        <span>...+40</span>
-    </div>
-    <div class="list_user">
-        <div class="list_user_info">
-            <div style="background-image: url('./img/user_icon.png');"></div>
-            <p>ミルクココア</p>
+
+<div class="book_list">
+    <a class="list_anchor" href="#">
+        <div class="book_list_title">
+            <h3>太宰コレクション</h3>
+            <h5><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h5>
         </div>
-        <img class="list_user_thumbs" src="./img/thumbsup.png" />
-        <div class="list_user_thumbs_num">
-            1000
+        <div class="book_list_img">
+            <img src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+            <img src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+            <span>...+40</span>
         </div>
-    </div>
-</a>
+        <div class="list_user">
+            <div class="list_user_info">
+                <div style="background-image: url('./img/user_icon.png');"></div>
+                <span>ミルクココア</span>
+            </div>
+            <img class="list_user_thumbs" src="./img/thumbsup.png" />
+            <span class="list_user_thumbs_num">
+                1
+            </span>
+        </div>
+    </a>
+</div>
             
 =====================================================================================================================================
 
