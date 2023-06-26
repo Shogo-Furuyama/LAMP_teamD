@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <title>Document</title>
+
+    {literal}
+    <style>
+        main {
+            padding: 2%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        #l_info {
+            width: 100%;
+            display: flex;
+        }
+
+        #l_info_1 {
+            width: 70%;
+
+            >h1 {
+                font-size: 2.2vw;
+            }
+
+            >h3 {
+                display: flex;
+                color: dimgray;
+                font-size: 1.7vw;
+                margin-left: 2px;
+
+                >img {
+                    margin-block: auto;
+                    margin-right: 5px;
+                    height: 1.7vw;
+                    width: auto;
+                }
+            }
+
+            >h5 {
+                font-size: 1.5vw;
+            }
+        }
+
+        #l_info_2 {
+            width: 30%;
+            margin-left: 5px;
+        }
+
+        #thumbs {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            >img {
+                height: auto;
+                margin-left: 5%;
+                margin-right: 5%;
+                width: 10%;
+            }
+
+            >div {
+                width: 55%;
+                font-size: 2.5vw;
+            }
+        }
+
+        #list_user_info {
+            display: flex;
+            align-items: center;
+            border: solid gray 0.2rem;
+            border-radius: 10px;
+            margin: 10% 5%;
+            padding: 5%;
+
+            >div {
+                width: 18%;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                background-size: cover;
+                background-position: center;
+                display: inline-block;
+            }
+
+            >span {
+                margin-inline: 5%;
+                width: 70%;
+                font-size: 1.5vw;
+                font-weight: bold;
+                word-break: break-all;
+            }
+        }
+
+        #register_books {
+            margin-block: 5%;
+            border-top: dashed 1px black;
+
+            >* {
+                padding-block: 1%;
+                border-bottom: dashed 1px black;
+                aspect-ratio: 6 / 1;
+                display: flex;
+
+            }
+        }
+
+        .regist_book {
+            height: auto;
+        }
+
+        .reg_num {
+            margin-block: auto;
+            width: 5%;
+            text-align: center;
+            font-size: 1.3vw;
+        }
+
+        .book_img {
+            width: 20%;
+            display: flex;
+            overflow: hidden;
+
+            >img {
+                height: 80%;
+                width: auto;
+                margin: auto;
+            }
+        }
+
+        .book_info {
+            width: 30%;
+            height: 100%;
+            padding-inline: 1%;
+            justify-content: center;
+            margin-block: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            >h3 {
+                width: 100%;
+                max-height: 47%;
+                margin-bottom: 2%;
+                font-size: 1.5vw;
+                word-break: break-all;
+                overflow-y: scroll;
+            }
+
+            >h5 {
+                height: 13%;
+                color: dimgray;
+                margin: 0;
+                font-size: 1.3vw;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                word-break: break-all;
+            }
+        }
+
+        .into_cart {
+            height: 20%;
+            width: 100%;
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+
+            >button {
+                height: 100%;
+                font-size: 1.3vw;
+                padding-inline: 5%;
+                padding-block: 0;
+                border: solid gray 1px;
+                border-radius: 20px;
+                box-shadow: 2px 2px 2px gray;
+                background-color: orange;
+                transition: background-color 0.3s ease;
+                margin-right: 2%;
+            }
+
+            >button:hover {
+                background-color: darkorange;
+            }
+
+            >span {
+                font-size: 1.5vw;
+            }
+        }
+
+        .book_introduction {
+            width: 45%;
+            font-size: 1.3vw;
+            overflow-y: scroll;
+        }
+
+        @media (max-width: 950px) {
+            #l_info {
+                display: block;
+            }
+
+            #l_info_1 {
+                width: 100%;
+
+                >h1 {
+                    font-size: 3.5vw;
+                }
+
+                >h3 {
+                    font-size: 2.4vw;
+
+                    >img {
+                        height: 2.4vw;
+                    }
+                }
+
+                >h5 {
+                    font-size: 2.2vw;
+                }
+            }
+
+            #l_info_2 {
+                width: 100%;
+                display: flex;
+                margin-top: 1rem;
+            }
+
+            #thumbs {
+                width: 50%;
+
+                >img {
+                    height: auto;
+                    margin-inline: 0 5%;
+                    width: 8%;
+                }
+
+                >div {
+                    width: 55%;
+                    font-size: 4vw;
+                }
+            }
+
+            #list_user_info {
+                width: 40%;
+                margin: 0 0 0 auto;
+                padding: 2%;
+
+                >div {
+                    width: 15%;
+                    aspect-ratio: 1 / 1;
+                    border-radius: 50%;
+                    background-size: cover;
+                    background-position: center;
+                    display: inline-block;
+                }
+
+                >span {
+                    margin-inline: 5%;
+                    width: 70%;
+                    font-size: 2vw;
+                    word-break: break-all;
+                }
+            }
+
+            #register_books {
+                >* {
+                    aspect-ratio: 3 / 1;
+                }
+            }
+
+            .reg_num {
+                font-size: 2.2vw;
+            }
+
+            .book_img {
+                width: 25%;
+
+                >img {
+                    height: 65%;
+                }
+            }
+
+            .book_info {
+                >h3 {
+                    max-height: 57%;
+                    font-size: 2vw;
+                }
+
+                >h5 {
+                    font-size: 1.5vw;
+                }
+
+                .rel_date {
+                    height: 8%;
+                }
+
+                .authors {
+                    height: auto;
+                    max-height: 17%;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    white-space: normal;
+                }
+            }
+
+            .into_cart {
+                height: 13%;
+                margin-top: 3%;
+
+                >button {
+                    font-size: 1.7vw;
+                }
+
+                >span {
+                    font-size: 1.7vw;
+                }
+            }
+
+            .book_introduction {
+                width: 40%;
+                font-size: 1.8vw;
+            }
+        }
+    </style>
+    {/literal}
+</head>
+
+<body>
+    <header id="header_fixed_jud">
+        <nav class="navbar navbar-expand-sm" id="nav_style">
+            <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+            <form id="nav_input">
+                <div>
+                    <input type="search" placeholder="キーワードを入力" aria-label="Search">
+                    <button type="submit">検索</button>
+                </div>
+            </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+                aria-controls="navmenu" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav" id="nav_a_style">
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">サービス概要</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">新規登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">ログイン</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="l_info">
+            <div id="l_info_1">
+                <h1>退廃的な小説のおすすめ10選</h1>
+                <h3><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h3>
+                <h5>人間の堕落や不健全さを赤裸々に描いた小説は、読者に強烈な印象を与えます。道徳や倫理に縛られない自由な表現や、暗くて病的な雰囲気が魅力的な小説を集めました。</h5>
+            </div>
+            <div id="l_info_2">
+                <div id="thumbs">
+                    <img src="./img/thumbsup.png" />
+                    <div>
+                        1000
+                    </div>
+                </div>
+                <div id="list_user_info">
+                    <div style="background-image: url('./img/user_icon.png');"></div>
+                    <span>ミルクココア</span>
+                </div>
+            </div>
+        </div>
+        <div id="register_books">
+            <div class="regist_book">
+                <div class="reg_num">
+                    1
+                </div>
+                <div class="book_img">
+                    <img
+                        src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+                </div>
+                <div class="book_info">
+                    <h3>太宰治
+                    </h3>
+                    <h5 class="rel_date">2023</h5>
+                    <h5 class="authors">太宰治</h5>
+                    <div class="into_cart">
+                        <button type="button">カートに入れる</button>
+                        <span>￥650</span>
+                    </div>
+                </div>
+                <span class="book_introduction">嘉久の名作を数多く輩出した文豪太宰治の人生を解くと見よ</span>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer_nav">
+            <ul class="footer_navi">
+                <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
+                <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
+                <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
+                <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
+            </ul>
+            <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
+        </div>
+    </footer>
+    {literal}
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    {/literal}
+    {literal}
+    <script src="./js/header.js"></script>
+    {/literal}
+    
+</body>
+
+</html>
