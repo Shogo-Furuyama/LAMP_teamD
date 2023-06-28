@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="./css/login.css" rel="stylesheet">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-sm navbar-light  px-3 py-2">
+    <a href="#" class="navbar-brand "><img src="./img/logo1.png"
+        style="display: flex; height: 4rem; width: auto;" /></a>
+
+  </nav>
+
+  <div class="form-wrapper">
+
+
+    <form action="user_login.php" method="post">
+
+      <h1>ログイン</h1>
+      <p class="text-danger">{$ERR_STR|nl2br}</p>
+
+      <form>
+        <div class="form-item">
+          <label for="mail"></label>
+          <input type="email" name="mail" required="required" placeholder="メールアドレス"></input>
+        </div>
+        <div class="form-item">
+          <label for="password"></label>
+          <input type="password" name="password" required="required" placeholder="パスワード"></input>
+        </div>
+
+
+
+        <div class="button-panel">
+          <input type="submit" class="button bg-success" title="Sign In" value="ログイン" href="index.php"></input>
+        </div>
+        <div class="form-footer">
+          <p><a href="register_smarty.php">まだアカウント登録していない方はこちら</a></p>
+          <p><a href="#">ユーザーID・パスワードを忘れた方はこちら</a></p>
+        </div>
+      </form>
+  </div>
+  {literal}
+    <script>
+      // メールアドレスの正規表現パターン
+      const mailnode = document.querySelector('[name="mail"]');
+      const passnode = document.querySelector('[name="password"]');
+      const mailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      // パスワードの正規表現パターン
+      const passwordPattern = /^[\x21-\x7e]{8,}$/;
+      // フォームの送信ボタンがクリックされたときの処理
+      document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+        let flag = false;
+        let errMsg = '';
+        // メールアドレスの検証
+        if (!mailPattern.test(mailnode.value)) {
+          errMsg += '有効なメールアドレスを入力してください。\n';
+          flag = true;
+        }
+
+        // パスワードの検証
+        if (!passwordPattern.test(passnode.value)) {
+          errMsg += 'パスワードは8文字以上の英数字の組み合わせで入力してください。\n';
+          flag = true;
+        }
+
+        if(flag) {
+          document.querySelector('.text-danger').innerText = errMsg;
+          event.preventDefault(); // フォームの送信をキャンセルして検証を行う
+        }
+      });
+    </script>
+  {/literal}
+  </body>
+
+  </html>
