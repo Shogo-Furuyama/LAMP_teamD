@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<title>【管理画面】管理者詳細</title>
+<script type="text/javascript">
+<!--
+function set_func_form(fn,pm){
+    document.form1.target = "_self";
+    document.form1.func.value = fn;
+    document.form1.param.value = pm;
+    document.form1.submit();
+}
+
+
+// -->
+</script>
+</head>
+<body>
+<!-- 全体コンテナ　-->
+<div id="container">
+{include file='./gmenu.tmpl'}
+<div id="headTitle">
+<h2>管理者詳細</h2>
+</div>
+<!-- コンテンツ　-->
+<div id="inquiry">
+{if $err_flag != '' }
+<p >{$err_flag}</p>
+{/if}
+<form name="form1" action="{$smarty.server.PHP_SELF}" method="post" >
+<a href="admin_list.php">一覧に戻る</a><br />
+<table>
+<tr>
+<th>ID</th>
+<td width="70%">{$admin_master_id_txt}</td>
+</tr>
+<tr>
+<th>ログイン</th>
+<td width="70%"><input type="text"   name="admin_login" value="{$smarty.post.admin_login|escape}"></td>
+</tr>
+<tr>
+<th class="nobottom">管理者名</th>
+<td class="nobottom" width="70%"><input type="text" name="admin_name" value="{$smarty.post.admin_name|escape}" ></td>
+</tr>
+<tr>
+<th>パスワード</th>
+<td width="70%"><input type="password"  name="enc_password" value="{$smarty.post.enc_password|escape}" ></td>
+</tr>
+<tr>
+<th>パスワード確認</th>
+<td width="70%"><input type="password"  name="enc_password_chk" value="{$smarty.post.enc_password_chk|escape}" ></td>
+</tr>
+</table>
+<input type="hidden" name="func" value="conf" />
+<input type="hidden" name="param" value="" />
+<input type="hidden" name="admin_master_id" value="{$admin_master_id}" />
+<p class="center"><input type="submit" value="確認" /></p>
+</form>
+</div>
+<!-- /コンテンツ　-->
+</div>
+<!-- /全体コンテナ　-->
+</body>
+</html>
