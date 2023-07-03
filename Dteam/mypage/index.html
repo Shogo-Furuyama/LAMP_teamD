@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+    <title>Document</title>
+    <style></style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2 nav_border"
+    >
+      <a href="#" class="navbar-brand"
+        ><img
+          src="./imgs/ロゴ1.png"
+          style="display: flex; height: 6rem; width: auto"
+      /></a>
+      <form class="nav_input">
+        <div>
+          <input
+            type="search"
+            placeholder="キーワードを入力"
+            aria-label="Search"
+          />
+          <button type="submit">検索</button>
+        </div>
+      </form>
+      <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+        <div class="navbar-nav nav_a_style">
+          <a class="nav-item nav-link" href="#">サービス概要</a>
+          <a class="nav-item nav-link" href="#">新規登録</a>
+          <a class="nav-item nav-link" href="#">ログイン</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div id="items">
+        <div>
+          <div class="B_style">
+            <a class="a_style" href="#">プロフィール</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">投稿したリスト</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">いいね</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">個人情報</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">支払情報</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="Prf">
+        <div class="_all">
+          <h1>プロフィール</h1>
+
+          <div class="profile">
+            <div class="cp_iptxt">
+              <input
+                class="ef"
+                type="text"
+                placeholder="名前を入力してください"
+              />
+              <label for="name">name</label>
+              <span class="focus_line"></span>
+            </div>
+
+            <div class="profile-icon">
+                <img id="profile-image" src="path/to/default-image.png" />
+                
+              </div>
+              <a href="#" id="change-icon-link">Icon change</a>
+            </div>
+          </div>
+          
+          <div class="profile_comment">
+              <div class = "profile_nt">
+                <textarea
+                id="myTextarea"
+                rows="7"
+                cols="50"
+                placeholder="自己紹介を書いてみましょう"
+              ></textarea>
+
+              <button class="save-button">保存する</button>
+              </div>
+              
+          </div>
+          <div class="profile_category">
+              <h1>好きなカテゴリーを選択してください</h1>
+
+              <div class="tag-cloud">
+                <div class="tag-row">
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    文学・文芸
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    ビジネス
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    趣味・実用
+                  </label>
+                </div>
+
+                <div class="tag-row">
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    専門書
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    学習参考書
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    絵本・児童書
+                  </label>
+                </div>
+
+                <div class="tag-row">
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    コミックス
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    雑誌・ムック
+                  </label>
+                  <label class="tag">
+                    <input
+                      type="radio"
+                      name="category"
+                      onclick="toggleTag(this)"
+                    />
+                    その他
+                  </label>
+                </div>
+              </div>
+
+              <button class="save-button" onclick="saveCategory()">
+                保存する
+              </button>
+
+              <p id="warning-message" style="display: none; color: red">
+                カテゴリーを選択してください
+              </p>
+
+              <p id="selected-category" style="display: none">
+                選択されたカテゴリー: <span id="category-name"></span>
+              </p>
+              <p id="success-message" style="display: none; color: green">
+                保存が完了しました！
+              </p>
+            </div>
+
+            <div class="profile_favoriteBook">
+              <h1>好きな本を登録してください</h1>
+            </div>
+
+            <div class="book_count">
+              <h1>今まで読んだ本の数を入力してください</h1>
+              <input
+                class="count"
+                type="number"
+                placeholder="数値を入力してください"
+              />
+              <button class="save-button">保存する</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="index.js"></script>
+    
+  </body>
+</html>

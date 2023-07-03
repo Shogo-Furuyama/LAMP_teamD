@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+      .nav_a_style > a {
+        padding: 0 2rem !important;
+        font-size: 1.2rem;
+        color: white;
+      }
+
+      .nav_input {
+        width: 40%;
+      }
+
+      .nav_input > * {
+        display: flex;
+      }
+
+      .nav_input > * > * {
+        border: none;
+        background: none;
+        outline: none;
+        border: solid 0.01rem silver;
+      }
+
+      .nav_input > * > input {
+        padding-left: 10px;
+        padding-block: 5px;
+        width: 80%;
+        border-right: 0;
+        border-radius: 1rem 0 0 1rem;
+      }
+
+      .nav_input > * > button {
+        width: 20%;
+        border-radius: 0 1rem 1rem 0;
+        background-color: green;
+        color: white;
+      }
+
+      .nav_input > * > button:active {
+        background-color: forestgreen;
+        color: white;
+      }
+
+      .nav_border {
+        border-bottom: solid 1px darkgray;
+        box-shadow: 0 0.4rem 0.4rem gainsboro;
+      }
+
+      .a_style {
+        font-size: 25px;
+        color: rgb(90, 90, 90);
+        text-decoration: none;
+        position: relative;
+        width: 162px;
+        margin-left: 20%;
+      }
+
+      .a_style:hover {
+        color: rgb(90, 90, 90);
+      }
+
+      .B_style {
+        font-size: 30px;
+        color: rgb(90, 90, 90);
+        text-decoration: none;
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .B_style:hover {
+        background-color: #f0f0f0;
+        border-radius: 0px 30px 30px 0px;
+        color: rgb(90, 90, 90);
+      }
+
+      .child {
+        float: left;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        display: flex;
+        flex-grow: 1;
+        float: left;
+      }
+
+      #items {
+        width: 20%;
+        display: flex;
+        margin-top: 50px;
+
+        > div {
+          width: 100%;
+          margin-top: 100px;
+          padding-right: auto;
+        }
+        position: fixed;
+        top: 50px;
+        left: 50px;
+      }
+
+      #Prf {
+        width: 100%;
+        float: right;
+      }
+
+      .profile_all {
+        margin-top: 7%;
+        margin-left: 400px;
+      }
+
+      .profile_all h1 {
+        margin-left: 20%;
+        color: #c0c0c0;
+      }
+
+      .profile {
+        margin-top: 4%;
+        width: 670px;
+        border: 0.5px solid #c0c0c0;
+        border-radius: 30px;
+        float: right;
+        margin-right: 90px;
+        padding: 30px;
+      }
+
+      .profile_comment {
+        border: 0.5px solid #c0c0c0;
+        border-radius: 30px;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      textarea {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+        margin: 15px 20px;
+        border-radius: 30px;
+        width: calc(100% - 40px);
+      }
+
+      textarea:focus {
+        outline: none;
+        box-shadow: 0 0 5px 2px rgba(147, 147, 151, 0.6);
+        transition: 0.3s;
+      }
+
+      .profile_category,
+      .profile_favoriteBook,
+      .book_count {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 0.5px solid #c0c0c0;
+        border-radius: 30px;
+      }
+
+      .book_count input {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 200px;
+      }
+
+      .cp_iptxt {
+        position: relative;
+        width: 300px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        float: right;
+        margin-right: 130px;
+      }
+      .cp_iptxt input[type="text"] {
+        font: 15px/24px sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        letter-spacing: 1px;
+        padding-left: 4em;
+      }
+      .cp_iptxt input[type="text"]:focus {
+        outline: none;
+      }
+      .ef {
+        padding: 4px 0;
+        border: 0;
+        border-bottom: 1px solid #1b2538;
+        background-color: transparent;
+      }
+      .ef ~ .focus_line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transition: 0.6s;
+        background-color: #000000;
+      }
+      .ef:focus ~ .focus_line,
+      .cp_iptxt.ef ~ .focus_line {
+        width: 100%;
+        transition: 0.6s;
+      }
+      .ef ~ label {
+        position: absolute;
+        z-index: -1;
+        top: 4px;
+        left: 0;
+        width: 100%;
+        transition: 0.3s;
+        letter-spacing: 0.5px;
+        color: #aaaaaa;
+      }
+      .ef:focus ~ label,
+      .cp_iptxt.ef ~ label {
+        font-size: 12px;
+        top: -16px;
+        transition: 0.3s;
+        color: #c0c0c0;
+      }
+
+      h1 {
+        font-size: 30px;
+        color: #c0c0c0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2 nav_border"
+    >
+      <a href="#" class="navbar-brand"
+        ><img
+          src="./imgs/ロゴ1.png"
+          style="display: flex; height: 6rem; width: auto"
+      /></a>
+      <form class="nav_input">
+        <div>
+          <input
+            type="search"
+            placeholder="キーワードを入力"
+            aria-label="Search"
+          />
+          <button type="submit">検索</button>
+        </div>
+      </form>
+      <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+        <div class="navbar-nav nav_a_style">
+          <a class="nav-item nav-link" href="#">サービス概要</a>
+          <a class="nav-item nav-link" href="#">新規登録</a>
+          <a class="nav-item nav-link" href="#">ログイン</a>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div id="items">
+        <div>
+          <div class="B_style">
+            <a class="a_style" href="#">プロフィール</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">投稿したリスト</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">いいね</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">個人情報</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">支払情報</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="Prf">
+        <div class="profile_all">
+          <h1>プロフィール</h1>
+
+          <div class="profile">
+            <div class="profile_name">
+              <div class="cp_iptxt">
+                <input
+                  class="ef"
+                  type="text"
+                  placeholder="名前を入力してください"
+                />
+                <label>name</label>
+                <span class="focus_line"></span>
+              </div>
+            </div>
+
+            <div class="profile_comment">
+              <textarea
+                id="myTextarea"
+                rows="7"
+                cols="50"
+                placeholder="自己紹介を書いてみましょう"
+              ></textarea>
+            </div>
+
+            <div class="profile_category">
+              <h1>好きなカテゴリーを追加してください</h1>
+            </div>
+
+            <div class="profile_favoriteBook">
+              <h1>好きな本を登録してください</h1>
+            </div>
+
+            <div class="book_count">
+              <h1>今まで読んだ本の数を入力してください</h1>
+              <input type="text" placeholder="数値を入力" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
