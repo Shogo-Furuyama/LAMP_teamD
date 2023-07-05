@@ -1,13 +1,4 @@
 <?php
-/*!
-@file member_list_smarty.php
-@brief メンバー一覧(Smarty版)
-@copyright Copyright (c) 2021 Yamanoi Yasushi.
-*/
-
-/////////////////////////////////////////////////////////////////
-/// 実行ブロック
-/////////////////////////////////////////////////////////////////
 
 //ライブラリをインクルード
 require_once("inc_base.php");
@@ -179,8 +170,6 @@ function assign_tgt_uri(){
 	global $page;
 	$smarty->assign('tgt_uri',$_SERVER['PHP_SELF'] . '?page=' . $page);
 }
-
-
 
 
 /////////////////////////////////////////////////////////////////

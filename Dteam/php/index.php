@@ -11,6 +11,7 @@ require_once("inc_smarty.php");
     {
         return "http://150.95.36.201/~j2023d/"+ $url;
     }
+    
 
 //Smartyを使用した表示(テンプレートファイルの指定)
 $smarty->display('index.tmpl');
