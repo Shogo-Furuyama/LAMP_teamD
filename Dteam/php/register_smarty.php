@@ -21,22 +21,24 @@ $ERR_STR = '';
 //デフォルトは1
 $page = 1;
 //もしページが指定されていたら
-if(isset($_GET['page']) 
-    //なおかつ、数字だったら
-    && cutil::is_number($_GET['page'])
-    //なおかつ、0より大きかったら
-    && $_GET['page'] > 0){
-    //パラメータを設定
-    $page = $_GET['page'];
+if (
+	isset($_GET['page'])
+	//なおかつ、数字だったら
+	&& cutil::is_number($_GET['page'])
+	//なおかつ、0より大きかったら
+	&& $_GET['page'] > 0
+) {
+	//パラメータを設定
+	$page = $_GET['page'];
 }
 
 //1ページのリミット
 $limit = 20;
 $rows = array();
 
-if(is_func_active()){
-	if(param_chk()){
-		switch($_POST['func']){
+if (is_func_active()) {
+	if (param_chk()) {
+		switch ($_POST['func']) {
 			case "del":
 				$show_mode = 'del';
 				//削除操作
@@ -45,19 +47,19 @@ if(is_func_active()){
 				$re_page = $page;
 				$obj = new cmember();
 				$allcount = $obj->get_all_count(false);
-				$last_page = (int)($allcount / $limit);
-				if($allcount % $limit){
+				$last_page = (int) ($allcount / $limit);
+				if ($allcount % $limit) {
 					$last_page++;
 				}
-				if($re_page > $last_page){
+				if ($re_page > $last_page) {
 					$re_page = $last_page;
 				}
 				//再読み込みのためにリダイレクト
-				cutil::redirect_exit($_SERVER['PHP_SELF'] 
-				. '?page=' . $re_page);
-			break;
+				cutil::redirect_exit($_SERVER['PHP_SELF']
+					. '?page=' . $re_page);
+				break;
 			default:
-			break;
+				break;
 		}
 	}
 }
@@ -75,11 +77,12 @@ readdata();
 @return	渡されたらtrue
 */
 //--------------------------------------------------------------------------------------
-function is_func_active(){
-    if(isset($_POST['func']) && $_POST['func'] != ""){
-        return true;
-    }
-    return false;
+function is_func_active()
+{
+	if (isset($_POST['func']) && $_POST['func'] != "") {
+		return true;
+	}
+	return false;
 }
 
 
@@ -89,11 +92,14 @@ function is_func_active(){
 @return	エラーがあったらfalse
 */
 //--------------------------------------------------------------------------------------
-function param_chk(){
+function param_chk()
+{
 	global $ERR_STR;
-	if(!isset($_POST['param']) 
-	|| !cutil::is_number($_POST['param'])
-	|| $_POST['param'] <= 0){
+	if (
+		!isset($_POST['param'])
+		|| !cutil::is_number($_POST['param'])
+		|| $_POST['param'] <= 0
+	) {
 		$ERR_STR .= "パラメータを取得できませんでした\n";
 		return false;
 	}
@@ -107,13 +113,14 @@ function param_chk(){
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function readdata(){
+function readdata()
+{
 	global $limit;
 	global $rows;
 	global $page;
 	$obj = new cmember();
 	$from = ($page - 1) * $limit;
-	$rows = $obj->get_all(false,$from,$limit);
+	$rows = $obj->get_all(false, $from, $limit);
 }
 
 //--------------------------------------------------------------------------------------
@@ -122,13 +129,14 @@ function readdata(){
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function deljob(){
+function deljob()
+{
 	$chenge = new cchange_ex();
-	if($_POST['param'] > 0){
-		$chenge->delete(false,"member","member_id=" . $_POST['param']);
+	if ($_POST['param'] > 0) {
+		$chenge->delete(false, "member", "member_id=" . $_POST['param']);
 	}
 }
-$str='Hello,World!';
+$str = 'Hello,World!';
 
 //--------------------------------------------------------------------------------------
 /*!
@@ -136,12 +144,14 @@ $str='Hello,World!';
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function assign_str(){
-    global $str;
-    global $smarty;
-    $smarty->assign('str',$str);
+function assign_str()
+{
+	global $str;
+	global $smarty;
+	$smarty->assign('str', $str);
 }
-function assign_page_block(){
+function assign_page_block()
+{
 	//$smartyをグローバル宣言（必須）
 	global $smarty;
 	global $limit;
@@ -149,8 +159,8 @@ function assign_page_block(){
 	$retstr = '';
 	$obj = new cmember();
 	$allcount = $obj->get_all_count(false);
-	$ctl = new cpager($_SERVER['PHP_SELF'],$allcount,$limit);
-	$smarty->assign('pager_arr',$ctl->get('page',$page));
+	$ctl = new cpager($_SERVER['PHP_SELF'], $allcount, $limit);
+	$smarty->assign('pager_arr', $ctl->get('page', $page));
 }
 
 
@@ -160,11 +170,12 @@ function assign_page_block(){
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function assign_member_list(){
+function assign_member_list()
+{
 	//$smartyをグローバル宣言（必須）
 	global $smarty;
 	global $rows;
-	$smarty->assign('rows',$rows);
+	$smarty->assign('rows', $rows);
 }
 
 //--------------------------------------------------------------------------------------
@@ -173,11 +184,25 @@ function assign_member_list(){
 @return	なし
 */
 //--------------------------------------------------------------------------------------
-function assign_tgt_uri(){
+function assign_tgt_uri()
+{
 	//$smartyをグローバル宣言（必須）
 	global $smarty;
 	global $page;
-	$smarty->assign('tgt_uri',$_SERVER['PHP_SELF'] . '?page=' . $page);
+	$smarty->assign('tgt_uri', $_SERVER['PHP_SELF'] . '?page=' . $page);
+}
+
+
+/* データベースへ登録 */
+if (!empty($_POST['user_name']) && !empty($_POST['mail']) && !empty($_POST['password'])) {
+	$dataarr = array();
+	$dataarr['user_name'] = (string)$_POST['user_name'];
+	$dataarr['mail'] = (string)$_POST['mail'];
+	$dataarr['password'] = (string)$_POST['password'];
+
+	$ccheng = new cchange_ex();
+
+	$ccheng->insert(false,'user_table',$dataarr);
 }
 
 
@@ -186,7 +211,7 @@ function assign_tgt_uri(){
 /////////////////////////////////////////////////////////////////
 /// 関数呼び出しブロック
 /////////////////////////////////////////////////////////////////
-$smarty->assign('ERR_STR',$ERR_STR);
+$smarty->assign('ERR_STR', $ERR_STR);
 assign_page_block();
 assign_member_list();
 assign_tgt_uri();
