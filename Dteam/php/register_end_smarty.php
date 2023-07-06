@@ -1,13 +1,4 @@
 <?php
-/*!
-@file member_list_smarty.php
-@brief メンバー一覧(Smarty版)
-@copyright Copyright (c) 2021 Yamanoi Yasushi.
-*/
-
-/////////////////////////////////////////////////////////////////
-/// 実行ブロック
-/////////////////////////////////////////////////////////////////
 
 //ライブラリをインクルード
 require_once("inc_base.php");
@@ -90,7 +81,7 @@ function is_func_active(){
 */
 //--------------------------------------------------------------------------------------
 function param_chk(){
-	 global $ERR_STR;
+	global $ERR_STR;
 	if(!isset($_POST['param']) 
 	|| !cutil::is_number($_POST['param'])
 	|| $_POST['param'] <= 0){
@@ -191,7 +182,7 @@ assign_tgt_uri();
 assign_str();
 
 //Smartyを使用した表示(テンプレートファイルの指定)
-$smarty->display('register.tmpl');
+$smarty->display('register_end.tmpl');
 
 
 ?>
