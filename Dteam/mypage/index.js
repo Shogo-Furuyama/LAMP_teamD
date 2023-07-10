@@ -9,6 +9,12 @@ function toggleTag(element) {
   element.parentNode.classList.add("selected");
 }
 
+/*===================================================================================-*/
+
+/*==================================================================================-*/
+
+/*===================================================================================-*/
+
 function saveCategory() {
   var selectedTag = document.querySelector(".tag.selected");
   var saveButton = document.querySelector(".save-button");
@@ -17,6 +23,7 @@ function saveCategory() {
   var categoryName = document.getElementById("category-name");
   var successMessage = document.getElementById("success-message");
 
+  //カテゴリーが設定しているか確認して表示する文字を変える
   if (selectedTag) {
     var category = selectedTag.textContent.trim();
     categoryName.textContent = category;
@@ -25,7 +32,7 @@ function saveCategory() {
     console.log("選択されたカテゴリー: " + category);
 
     // ボタンのクリックスタイルを反転させる
-    saveButton.classList.toggle("clicked");
+    /*saveButton.classList.toggle("clicked");*/
 
     // 注意書きを非表示にする
     warningMessage.style.display = "none";
@@ -35,7 +42,7 @@ function saveCategory() {
     successMessage.style.display = "block";
   } else {
     // ボタンのクリックスタイルを反転させる
-    saveButton.classList.toggle("clicked");
+    /*saveButton.classList.toggle("clicked");*/
 
     // 注意書きを表示する
     warningMessage.style.display = "block";
@@ -53,6 +60,7 @@ function deselectTag(element) {
 }
 
 // カテゴリーの選択を解除するイベントリスナーを追加
+/*
 var tags = document.querySelectorAll(".tag");
 for (var i = 0; i < tags.length; i++) {
   tags[i].addEventListener("click", function (e) {
@@ -70,6 +78,9 @@ for (var i = 0; i < tags.length; i++) {
     }
   });
 }
+*/
+
+/*===================================================================================-*/
 
 // アイコン変更リンクの要素を取得
 var changeIconLink = document.getElementById("change-icon-link");
@@ -100,8 +111,12 @@ changeIconLink.addEventListener("click", function (e) {
 });
 
 // 初期アイコンのパス
+var defaultIconPath = "./imgs/初期アイコン.png";
+
+/*パンドラの箱
 var defaultIconPath =
-  "https://drive.google.com/uc?export=view&id=1_CnXTZV6pTYNkyVqroB3rMZYgVw70VOD";
+  "https://drive.google.com/file/d/1dn0w_dcSddchp2CEXaKN5Udth2qyP6sE/view?usp=drive_link";
+*/
 
 // ページ読み込み時に初期アイコンを表示
 window.addEventListener("load", function () {
