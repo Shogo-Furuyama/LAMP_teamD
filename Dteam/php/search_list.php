@@ -93,12 +93,13 @@ function param_chk(){
 }
 
 //データの読み込み
+//contentsdbを呼び出してデータベースから抽出するための呼出をする
 function readdata(){
 	global $limit;
 	global $rows;
 	global $order;
 	global $page;
-	$obj = new cprefecture();
+	$obj = new cbook_input();
 	$from = ($page - 1) * $limit;
 	if(isset($_GET['pname']) && $_GET['pname'] != ""){
 		$rows = $obj->get_all_by_name($_GET['pname']);
@@ -108,13 +109,6 @@ function readdata(){
 	}
 }
 
-//データの削除
-function deljob(){
-	$chenge = new cchange_ex();
-	if($_POST['param'] > 0){
-		$chenge->delete("prefecture","prefecture_id=" . $_POST['param']);
-	}
-}
 
 //ページャーのアサイン
 function assign_page_block(){
@@ -123,7 +117,7 @@ function assign_page_block(){
 	global $limit;
 	global $page;
 	$retstr = '';
-	$obj = new cprefecture();
+	$obj = new cbook_input();
 	if(isset($_GET['pname']) && $_GET['pname'] != ""){
 		$allcount = $obj->get_all_count_by_name($_GET['pname']);
 	}
