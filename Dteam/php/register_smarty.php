@@ -194,16 +194,34 @@ function assign_tgt_uri()
 
 
 /* データベースへ登録 */
-if (!empty($_POST['user_name']) && !empty($_POST['mail']) && !empty($_POST['password'])) {
-	$dataarr = array();
-	$dataarr['user_name'] = (string)$_POST['user_name'];
-	$dataarr['mail'] = (string)$_POST['mail'];
-	$dataarr['password'] = (string)$_POST['password'];
+if (isset($_POST['user_name']) && isset($_POST['mail']) && isset($_POST['password'])) {
 
-	$ccheng = new cchange_ex();
+	$regflg = true;
+	if (!preg_match('/^.{1,20}$/u',$_POST['user_name'])) {
+		$regflg = false;
+	}else if(!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',$_POST['mail'])){
+		$regflg = false;
+	}else if(!preg_match('/^[\x21-\x7e]{8,}$/',$_POST['password'])){
+		$regflg = false;
+	}
+	if($regflg){
+		$dataarr = array();
+		$dataarr['user_name'] = (string) $_POST['user_name'];
+		$dataarr['mail'] = (string) $_POST['mail'];
+		$dataarr['password'] = (string) $_POST['password'];
+	
+		$ccheng = new cchange_ex();
+	
+		$ccheng->insert(false, 'user_table', $dataarr);
 
-	$ccheng->insert(false,'user_table',$dataarr);
+		cutil::redirect_exit('register_end_smarty.php');
+	}
+	echo '失敗しました';
+	exit;
+
 }
+
+
 
 
 
