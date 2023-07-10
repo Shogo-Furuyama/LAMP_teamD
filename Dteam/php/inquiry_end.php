@@ -191,7 +191,7 @@ assign_tgt_uri();
 assign_str();
 
 //Smartyを使用した表示(テンプレートファイルの指定)
-$smarty->display('register.tmpl');
+$smarty->display('inquiry_end.php');
 
 
 ?>
