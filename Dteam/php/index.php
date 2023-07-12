@@ -12,6 +12,11 @@ require_once("inc_smarty.php");
         return "http://150.95.36.201/~j2023d/"+ $url;
     }
     
+    $book_db = new clist();
+
+    if(isset($_POST["keyword"])){
+        cutil::redirect_exit('search_list.php?w='.rawurlencode($_POST["keyword"]));
+    }
 
 //Smartyを使用した表示(テンプレートファイルの指定)
 $smarty->display('index.tmpl');
