@@ -3,126 +3,136 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="profile.css" rel="stylesheet" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
     <title>Document</title>
     {literal}
-    <style>
-        .display {
-            display: none;
-        }
+        <style>
+            .display {
+                display: none;
+            }
 
-        .modal {
-            /*z-indexは奥行き*/
-            z-index: 1;
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            overflow: auto;
-            /*↓は半透明にするやつ*/
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+            .modal {
+                /*z-indexは奥行き*/
+                z-index: 1;
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                overflow: auto;
+                /*↓は半透明にするやつ*/
+                background-color: rgba(0, 0, 0, 0.5);
+            }
 
-        .modal-content {
-            background-color: #f4f4f4;
-            margin: 20% auto;
-            width: 50%;
-            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
-            /*１つ↓は変数宣言
+            .modal-content {
+                background-color: #f4f4f4;
+                margin: 20% auto;
+                width: 50%;
+                box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+                /*１つ↓は変数宣言
             　２つ↓はフレーム設定*/
-            animation-name: modalopen;
-            animation-duration: 1s;
-        }
-
-        /*アニメーションを付ける */
-        @keyframes modalopen {
-            from {
-                opacity: 0
+                animation-name: modalopen;
+                animation-duration: 1s;
             }
 
-            to {
-                opacity: 1
+            /*アニメーションを付ける */
+            @keyframes modalopen {
+                from {
+                    opacity: 0
+                }
+
+                to {
+                    opacity: 1
+                }
             }
-        }
 
-        .modal-header {
-            float: right;
-            padding: 3px 15px;
-            display: flex;
-            justify-content: space-between;
-        }
+            .modal-header {
+                float: right;
+                padding: 3px 15px;
+                display: flex;
+                justify-content: space-between;
+            }
 
-        .modalClose {
-            font-size: 2rem;
-        }
+            .modalClose {
+                font-size: 2rem;
+            }
 
-        .modalClose:hover {
-            cursor: pointer;
-        }
+            .modalClose:hover {
+                cursor: pointer;
+            }
 
-        .modal-body {
-            padding: 10px 20px;
-            color: black;
-        }
+            .modal-body {
+                padding: 10px 20px;
+                color: black;
+            }
 
-        .tableSize>tr>th {
-            width: 25%;
-        }
+            .tableSize>tr>th {
+                width: 25%;
+            }
 
-        .tableSize>tr>td {
-            width: 100%;
-        }
+            .tableSize>tr>td {
+                width: 100%;
+            }
 
-        .error {
-            color: #ff0000;
-            text-align: start;
-        }
+            .error {
+                color: #ff0000;
+                text-align: start;
+            }
 
-        .sub_p {
-            font-size: 1.3rem !important;
-        }
+            .sub_p {
+                font-size: 1.3rem !important;
+            }
 
-        .span {
-            color: #ff0000;
-        }
+            .span {
+                color: #ff0000;
+            }
 
-        .card_number {
-            display: flex;
-            height: 2em;
-            width: 14%;
-        }
-    </style>
+            .card_number {
+                display: flex;
+                height: 2em;
+                width: 40%;
+            }
+        </style>
     {/literal}
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2 nav_border">
-        <a href="#" class="navbar-brand"><img src="./img/ロゴ1.png"
-                style="display: flex; height: 6rem; width: auto" /></a>
-        <form class="nav_input">
-            <div>
-                <input type="search" placeholder="キーワードを入力" aria-label="Search" />
-                <button type="submit">検索</button>
-            </div>
-        </form>
-        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
-            <div class="navbar-nav nav_a_style">
-                <a class="nav-item nav-link" href="#">サービス概要</a>
-                <a class="nav-item nav-link" href="#">新規登録</a>
-                <a class="nav-item nav-link" href="#">ログイン</a>
-                <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
-            </div>
-        </div>
-    </nav>
-    <h1 class="py-3 px-3">支払情報</h1>
-
-    <h2 class="py-3 px-3">カード＆アカウント</h2>
-
     <main class="" style="background-color: #f5f5f5;">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light" id="nav_style">
+            <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+            <form id="nav_input">
+                <div>
+                    <input type="search" placeholder="キーワードを入力" aria-label="Search">
+                    <button type="submit">検索</button>
+                </div>
+            </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"
+                aria-controls="navmenu" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+                <ul class="navbar-nav" id="nav_a_style">
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">サービス概要</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">新規登録</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-item nav-link" href="#">ログイン</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1 class="py-3 px-3">支払情報</h1>
+
+        <h2 class="py-3 px-3">カード＆アカウント</h2>
+        {if isset($alert)}
+                                {$alert}
+                            {/if}
 
         <div class="flex-column" style="width: 30%;">
 
@@ -148,7 +158,7 @@
 
         <!--右に表示するaside-->
         <aside class="bg-white" style="width: 70%;">
-
+        
             <!--ペイペイの削除の画面-->
             <div class="display" id="display1">
                 <div class="mx-5 border d-flex" style="width: 80%; align-items: center;">
@@ -225,7 +235,7 @@
                                             クレジットカード<br>名義人<span class="span">*</span>
                                         </th>
                                         <td>
-                                            <input type="text" name="name" id="name" class="form-control">
+                                            <input type="text" name="credit_name" id="name" class="form-control">
                                             <div id="pass_error"></div>
                                         </td>
                                     </tr>
@@ -277,44 +287,125 @@
                                         </td>
                                 </tbody>
                             </table>
+                            <p class="text-danger">{$ERR_STR|nl2br}</p>
                             <div class="button text-light w-100 py-5" style="text-align: end;">
-                                <button type="button" class="btn btn-success btn-lg" id="button"
-                                    onclick="credit()">カードを追加</button>
+                                <button type="submit" class="btn btn-success btn-lg alert" id="credit"
+                                    name="credit_btn">カードを追加</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>
             </div>
         </aside>
+        <footer class="footer">
+            <div class="footer_nav">
+                <ul class="footer_navi">
+                    <li><a href="overview.html" class="text-decoration-none">サイト概要</a></li>
+                    <li><a href="#" class="text-decoration-none">お問い合わせ</a></li>
+                    <li><a href="#" class="text-decoration-none">プライバシーポリシー</a></li>
+                    <li><a href="terms_of_service.html" class="text-decoration-none">利用規約</a></li>
+                </ul>
+                <small class="text-start copyright">© WiZ株式会社 team-D Co. Ltd. 2023</small>
+            </div>
+        </footer>
     </main>
 
     {literal}
-    <script type="text/javascript">
-        function switchDisplay(targetDisplay) {
-            //idを取得
-            var displayElements = document.getElementsByClassName('display');
-            for (var i = 0; i < displayElements.length; i++) {
-                //display要素を非表示
-                displayElements[i].style.display = 'none';
+        <script type="text/javascript">
+            //name呼出
+            const num1 = document.querySelector('[name="id1"]');
+            const num2 = document.querySelector('[name="id2"]');
+            const num3 = document.querySelector('[name="id3"]');
+            const num4 = document.querySelector('[name="id4"]');
+            const name = document.querySelector('[name="credit_name"]');
+            const month = document.querySelector('[name="month"]');
+            const year = document.querySelector('[name="year"]');
+
+            //各値の正規表現
+            const pattern_num = /^[0-9]{4}$/;
+            const pattern_name = /^[^ 　]{1,15}$/;
+            const pattern_month = /^(0[1-9]|1[0-2])$/;
+            const pattern_year = /^[0-9]{4}$/;
+
+            //条件
+            document.getElementById('credit').addEventListener('click', function(event) {
+                let flag = true;
+                let errMsg = '';
+                if (!pattern_num.test(num1.value) || !pattern_num.test(num2.value) || !pattern_num.test(num3
+                        .value) || !pattern_num.test(num4.value)) {
+                    num1.classList.add('is-invalid');
+                    num1.classList.remove('is-valid');
+                    num2.classList.add('is-invalid');
+                    num2.classList.remove('is-valid');
+                    num3.classList.add('is-invalid');
+                    num3.classList.remove('is-valid');
+                    num4.classList.add('is-invalid');
+                    num4.classList.remove('is-valid');
+                    flag = false;
+                    errMsg += '4桁の数字で入力してください\n';
+                } else {
+                    num1.classList.remove('is-invalid');
+                    num1.classList.add('is-valid');
+                    num2.classList.remove('is-invalid');
+                    num2.classList.add('is-valid');
+                    num3.classList.remove('is-invalid');
+                    num3.classList.add('is-valid');
+                    num4.classList.remove('is-invalid');
+                    num4.classList.add('is-valid');
+                }
+
+                if (!pattern_name.test(name.value)) {
+                    name.classList.add('is-invalid');
+                    name.classList.remove('is-valid');
+                    flag = false;
+                    errMsg += '1字から20字以内で入力してください\n';
+                } else {
+                    name.classList.remove('is-invalid');
+                    name.classList.add('is-valid');
+                }
+
+                if (!pattern_month.test(month.value) || !pattern_year.test(year.value)) {
+                    flag = false;
+                    errMsg += '有効期限を選択してください\n';
+                }
+
+                if (!flag) {
+                    event.preventDefault();
+                    document.querySelector('.text-danger').innerText = errMsg;
+                } 
+            });
+
+
+
+
+
+
+            function switchDisplay(targetDisplay) {
+                //idを取得
+                var displayElements = document.getElementsByClassName('display');
+                for (var i = 0; i < displayElements.length; i++) {
+                    //display要素を非表示
+                    displayElements[i].style.display = 'none';
+                }
+                //選択されたdisplayのid取得
+                var selectedDisplay = document.getElementById(targetDisplay);
+                //選択されたdisplayの表示
+                selectedDisplay.style.display = 'block';
             }
-            //選択されたdisplayのid取得
-            var selectedDisplay = document.getElementById(targetDisplay);
-            //選択されたdisplayの表示
-            selectedDisplay.style.display = 'block';
-        }
 
-        function modalopen() {
-            document.getElementById('modal').style.display = 'block';
-        }
+            function modalopen() {
+                document.getElementById('modal').style.display = 'block ';
+            }
 
-        function modalClose() {
-            document.getElementById('modal').style.display = 'none';
-        }
+            function modalClose() {
+                document.getElementById('modal').style.display = 'none';
+            }
 
-        document.getElementById('button').onclick = function () {
-            location.reload()
-        };
-    </script>
+            document.getElementById('button').onclick = function() {
+                location.reload()
+            };
+        </script>
     {/literal}
 </body>
 
