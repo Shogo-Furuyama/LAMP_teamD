@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        main>div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #cart-check {
+            display: flex;
+            align-items: center;
+            margin-top: 50px;
+            margin-left: 70px;
+            padding-left: 5%;
+            padding-right: 30%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            background-color: #EEEEEE;
+        }
+
+        #cart-box {
+            background-color: #EEEEEE;
+            padding: 50px;
+            margin-top: 50px;
+            margin-left: 70px;
+            margin-right: 70px;
+        }
+
+        .book_img {
+            margin-right: 40px;
+            padding-left: 20%;
+        }
+
+        .book_img > div {
+            width: 170px;
+            display: flex;
+        }
+
+        .book_img > div > img { 
+            margin: auto;
+        }
+
+        .check-str {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .check-text {
+            font-size: 20px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        #btn1 {
+            box-shadow: 0 0 8px gray;
+            border-radius: 5px;
+            text-align: center;
+            width: 200px;
+            padding: 2px;
+            margin: 10px 0;
+            background-color: orange;
+            border: 1px solid  orange;
+        }
+
+        #btn2 {
+            box-shadow: 0 0 8px gray;
+            border-radius: 5px;
+            text-align: center;
+            width: 200px;
+            padding: 2px;
+            margin: 10px 0;
+            background-color: white;
+            border: 1px solid #777777;
+        }
+
+        #btn1:hover {
+            opacity: 0.6;
+
+        }
+
+        #btn2:hover {
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+
+<body>
+    {include file="./header.tmpl"}
+    <main>
+        <div>
+            <div id="cart-check">
+
+                
+
+                <div class="check-str">
+                    <img src="./img/check.png" width="25" height="25">
+                    <strong class="check-text">お支払いが完了しました</strong>
+                </div>
+
+            </div>
+
+            <div id="cart-box">
+                <div>
+                   
+                    <div>
+                    <h5>お届け予定日:{$day}</h5>
+                    </div>
+
+                 
+                      <!-- ここにちょっと余白入れたいんだけどいれようとすると枠が大きくなっちゃうんだよね～だれかたすけて～ -->
+                    <div id="btns" style="padding-top: 20%; padding-left:80px;">
+                    <button id="btn1" onclick="location.href='index.php'">トップに戻る</button>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {include file="./footer.tmpl"}
+
+</body>
+
+</html>

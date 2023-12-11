@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>本詳細</title>
+    {literal}
+        <style>
+            .big_input {
+                width: 80%;
+            }
+
+            .input_error {
+                border-color: red;
+            }
+
+            #img_show {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                width: 100vw;
+                background-color: rgba(0, 0, 0, 0.25);
+            }
+
+            #img_show>a {
+                position: absolute;
+                right: 0;
+                top: 0;
+                color: black;
+                font-size: 5vw;
+                text-decoration: none;
+            }
+
+            #img_show>a:hover {
+                color: red;
+            }
+
+            #img_show>div {
+                display: flex;
+                height: 100%;
+                width: 100%;
+            }
+
+            #img_show>div>img {
+                width: auto;
+                min-height: 45vh;
+                max-height: 75vh;
+                margin: auto;
+            }
+
+            #top_bar>a {
+                float: left;
+            }
+
+            #top_bar>button {
+                float: right;
+                background-color: red;
+                color: white;
+                margin-bottom: 3px;
+                border: solid 1px black;
+            }
+
+            #top_bar>button:hover {
+                background-color: crimson;
+            }
+        </style>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>本詳細</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            {$err_flag}
+            <form name="form1" action="{$smarty.server.PHP_SELF}" method="post" enctype="multipart/form-data">
+                <div id="top_bar">
+                    <a href="book_list.php">一覧に戻る</a>
+                    <button type="button" onclick="delJob()">削除</button>
+                </div>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <td width="70%">
+                            {$book_id_txt}
+                            <input type="hidden" name="book_id" value="{$book_id}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ISBN</th>
+                        <td width="70%">
+                            <input type="tel" name="isbn" value="{$isbn}" maxlength="13" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>タイトル</th>
+                        <td width="70%">
+                            <input type="text" class="big_input" name="book_title" value="{$book_title|escape}"
+                                maxlength="100" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>著者</th>
+                        <td width="70%">
+                            <input type="tel" name="authors" class="big_input" value="{$authors|escape}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>表紙画像</th>
+                        <td width="70%">
+                            <input type="text" name="image_link" class="big_input" value="{$image_link|escape}"
+                                disabled>
+                            </br>
+                            <a href="javascript:void(0)" onclick="img_show()">画像を表示</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ページ数</th>
+                        <td width="70%">
+                            <input type="tel" name="page" value="{$page}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>価格</th>
+                        <td width="70%">
+                            <input type="tel" name="price" value="{$price}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>在庫</th>
+                        <td width="70%">
+                            <input type="tel" name="stock" value="{$stock}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>発売日</th>
+                        <td width="70%">
+                            <input type="tel" name="release_date" value="{$release_date}" disabled>
+                        </td>
+                    </tr>
+                </table>
+                <div id="danger"></div>
+                <input type="hidden" name="func" value="edit">
+                <p class="center"><input type="submit" value="編集" /></p>
+            </form>
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+    {literal}
+        <script type="text/javascript">
+            const imageLinkNode = document.querySelector('[name="image_link"]');
+
+            function img_show() {
+                const url = imageLinkNode.value;
+                if (url == '') {
+                    alert('表紙画像が設定されていません。');
+                    return;
+                }
+                const img = new Image();
+                img.src = url;
+                img.onload = function () {img_show_process(url);};
+                img.onerror = function() { alert("接続に失敗しました。\nリンクが正しくない可能性があります。") };
+
+            }
+
+            function img_show_process(source) {
+                const div = document.createElement('div');
+                div.id = 'img_show';
+                const ex = document.createElement('a');
+                ex.innerText = '×';
+                ex.href = 'javascript:void(0)';
+                ex.addEventListener('click',function() {div.remove();});
+                const imgDiv = document.createElement('div');
+                const img = document.createElement('img');
+                img.src = source;
+                imgDiv.append(img);
+                div.append(ex, imgDiv);
+                document.querySelector('body').append(div);
+            }
+
+            function delJob() {
+                let result = window.confirm('この本を削除します。よろしいでしょうか？');
+                if (result) {
+                    document.querySelector('[name="func"]').value = 'del';
+                    document.form1.submit();
+                }
+            }
+        </script>
+    {/literal}
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<title>売上照会</title>
+{literal}
+<script type="text/javascript">
+
+</script>
+{/literal}
+</head>
+<body>
+<!-- 全体コンテナ　-->
+<div id="container">
+{include file='./gmenu.tmpl'}
+<div id="headTitle">
+<h2>売上照会</h2>
+</div>
+<!-- コンテンツ　-->
+<div id="inquiry">
+{if $ERR_STR != '' }
+<p>{$ERR_STR}</p>
+{/if}
+<p>{$pager_arr}</p>
+<table>
+<tr>
+<th>ID</th>
+<th>決済方法</th>
+<th>合計金額</th>
+<th>ユーザーID</th>
+<th>購入日</th>
+</tr>
+{foreach from=$rows key=k item=value}
+<tr>
+<td width="11%" class="center">
+<a href="{$tgt_uri}{$value.purchase_id}">{$value.purchase_id}</a>
+</td>
+<td width="40%" class="center">
+{$value.payment_name|escape}
+</td>
+<td width="19%" class="center">
+{$value.total_amount}
+</td>
+<td width="10%" class="center">
+{$value.user_id}
+</td>
+<td width="20%" class="center"> 
+{$value.purchase_date|escape}
+</td>
+</tr>
+{foreachelse}
+<tr>
+<tr><td colspan="3" class="nobottom">見つかりません</td></tr>
+</tr>
+{/foreach}
+</table>
+<p>&nbsp;</p>
+
+</div>
+<!-- /コンテンツ　-->
+</div>
+<!-- /全体コンテナ　-->
+</body>
+</html>

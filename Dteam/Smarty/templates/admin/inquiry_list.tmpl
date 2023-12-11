@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>お問い合わせ一覧</title>
+    {literal}
+        <script type="text/javascript">
+           
+        function set_func_form(fn, pm) {
+            document.form1.target = "_self";
+            document.form1.func.value = fn;
+            document.form1.param.value = pm;
+            document.form1.submit();
+        }
+
+        function del_func_form(pm, mess) {
+            var message = "本当に\r\n";
+            message += mess;
+            message += "\r\nを削除しますか？";
+            if (confirm(message)) {
+                document.form1.target = "_self";
+                document.form1.func.value = 'del';
+                document.form1.param.value = pm;
+                document.form1.submit();
+            }
+        }
+        // 
+        -->
+        </script>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ -->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>お問い合わせ一覧</h2>
+        </div>
+        <!-- コンテンツ -->
+        <div id="inquiry">
+            {if $ERR_STR != ''}
+                <p>{$ERR_STR}</p>
+            {/if}
+            <form name="form1" action="{$tgt_uri}" method="post">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+
+                        <select name="condition" onchange="filterInquiries(this)">
+                            <option value="all">全件</option>
+                            <option value="resolved">対応済み</option>
+                            <option value="unresolved">未対応</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p>{$pager_arr}</p>
+                    </div>
+                </div>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>件名</th>
+                        <th>受付日時</th>
+                        <th>対応状況</th>
+                    </tr>
+                    {foreach from=$rows key=k item=value}
+                        <tr>
+                            <td width="10%" class="center">
+                                <a href="inquiry_detail.php?mid={$value.inquiry_id}">{$value.inquiry_id}</a>
+                            </td>
+                            <td width="15%" class="center">
+                                {$value.inquiry_name}
+                            </td>
+                            <td width="40%" class="center">
+                                {$value.inquiry_title}
+                            </td>
+                            <td width="25%" class="center">
+                                {$value.inquiry_date}
+                            </td>
+                            <td width="10%" class="center">
+                                {if $value.is_reply == 1}
+                                    <span
+                                        style="background-color: 	#9BF9CC; border-radius: 5px; text-align: center; padding: 2px;">対応済み</span>
+                                {else}
+                                    <span
+                                        style="background-color: #FFABCE; border-radius: 5px; text-align: center; padding: 2px;">未対応</span>
+                                {/if}
+                            </td>
+                        </tr>
+                    {foreachelse}
+                        <tr>
+                            <td colspan="3" class="nobottom">メンバーが見つかりません</td>
+                        </tr>
+                    {/foreach}
+                </table>
+                <input type="hidden" name="func" value="" />
+                <input type="hidden" name="param" value="" />
+            </form>
+            <p>&nbsp;</p>
+        </div>
+        <!-- /コンテンツ -->
+    </div>
+    <!-- /全体コンテナ -->
+    <script>
+        //ドロップダウン絞り込み
+        function filterInquiries(selectElement) {
+            var condition = selectElement.value;
+            var rows = document.querySelectorAll('#inquiry table tr');
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                var replyCell = row.querySelector('td:nth-child(5)');
+                if (condition === 'all') {
+                    row.style.display = 'table-row';
+                } else if (condition === 'resolved') {
+                    if (replyCell.innerHTML.includes('対応済み')) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                } else if (condition === 'unresolved') {
+                    if (replyCell.innerHTML.includes('未対応')) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

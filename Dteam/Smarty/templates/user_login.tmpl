@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./img/bungo_tabicon.png">
+  <link href="./css/login.css" rel="stylesheet">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/header.css" rel="stylesheet">
+  
+</head>
+
+<body>
+<title>ログイン</title>
+  <nav class="navbar navbar-expand-sm" id="nav_style">
+    <a href="index.php" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+  </nav>
+  <div class="form-wrapper">
+    <form action="user_login.php{if $path !== false}?path={$path}{/if}" method="post">
+      <h1>ログイン</h1>
+      <p class="text-danger">{$ERR_STR|nl2br}</p>
+      <div class="form-item">
+        <label for="mail"></label>
+        <input type="email" name="mail" placeholder="メールアドレス"></input>
+      </div>
+      <div class="form-item">
+        <label for="password"></label>
+        <input type="password" name="password" placeholder="パスワード"></input>
+      </div>
+      <div class="button-panel">
+        <input type="submit" class="button bg-success" title="Sign In" value="ログイン" href="index.php"></input>
+      </div>
+      <div class="form-footer">
+        <p><a href="register.php{if $path !== false}?path={$path}{/if}">まだアカウント登録していない方はこちら</a></p>
+      </div>
+    </form>
+  </div>
+  {literal}
+    <style>
+       input.is-invalid{
+            color: #ff0000;
+        }
+    </style>
+    <script>
+      const mailnode = document.querySelector('[name="mail"]');
+      const passnode = document.querySelector('[name="password"]');
+      
+      // メールアドレスの正規表現パターン
+      const mailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      // パスワードの正規表現パターン
+      const passwordPattern = /^[\x21-\x7e]{8,}$/;
+      
+      const invalid_class = 'input_err';
+      const valid_class = 'input_suc';
+
+      // フォームの送信ボタンがクリックされたときの処理
+      document.querySelector('input[type="submit"]').addEventListener('click', function(event) {
+          let flag = false;
+          let errMsg = '';
+          // メールアドレスの検証
+          if (mailPattern.test(mailnode.value)) {
+            mailnode.classList.remove(invalid_class);
+            mailnode.classList.add(valid_class);
+          } else {
+            mailnode.classList.remove(valid_class);
+            mailnode.classList.add(invalid_class);
+            errMsg += '有効なメールアドレスを入力してください。\n';
+            flag = true;
+          }
+        
+
+          if (passwordPattern.test(passnode.value)) {
+            passnode.classList.remove(invalid_class);
+            passnode.classList.add(valid_class);
+          } else {
+            passnode.classList.remove(valid_class);
+            passnode.classList.add(invalid_class);
+            errMsg += 'パスワードは8文字以上の英数字の組み合わせで入力してください。\n';
+            flag = true;
+          }
+
+          if (flag) {
+            document.querySelector('.text-danger').innerText = errMsg;
+            event.preventDefault(); // フォームの送信をキャンセルして検証を行う
+          }
+      });
+    </script>
+  {/literal}
+</body>
+
+</html>

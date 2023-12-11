@@ -1,0 +1,12 @@
+<header id="header_fixed_jud">
+    <nav class="navbar navbar-expand-sm" id="nav_style">
+        <a href="index.php" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+        <form id="nav_input" action="search_list.php" method="get">
+            <div>
+                <input type="search" placeholder="キーワードを入力" aria-label="Search" name="w" value="{if isset($keyword)}{$keyword}{/if}" pattern=".*\S+.*" title="一文字以上入力してください。" required>
+                <button type="submit">検索</button>
+            </div>
+        </form>
+        {include file="./headerAnker.tmpl"}
+    </nav>
+</header>

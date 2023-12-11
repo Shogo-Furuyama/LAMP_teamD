@@ -1,0 +1,44 @@
+.child {
+  float: left;
+}
+
+#book_lists {
+  border: solid gray 1px; 
+  border-radius: 40px;
+}
+
+#pager {
+  margin-inline: auto;
+  max-width: 75%;
+}
+
+.book_list_outline {
+  padding: 2%;
+  margin-block: 3%;
+  margin-inline: auto;
+  width: 35rem;
+  display: flex;
+  border: solid gray 1px; 
+  border-radius: 20px;
+}
+
+.book_list_edit {
+  display: flex;
+  flex-direction: column;  
+  margin-inline: auto;
+}
+
+.book_list_edit> button {
+  margin-block: auto;
+  font-size: 25px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}

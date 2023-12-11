@@ -1,0 +1,28 @@
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-end" id="navmenu">
+    <ul class="navbar-nav" id="nav_a_style">
+        {if isset($smarty.session.tmD2023_mem.user_id)}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="myPage.php">マイページ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="create_list.php">リスト作成</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="cart.php">カート</a>
+            </li>
+        {else}
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="overview.php">サービス概要</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="register.php">新規登録</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="user_login.php?path={$smarty.server.REQUEST_URI|escape|urlencode}">ログイン</a>
+            </li>
+        {/if}
+    </ul>
+</div>

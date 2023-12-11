@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <link href="./css/book_list.css" rel="stylesheet">
+    <title>ぶんごう-トップページ</title>
+    {literal}
+    <style>
+        header {
+            height: 50rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #header_images {
+            height: 100%;
+        }
+
+        #header_images >* {
+            height: 100%; 
+        }
+
+        #header_images >*>* {
+            height: 100%;
+            background-size: cover;
+            position: relative;
+        }
+
+        #header_images >*>*>img {
+            height: 40%;
+            width: auto;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
+
+        .category_card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-block: 2rem;
+        }
+
+        .category_card >* {
+            width: 15rem;
+            height: 15rem;
+            padding: 1rem;
+            text-decoration: none;
+        }
+
+        .category_card >*>* {
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .category_card >*>*>*:hover {
+            filter: opacity(80%);    
+        }
+
+        .category_card >*>*>* {
+            width: 100%;
+            height: 100%;
+            background-color: #00000050; 
+            display: flex;
+        }
+
+        .category_card >*>*>*>* {
+            margin: auto;
+            color: white;
+        }
+        
+
+        #book_lists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+    </style>
+    {/literal}
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm" id="nav_none_border_style">
+            <a href="index.php" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+            {include file="./headerAnker.tmpl"}
+        </nav>
+        <div class="carousel slide" data-bs-ride="carousel" data-bs-pause="false"
+            style="flex-grow: 1; position: relative;">
+            <div class="carousel-inner" id="header_images">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <div style="background-image: url('./img/top_test2.png');">
+                        <img src="./img/top_design.png">
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="10000">
+                    <div style="background-image: url('./img/top_img5.png');"></div>
+                </div>
+                <div class="carousel-item" data-bs-interval="10000">
+                    <div style="background-image: url('./img/top_test.png');"></div>
+                </div>
+               
+            </div>
+            <div class="w-100 position-absolute top-0 start-0" style="margin-top: 10%;">
+                <div class="col-lg-5 col-md-7 col-10 m-auto">
+                    <form action="search_list.php" method="GET">
+                        <div class="input-group">
+                            <input type="search" name="w" class="form-control form-control-lg" placeholder="キーワードを入力" aria-label="Search" pattern=".*\S+.*" title="一文字以上入力してください。" required>
+                            <button class="btn btn-outline-success bg-success text-white"
+                                type="submit">&emsp;検索&emsp;</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="category_card">
+        <a href="search_list.php?g=2">
+            <div style="background-image: url('./img/horror.jpg');">
+                <div>
+                    <h3>ホラー</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=3">
+            <div style="background-image: url('./img/essei.jpg');">
+                <div>
+                    <h3>エッセイ</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=4">
+            <div style="background-image: url('./img/fantasy.jpg');">
+                <div>                    
+                    <h3>ファンタジー</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=5">
+            <div style="background-image: url('./img/history.jpg');">
+                <div>
+                    <h3>歴史</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=6">
+            <div style="background-image: url('./img/mistery.jpg');">
+                <div>
+                    <h3>ミステリー</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=7">
+            <div style="background-image: url('./img/sf.webp');">
+                <div>
+                    <h3>SF</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=8">
+            <div style="background-image: url('./img/zukan.jpg');">
+                <div>
+                    <h3>図鑑</h3>
+                </div>
+            </div>
+        </a>
+
+        <a href="search_list.php?g=9">
+            <div style="background-image: url('./img/bisiness.jpg');">
+                <div>
+                    <h3>ビジネス</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=10">
+            <div style="background-image: url('./img/sankou.jpeg');">
+                <div>
+                    <h3>参考書</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=11">
+            <div style="background-image: url('./img/senmon.png');">
+                <div>
+                    <h3>専門書</h3>
+                </div>
+            </div>
+        </a>
+        <a href="search_list.php?g=12">
+            <div style="background-image: url('./img/comic.jpg');">
+                <div>
+                    <h3>コミックス</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+    <h3 class="ms-5 mt-5">&lt;みんなのブックリスト&gt;</h3>
+    <div id="book_lists">
+    {foreach from=$list key=k item=value}
+        <div class="book_list">
+            <a class="list_anchor" href="list_detail.php?id={$value.list_id}">
+                <div class="book_list_title">
+                    <h3>{$value.list_title|escape}</h3>
+                    <h5><img src="./img/genre_icon.png">{$value.genre_name}&emsp;<img src="./img/target_icon.png">{$value.target_name}</h5>
+                </div>
+                <div class="book_list_img">
+                    {if $value.img_link0 != null}
+                        <img src="{if $value.img_link0 == ''}./img/book_no_image.jpg{else}{$value.img_link0|escape}{/if}" />
+                    {/if}
+                    {if $value.img_link1 != null}
+                        <img src="{if $value.img_link1 == ''}./img/book_no_image.jpg{else}{$value.img_link1|escape}{/if}" />
+                    {/if}
+                    {if $value.book_count > 2}
+                        <span>...+{$value.book_count - 2}</span>
+                    {/if}
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">
+                        <div style="background-image: url('{if $value.icon_img === null}./img/default_icon.png{else}{$FILEUP_DIR}{$value.icon_img}{/if}');"></div>
+                        <span>{$value.user_name|escape}</span>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png" />
+                    <span class="list_user_thumbs_num">
+                        {$value.favorite}
+                    </span>
+                </div>
+            </a>
+        </div>
+    {/foreach}
+    </div>
+    {include file="./footer.tmpl"}
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

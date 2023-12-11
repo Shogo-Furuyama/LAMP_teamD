@@ -1,0 +1,134 @@
+#profile-image {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.change-icon {
+  width: 116px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.Mypage {
+  margin: auto;
+  text-align: center;
+  margin-top: 125px;
+}
+
+h3 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.myPage_comment {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.myPage_genre,
+.myPage_book {
+  margin-top: 80px;
+}
+
+.myPage_book>div>img {
+  width: 150px;
+  height: auto;
+}
+
+.myPage_count {
+  margin-top: 100px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.a {
+  text-align: center;
+}
+
+.content-pane {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.myPage_comment {
+  text-align: center;
+}
+
+.myPage_genre {
+  text-align: center;
+}
+
+#book_lists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/*タブメニュー----------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------------*/
+/* Custom styles for the tabs */
+.custom-tabs {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-tabs li {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-tabs li a {
+  display: block;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  color: black;
+}
+
+.custom-tabs li.active a {
+  background-color: white;
+  border-bottom: none;
+  color: #c0c0c0; /* 任意のカラーコード */ /*開いているタブのメニューの色*/
+}
+
+.tab-content {
+  margin-top: -1px;
+  border: 1px solid #ddd;
+  border-top: none;
+  padding: 50px 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #ffffff;
+}
+
+.content-pane {
+  display: none;
+}
+
+.content-pane.is-active {
+  display: block;
+  animation: fade-in 0.5s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

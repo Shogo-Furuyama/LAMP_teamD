@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8" />
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<title>ユーザー詳細</title>
+	{literal}
+		<script type="text/javascript">
+			function set_func_form(fn, pm) {
+				document.form1.target = "_self";
+				document.form1.func.value = fn;
+				document.form1.param.value = pm;
+				document.form1.submit();
+			}
+		</script>
+
+		<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"> </script>
+		<script src="js/ajaxzip3.js" charset="UTF-8"> </script>
+	{/literal}
+</head>
+
+<body>
+	<!--全体コンテナ-->
+	<div id="container">
+		{include file='./gmenu.tmpl'}
+		<div id="headTitle">
+			<h2>ユーザー詳細</h2>
+		</div>
+		<!-- コンテンツ　-->
+		<div id="inquiry">
+
+			<form name="form1" action="{$smarty.server.PHP_SELF}" method="post" enctype="multipart/form-data">
+				<a href="user_list.php">一覧に戻る</a><br />
+				<table>
+					<tr>
+						<th>ユーザーID</th>
+						<td width="70%">{$user_id_txt}</td>
+					</tr>
+					<tr>
+						<th>ユーザー名</th>
+						<td width="70%">
+							<strong>{$smarty.post.user_name|escape}</strong>
+							<input type="hidden" name="user_name" value="{$smarty.post.user_name|escape}"/>
+						</td>
+					</tr>
+
+					<tr>
+						<th>メールアドレス</th>
+						<td width="70%"><strong>{$smarty.post.mail|escape}</strong>
+							<input type="hidden" name="mail" value="{$smarty.post.mail|escape}">
+						</td>
+					</tr>
+
+					<input type="hidden" name="password" value="{$smarty.post.password|escape}">
+					<input type="hidden" name="password_chk" value="{$smarty.post.password_chk|escape}">
+
+
+					<tr>
+						<th>郵便番号</th>
+						<td width="70%"><strong>{$smarty.post.post_code|escape}</strong>
+							<input type="hidden" name="post_code" onkeyup="AjaxZip3.zip2addr(this,'','address','address');"
+								value="{$smarty.post.post_code|escape}">
+						</td>
+					</tr>
+
+
+					</tr>
+
+					<th>住所</th>
+					<td width="70%"><strong>{$smarty.post.address|escape}</strong>
+						<input type="hidden" name="address" size="80" value="{$smarty.post.address|escape}" />
+						{if isset($err_array.address) }<br /><span class="red">{$err_array.address}</span>{/if}
+					</td>
+					</tr>
+
+					<tr>
+						<th>電話番号</th>
+						<td width="70%"><strong>{$smarty.post.phone_num|escape}</strong>
+							<input type="hidden" name="phone_num" value="{$smarty.post.phone_num|escape}">
+						</td>
+					</tr>
+
+					<tr>
+						<th>アイコン画像</th>
+						<td width="70%">
+							{if $smarty.post.icon_img != ''}
+								<img src="{$updir}{$smarty.post.icon_img}" width="200px" /><br />
+							{/if}
+							<input type="hidden" name="icon_img" value="{$smarty.post.icon_img|escape}" />
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" name="func" value="" />
+				<input type="hidden" name="param" value="" />
+				<input type="hidden" name="user_id" value="{$user_id}" />
+				<p class="center">
+					<input type="button" value="戻る" onClick="javascript:set_func_form('edit','')" />&nbsp;
+					<input type="button" value="{$button}" onClick="javascript:set_func_form('set','')" />
+				</p>
+			</form>
+		</div>
+		<!-- /コンテンツ　-->
+	</div>
+	<!-- /全体コンテナ　-->
+</body>
+
+</html>

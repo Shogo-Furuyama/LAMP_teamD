@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<title>リスト一覧</title>
+{literal}
+<script type="text/javascript">
+
+</script>
+{/literal}
+</head>
+<body>
+<!-- 全体コンテナ　-->
+<div id="container">
+{include file='./gmenu.tmpl'}
+<div id="headTitle">
+<h2>リスト一覧</h2>
+</div>
+<!-- コンテンツ　-->
+<div id="inquiry">
+{if $ERR_STR != '' }
+<p>{$ERR_STR}</p>
+{/if}
+<p>{$pager_arr}</p>
+<table>
+<tr>
+<th>リストID</th>
+<th>タイトル</th>
+<th>書籍数</th>
+<th>登録者ID</th>
+<th>登録者名</th>
+</tr>
+{foreach from=$rows key=k item=value}
+<tr>
+<td width="10%" class="center">
+<a href="{$tgt_uri}{$value.list_id}">{$value.list_id}</a>
+</td>
+<td width="50%" class="center">
+{$value.list_title|escape}
+</td>
+<td width="11%" class="center">
+{$value.book_count}
+</td>
+<td width="10%" class="center">
+{$value.user_id}
+</td>
+<td width="19%" class="center"> 
+{$value.user_name|escape}
+</td>
+</tr>
+{foreachelse}
+<tr>
+<tr><td colspan="3" class="nobottom">リストが見つかりません</td></tr>
+</tr>
+{/foreach}
+</table>
+<p>&nbsp;</p>
+
+</div>
+<!-- /コンテンツ　-->
+</div>
+<!-- /全体コンテナ　-->
+</body>
+</html>

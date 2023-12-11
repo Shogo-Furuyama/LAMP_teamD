@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+.book_list {
+    width: 27rem;
+    aspect-ratio: 3 / 2;
+    padding: 0.5%;
+    text-align: left;
+}
+
+.list_anchor {
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    display: block;
+    color: inherit;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: solid 0.1rem gainsboro;
+    border-radius: 1rem;
+}
+
+.list_anchor:active {
+    box-shadow: 0.5rem 0.5rem 0.5rem gainsboro;
+}
+
+.list_anchor:hover {
+    color: inherit;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.book_list_title {
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+}
+
+.book_list_title>* {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-block: auto;
+}
+
+.book_list_title>h3 {
+    font-size: 1.3rem;
+    max-height: 3rem;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.book_list_title>h5 {
+    font-size: 1rem;
+    color: dimgray;
+    white-space: nowrap;
+    display: flex;
+}
+
+.book_list_title>h5>img {
+    height: 1rem;
+    width: auto;
+    margin-block: auto;
+    margin-right: 5px;
+
+}
+
+.book_list_img {
+    display: flex;
+    align-items: center;
+    height: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.book_list_img>img {
+    width: auto;
+    height: 100%;
+    padding-inline: 5%;
+
+}
+
+.book_list_img>span {
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    z-index: 1;
+
+}
+
+.list_user {
+    height: 15%;
+    padding-top: 2%;
+    display: flex;
+}
+
+.list_user_info {
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.list_user_info>div {
+    width: 10%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+
+}
+
+.list_user_info>span {
+    margin-inline: 5%;
+    width: 80%;
+    font-weight: bold;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+.list_user_thumbs {
+    width: 5%;
+    height: auto;
+    margin-block: auto;
+    margin-right: 1%;
+}
+
+.list_user_thumbs_num {
+    max-width: 14%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+}
+
+/*
+
+=====================================================================================================================================
+
+
+<div class="book_list">
+    <a class="list_anchor" href="#">
+        <div class="book_list_title">
+            <h3>太宰コレクション</h3>
+            <h5><img src="./img/genre_icon.png">ホラー&emsp;<img src="./img/target_icon.png">子供向け</h5>
+        </div>
+        <div class="book_list_img">
+            <img src="http://books.google.com/books/content?id=AmQ1uQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+            <img src="http://books.google.com/books/content?id=DYlaswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api" />
+            <span>...+40</span>
+        </div>
+        <div class="list_user">
+            <div class="list_user_info">
+                <div style="background-image: url('./img/user_icon.png');"></div>
+                <span>ミルクココア</span>
+            </div>
+            <img class="list_user_thumbs" src="./img/thumbsup.png" />
+            <span class="list_user_thumbs_num">
+                1
+            </span>
+        </div>
+    </a>
+</div>
+            
+=====================================================================================================================================
+
+*/

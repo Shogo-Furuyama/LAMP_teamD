@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>本一覧</title>
+    {literal}
+        <style>
+            #top_bar {
+                display: flex;
+                align-items: center;
+            }
+
+            #top_bar>div {
+                margin-left: auto;
+            }
+
+            #top_bar>form {
+                margin-left: 10px;
+                display: flex;
+            }
+
+            #top_bar>form>input {
+                border: solid black 0.5px;
+                height: 25px;
+            }
+
+            #top_bar>form>select {
+                height: 25px;
+                border: none;
+                border-block: solid black 0.5px;
+                border-right: solid black 0.5px;
+            }
+
+            #top_bar>form>button {
+                height: 25px;
+                border: none;
+                border-block: solid black 0.5px;
+                border-right: solid black 0.5px;
+                background-color: forestgreen;
+                color: white;
+            }
+
+            .book_img {
+                height: auto;
+                width: 100%;
+            }
+        </style>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>本一覧</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            {if $ERR_STR != '' }
+                <p>{$ERR_STR}</p>
+            {/if}
+            <div id="top_bar">
+                <p><a href="book_detail.php">新規</a></p>
+                <div>{if isset($search_result)}{$search_result}{/if}</div>
+                <form method="get">
+                    <input type="search" name="w" pattern=".*\S+.*" placeholder="キーワードを入力" title="一文字以上入力してください。"
+                        value="{if isset($w)}{$w}{/if}" required>
+                    <select name="stype">
+                        <option value="t" {if $stype == 't'}selected{/if}>タイトル</option>
+                        <option value="a" {if $stype == 'a'}selected{/if}>著者</option>
+                        <option value="i" {if $stype == 'i'}selected{/if}>ISBN</option>
+                    </select>
+                    <button type="submit">検索</button>
+                </form>
+            </div>
+            <p>{$pager_arr}</p>
+            <table>
+                <tr>
+                    <th>本ID</th>
+                    <th>ISBN</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>発売日</th>
+                    <th>表紙</th>
+                </tr>
+                {foreach from=$rows key=k item=value}
+                    <tr>
+                        <td width="10%" class="center">
+                            <a href="{$tgt_uri}{$value.book_id}">{$value.book_id}</a>
+                        </td>
+                        <td width="11%" class="center">
+                            {$value.isbn}
+                        </td>
+                        <td width="43%" class="center">
+                            {$value.book_title|escape}
+                        </td>
+                        <td width="17%" class="center">
+                            {$value.authors|escape}
+                        </td>
+                        <td width="12%" class="center">
+                            {$value.release_date}
+                        </td>
+                        <td width="7%" class="center">
+                            <img src="{if $value.image_link == null}../img/book_no_image.jpg{else}{if $value.is_up_img == 1}{$FILEUP_DIR}{/if}{$value.image_link|escape}{/if}" class="book_img">
+                        </td>
+                    </tr>
+                {foreachelse}
+                    <tr>
+                    <tr>
+                        <td colspan="3" class="nobottom">本が見つかりません</td>
+                    </tr>
+                    </tr>
+                {/foreach}
+            </table>
+            <p>&nbsp;</p>
+
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+@charset "utf-8";
+
+/*
+======== これらをコピーして使用してね♪ ==========================================================================================================
+※ヘッダー固定しないページの場合はheader要素が不要になります。子要素のnav要素からコピーするようにしてください。
+
+<header id="header_fixed_jud">
+    <nav class="navbar navbar-expand-sm" id="nav_style">
+        <a href="#" class="navbar-brand"><img src="./img/logo1.png" id="site_logo"/></a>
+        <form id="nav_input">
+            <div>
+                <input type="search" placeholder="キーワードを入力" aria-label="Search">
+                <button type="submit">検索</button>
+            </div>
+        </form>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" aria-controls="navmenu" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+            <ul class="navbar-nav" id="nav_a_style">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">サービス概要</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">新規登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="#">ログイン</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+=================================================================================================================================================
+    
+
+======== ハンバーガーメニューを動作させるために必要なJavascriptも忘れずに (body要素内の一番下に書くのが好ましい) ================================
+    
+<script src="./js/bootstrap.bundle.min.js"></script>
+    
+=================================================================================================================================================
+
+    
+======== ヘッダー固定するために必要なJavascriptです (body要素内の一番下に書くのが好ましい) ======================================================
+    
+<script src="./js/header.js"></script>
+    
+=================================================================================================================================================
+*/
+
+#nav_style, #nav_none_border_style, #nav_min_style {
+    padding-inline: 1vw;
+    z-index: 1000;
+    background-color: white;
+}
+
+#nav_style, #nav_min_style{
+    border-bottom: solid 1px darkgray;
+    box-shadow: 0 0.4rem 0.4rem gainsboro;
+}
+
+#nav_style, #nav_none_border_style  {
+    --logo_width: 11vw;
+    --input_font_size: 1.1vw;
+    --input_height: 2.8vw;
+    --anchor_font_size: 1.3vw;
+}
+
+#nav_min_style {
+    padding-block: 0.2rem;
+    --logo_width: 7vw;
+    --input_font_size: 0.9vw;
+    --input_height: 2.3vw;
+    --anchor_font_size: 1vw;
+}
+
+#site_logo {
+    height: auto;
+    width: var(--logo_width);
+    min-width: 65px;
+}
+
+#nav_input {
+    width: 53%;
+    min-width: 310px;
+    height: var(--input_height);
+    min-height: 28px;
+}
+
+#nav_input>*{
+    height: 100%;
+    display: flex;
+    justify-items: center;
+    border: solid 0.01rem silver;
+    border-radius: 100px;
+}
+
+#nav_input>*>input {
+    border: none;
+    background: none;
+    padding-left: 1vw;
+    padding-block: 0.6vw;
+    width: 77.5%;
+    margin-left: 1.5%;
+    margin-right: 1%;
+    outline: none;
+    border-right: 0;
+    font-size: var(--input_font_size);
+}
+
+#nav_input>*>button {
+    border: none;
+    width: 20%;
+    transition: background-color 0.3s ease;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    outline-color: aqua;
+    border-radius: 0 100px 100px 0;    
+    font-size: var(--input_font_size);
+}
+
+
+#nav_input>*>button:hover {
+    background-color: forestgreen;
+}
+
+
+
+#nav_a_style>li>a {
+    color: rgba(0, 0, 0, 0.5);
+    padding: 1vw !important;
+    font-size: var(--anchor_font_size);
+}
+
+#nav_a_style>li>a:hover {
+    color: black;
+}
+
+.navbar-toggler {
+    color: rgba(0,0,0,.55);
+    border-color: rgba(0,0,0,.1);
+}
+
+.navbar-toggler:hover {
+    background-color: #cccccc;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.header_fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}

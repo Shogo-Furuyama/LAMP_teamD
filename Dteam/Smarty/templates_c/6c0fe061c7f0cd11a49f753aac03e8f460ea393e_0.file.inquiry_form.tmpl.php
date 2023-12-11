@@ -1,0 +1,228 @@
+<?php
+/* Smarty version 4.1.1, created on 2023-08-22 11:47:37
+  from '/home/j2023d/public_html/Smarty/templates/inquiry_form.tmpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.1.1',
+  'unifunc' => 'content_64e421c9227556_21087168',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '6c0fe061c7f0cd11a49f753aac03e8f460ea393e' => 
+    array (
+      0 => '/home/j2023d/public_html/Smarty/templates/inquiry_form.tmpl',
+      1 => 1692672446,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:./header.tmpl' => 1,
+    'file:./footer.tmpl' => 1,
+  ),
+),false)) {
+function content_64e421c9227556_21087168 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="css/login.css" rel="stylesheet" >
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <link href="css/header.css" rel="stylesheet" >
+    <link href="./css/footer.css" rel="stylesheet">
+
+    <title>お問い合わせフォーム</title>
+
+    
+    <style>
+        .tableSize>tr>th {
+            width: 25%;
+        }
+
+        .tableSize>tr>td {
+            width: 100%;
+        }
+
+        .error {
+            color: #ff0000;
+            text-align: start;
+        }
+
+        .sub_p {
+            font-size: 1.3rem !important;
+        }
+        
+        .span {
+            color: #ff0000;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <?php $_smarty_tpl->_subTemplateRender("file:./header.tmpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+    <div class="container col-xs-12 col-sm-10 col-lg-7 mx-auto mt-5 text-center p-5">
+        <h1 class="pt-4 px-5">お問い合わせフォーム</h1>
+        <div class="p-2 mx-3">
+            <p class="pt-4 px-5 text-center fs-4 sub_p">以下のフォームに個人情報、お問い合わせしたい内容を<br>ご入力の上、送信のボタンを押してください。　　(<span class="small" style="color: #ff0000;">*</span>は必須)</p>
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>
+?subid=<?php echo $_smarty_tpl->tpl_vars['subid']->value;?>
+">
+                <table class="table table-borderless">
+                    <tbody class="tableSize">
+                        <tr class="align-middle">
+                            <th>
+                                お名前<span class="span">*</span>
+                            </th>
+                            <td>
+                                <input type="text" name="inquiry_name" id="name" class="form-control" placeholder="山田太郎">
+                                <div id="name_error" class="text-danger"></div>
+                            </td>
+                        </tr>
+                        <tr class="align-middle">
+                            <th>
+                                お名前（フリガナ）<span class="span">*</span>
+                            </th>
+                            <td>
+                                <input type="text" name="inquiry_kana" id="kana" class="form-control" placeholder="ヤマダタロウ">
+                                <div id="kana_error" class="text-danger"></div>
+                            </td>
+                        </tr>
+                        <tr class="align-middle">
+                            <th>
+                                Eメール<span class="span">*</span>
+                            </th>
+                            <td>
+                                <input type="email" name="inquiry_mail" id="mail" class="form-control"
+                                    placeholder="yamada@domain.com">
+                                <div id="mail_error" class="text-danger"></div>
+                            </td>
+                        </tr>
+                        <tr class="align-middle">
+                            <th>電話番号<span class="span">*</span>
+
+                            </th>
+                            <td>
+                                <input type="tel" name="inquiry_tel" id="tel" class="form-control" placeholder="00012345678">
+                                <div id="tel_error" class="text-danger"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mb-3">
+                    <label for="Textarea" class="form-label mt-3">お問い合わせ内容をご入力ください。<span
+                            class="span">*</span>　(200字以内)</label>
+                    <textarea class="inquiry my-3 form-control" name="inquiry_comment" id="textarea" rows="7" style="resize: none;"
+                        maxlength="200"></textarea>
+                    <div id="textarea_error" class="text-danger"></div>
+
+                </div>
+                <div class="col-12">
+                    <input type="submit" name="login" id="login" class="btn btn-success btn-lg mx-5 my-5"
+                        onclick="return check()" value="送信">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+    <?php $_smarty_tpl->_subTemplateRender("file:./footer.tmpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+    <!--じゃばすくかくとこ-->
+    
+<?php echo '<script'; ?>
+ type="text/javascript">
+        function check() {
+            let issubmit = true;
+            //idを持ってきている
+            const f_name = document.getElementById('name');
+            const f_kana = document.getElementById('kana');
+            const f_mail = document.getElementById('mail');
+            const f_tel = document.getElementById('tel');
+            const f_textarea = document.getElementById('textarea');
+            const f_error = document.getElementById('name_error');
+            const f_error2 = document.getElementById('kana_error');
+            const f_error3 = document.getElementById('mail_error');
+            const f_error4 = document.getElementById('tel_error');
+            const f_error5 = document.getElementById('textarea_error');
+
+
+
+            if (!f_name.value || f_name.value.length > 15 || f_name.value.match('^.*[ |　].*$')) {
+                f_name.classList.add('is-invalid');
+                f_name.classList.remove('is-valid');
+                name_error.textContent = 'スペースを含めず、１文字以上１５文字以内で入力してください。';
+                issubmit = false;
+            } else {
+                f_name.classList.remove('is-invalid');
+                f_name.classList.add('is-valid');
+                f_error.textContent = '';
+            }
+
+
+            if (!f_kana.value || f_kana.value.length > 15 || f_kana.value.match('^.*[ |　].*$')) {
+                f_kana.classList.add('is-invalid');
+                f_kana.classList.remove('is-valid');
+                kana_error.textContent = 'スペースを含めず、１文字以上１５文字以内で入力してください。';
+                issubmit = false;
+            } else {
+                f_kana.classList.remove('is-invalid');
+                f_kana.classList.add('is-valid');
+                f_error2.textContent = '';
+            }
+
+            if (!f_mail.value || !f_mail.value.match('^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+\.[A-Za-z0-9]+$')) {
+                f_mail.classList.add('is-invalid');
+                f_mail.classList.remove('is-valid');
+                f_error3.textContent = '入力形式が正しくありません。もう一度入力してください。';
+                issubmit = false;
+            } else {
+                f_mail.classList.remove('is-invalid');
+                f_mail.classList.add('is-valid');
+                f_error3.textContent = '';
+            }
+
+            if (!f_tel.value || !f_tel.value.match('^[0-9]{2,4}[0-9]{2,4}[0-9]{3,4}$')) {
+                f_tel.classList.add('is-invalid');
+                f_tel.classList.remove('is-valid');
+                f_error4.textContent = '入力形式が正しくありません。もう一度入力してください。';
+                issubmit = false;
+            } else {
+                f_tel.classList.remove('is-invalid');
+                f_tel.classList.add('is-valid');
+                f_error4.textContent = '';
+            }
+
+            if (!f_textarea.value) {
+                f_textarea.classList.add('is-invalid');
+                f_textarea.classList.remove('is-valid');
+                f_error5.textContent = '入力が必要です。';
+                issubmit = false;
+            } else {
+                f_textarea.classList.remove('is-invalid');
+                f_textarea.classList.add('is-valid');
+                f_textarea.textContent = '';
+            }
+
+            return issubmit;
+        }
+
+
+
+    <?php echo '</script'; ?>
+>
+
+
+
+</body>
+
+</html><?php }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/book_list.css" rel="stylesheet">
+    <title>リスト作成完了しました</title>
+    <style>
+        .navbar {
+            background-color: red;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm" id="nav_min_style">
+        <a href="index.php" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+        <form id="nav_input" action="search_list.php" method="get">
+            <div>
+                <input type="search" placeholder="キーワードを入力" aria-label="Search" name="w" value="{if isset($keyword)}{$keyword}{/if}" pattern=".*\S+.*" title="一文字以上入力してください。" required>
+                <button type="submit">検索</button>
+            </div>
+        </form>
+        {include file="./headerAnker.tmpl"}
+    </nav>
+    <main>
+        <h1 class="my-5">リストの作成が完了しました！</h1>
+        <span>
+            <button class="btn btn-primary" type="button" onclick="location.href='list_detail.php?id={$list_id}'">作成したリストを確認する</button>
+            &emsp;
+            <button class="btn btn-primary" type="button" onclick="location.href='index.php'">トップへ戻る</button>
+        </span>
+        <div class="book_list mt-3 mx-auto">
+            <a class="list_anchor" href="list_detail.php?id={$list_id}">
+                <div class="book_list_title">
+                    <h3>{$list_title|escape}</h3>
+                    <h5><img src="./img/genre_icon.png">{$genre_name}&emsp;<img src="./img/target_icon.png">{$target_name}</h5>
+                </div>
+                <div class="book_list_img">
+                    {if isset($img_link0)}
+                        <img src="{if $img_link0 == ''}./img/book_no_image.jpg{else}{$img_link0|escape}{/if}" />
+                    {/if}
+                    {if isset($img_link1)}
+                        <img src="{if $img_link1 == ''}./img/book_no_image.jpg{else}{$img_link1|escape}{/if}" />
+                    {/if}
+                    {if $book_count > 2}
+                        <span>...+{$book_count - 2}</span>
+                    {/if}
+                </div>
+                <div class="list_user">
+                    <div class="list_user_info">
+                        <div style="background-image: url('{if $user_icon === null}./img/default_icon.png{else}{$FILEUP_DIR}{$user_icon}{/if}');"></div>
+                        <span>{$user_name|escape}</span>
+                    </div>
+                    <img class="list_user_thumbs" src="./img/thumbsup.png" />
+                    <span class="list_user_thumbs_num">0</span>
+                </div>
+            </a>
+        </div>
+    </main>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

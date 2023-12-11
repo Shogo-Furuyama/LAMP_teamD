@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <title>{if isset($list_info.list_title)}{$list_info.list_title|escape}{else}存在しないリストです。{/if}</title>
+    <style>
+        main {
+            padding: 2%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        #l_info {
+            width: 100%;
+            display: flex;
+        }
+
+        #l_info_1 {
+            width: 70%;
+        }
+
+        #l_info_1>h1 {
+            font-size: 2.2vw;
+        }
+
+        #l_info_1>h3 {
+            display: flex;
+            color: dimgray;
+            font-size: 1.7vw;
+            margin-left: 2px;
+        }
+
+        #l_info_1>h3>img {
+            margin-block: auto;
+            margin-right: 5px;
+            height: 1.7vw;
+            width: auto;
+        }
+
+        #l_info_1>h5 {
+            font-size: 1.5vw;
+        }
+
+        #l_info_2 {
+            width: 30%;
+            margin-left: 5px;
+        }
+
+        #thumbs {
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        #thumbs>a {
+            width: 10%;
+            margin-inline: 5%;
+        }
+
+        #thumbs>a>img {
+            height: auto;
+            width: 100%;
+            transition: filter 0.3s ease;
+        }
+
+        #thumbs>a>img:hover {
+            filter: opacity(50%);
+        }
+
+        #thumbs>div {
+            width: 55%;
+            font-size: 2.5vw;
+        }
+
+        .thumbsActive {
+            filter: opacity(50%) !important;
+        }
+
+        #list_user_info {
+            display: flex;
+            align-items: center;
+            border: solid gray 0.2rem;
+            border-radius: 10px;
+            margin: 10% 5%;
+            padding: 5%;
+        }
+
+        #list_user_info>a {
+            width: 18%;
+        }
+
+        #list_user_info>a>div {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.3s ease;
+        }
+
+        #list_user_info>a>div:hover {
+            filter: opacity(80%);
+        }
+
+        #list_user_info>span {
+            margin-inline: 5%;
+            width: 70%;
+            font-size: 1.5vw;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        #register_books {
+            margin-block: 5%;
+            border-top: dashed 1px black;
+        }
+
+        #register_books>* {
+            padding-block: 1%;
+            border-bottom: dashed 1px black;
+            aspect-ratio: 6 / 1;
+            display: flex;
+        }
+
+        .regist_book {
+            height: auto;
+        }
+
+        .reg_num {
+            margin-block: auto;
+            width: 5%;
+            text-align: center;
+            font-size: 1.3vw;
+        }
+
+        .book_img {
+            width: 20%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .book_img>img {
+            height: 80%;
+            width: auto;
+            margin: auto;
+
+        }
+
+        .book_info {
+            width: 40%;
+            height: 100%;
+            padding-inline: 1%;
+            justify-content: center;
+            margin-block: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .book_info>h3 {
+            width: 100%;
+            max-height: 47%;
+            margin-bottom: 2%;
+            font-size: 1.5vw;
+            word-break: break-all;
+            overflow-y: scroll;
+        }
+
+        .book_info>h5 {
+            height: 13%;
+            color: dimgray;
+            margin: 0;
+            font-size: 1.3vw;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            word-break: break-all;
+        }
+
+        .into_cart {
+            height: 20%;
+            width: 100%;
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+        }
+
+        .into_cart>div {
+            width: 56%;
+            height: 100%;
+            font-size: 1.3vw;
+            display: flex;
+            align-items: center;
+        }
+
+        .into_cart>div>button {
+            height: 100%;
+            font-size: 1.3vw;
+            padding-inline: 5%;
+            padding-block: 0;
+            border: solid gray 1px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px gray;
+            background-color: orange;
+            transition: background-color 0.3s ease;
+            margin-right: 2%;
+        }
+
+        .into_cart>div>input {
+            font-size: 1.3vw;
+        }
+
+        .into_cart>div>button:hover {
+            background-color: darkorange;
+
+        }
+
+        .into_cart>span {
+            font-size: 1.5vw;
+        }
+
+        .book_introduction {
+            width: 35%;
+            font-size: 1.3vw;
+            overflow-y: scroll;
+        }
+
+        @media (max-width: 950px) {
+            #l_info {
+                display: block;
+            }
+
+            #l_info_1 {
+                width: 100%;
+            }
+
+            #l_info_1>h1 {
+                font-size: 3.5vw;
+
+            }
+
+            #l_info_1>h3 {
+                font-size: 2.4vw;
+            }
+
+            #l_info_1>h3>img {
+                height: 2.4vw;
+            }
+
+            #l_info_1>h5 {
+                font-size: 2.2vw;
+            }
+
+            #l_info_2 {
+                width: 100%;
+                display: flex;
+                margin-top: 1rem;
+            }
+
+            #thumbs {
+                width: 50%;
+            }
+
+            #thumbs>a {
+                width: 8%;
+                margin-inline: 0 5%;
+            }
+
+            #thumbs>div {
+                width: 55%;
+                font-size: 4vw;
+            }
+
+            #list_user_info {
+                width: 40%;
+                margin: 0 0 0 auto;
+                padding: 2%;
+            }
+
+            #list_user_info>a {
+                width: 15%;
+            }
+
+            #list_user_info>span {
+                font-size: 2vw;
+            }
+
+            #register_books>* {
+                aspect-ratio: 3 / 1;
+            }
+
+            .reg_num {
+                font-size: 2.2vw;
+            }
+
+            .book_img {
+                width: 25%;
+            }
+
+            .book_img>img {
+                height: 65%;
+
+            }
+
+            .book_info>h3 {
+                max-height: 50%;
+                font-size: 2vw;
+            }
+
+            .book_info>h5 {
+                font-size: 1.5vw;
+            }
+
+            .book_info>.rel_date {
+                height: 8%;
+            }
+
+            .book_info>.authors {
+                height: auto;
+                max-height: 17%;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                white-space: normal;
+            }
+
+            .into_cart {
+                height: 20%;
+                margin-top: 3%;
+                flex-direction: column;
+                align-items: normal;
+            }
+
+            .into_cart>div {
+                height: 50%;
+                width: 100%;
+                font-size: 1.7vw;
+            }
+
+            .into_cart>div>button {
+                font-size: 1.7vw;
+            }
+
+            .into_cart>span {
+                display: inline-block;
+                line-height: 1;
+                margin-top: auto;
+                font-size: 2.3vw;
+            }
+
+            .book_introduction {
+                width: 40%;
+                font-size: 1.8vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {include file="./header.tmpl"}
+    <main>
+        {if $list_info !== false}
+            <div id="l_info">
+                <div id="l_info_1">
+                    <h1>{$list_info.list_title|escape}</h1>
+                    <h3><img src="./img/genre_icon.png">{$list_info.genre_name}&emsp;<img
+                            src="./img/target_icon.png">{$list_info.target_name}</h3>
+                    <h5>{$list_info.list_comment|escape|nl2br}</h5>
+                </div>
+                <div id="l_info_2">
+                    <div id="thumbs">
+                        <a href="javascript:void(0)" onclick="favoriteClick()">
+                            <img src="./img/thumbsup.png" />
+                        </a>
+                        <div>{$list_info.favorite}</div>
+                    </div>
+                    <div id="list_user_info">
+                        <a href="myPage.php?uid={$list_info.user_id}">
+                            <div
+                                style="background-image: url('{if $list_info.icon_img === null}./img/default_icon.png{else}{$FILEUP_DIR}{$list_info.icon_img}{/if}');">
+                            </div>
+                        </a>
+                        <span>{$list_info.user_name|escape}</span>
+                    </div>
+                </div>
+            </div>
+            <div id="register_books">
+                {foreach from=$books key=k item=value}
+                    <div class="regist_book">
+                        <div class="reg_num">{$value.index}</div>
+                        <div class="book_img">
+                            <img src="{$value.image_link}" />
+                        </div>
+                        <div class="book_info">
+                            <h3>{$value.book_title|escape}</h3>
+                            <h5 class="rel_date">{$value.release_date}</h5>
+                            <h5 class="authors">{$value.authors|escape}</h5>
+                            <div class="into_cart">
+                                <div>
+                                    <button type="button" onclick="addCart({$value.index})">カートに入れる</button>
+                                    数量：<input type="number" value="1" min="1" max="99" id="bn_{$value.index}">
+                                </div>
+                                <span>&yen;{$value.price}</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="bi_{$value.index}" value="{$value.book_id}">
+                        <span
+                            class="book_introduction">{if $value.comment !== false}{$value.comment.comment|escape|nl2br}{/if}</span>
+                    </div>
+                {/foreach}
+            </div>
+            <input id="status" type="hidden" value="{$favoriteFlg|escape}">
+        {else}
+            <h1>このリストは存在しません。</h1>
+        {/if}
+    </main>
+    {include file="./footer.tmpl"}
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/header.js"></script>
+    {literal}
+        <script>
+            let submitFlg = true;
+            let fluctuationFlg = true;
+            let listId = 0;
+
+            async function favoriteClick() {
+                if (submitFlg) {
+                    submitFlg = false;
+                    try {
+                        const thumbsNode = document.getElementById('thumbs');
+                        const thumbsImg = thumbsNode.querySelector('img');
+                        const thumbsNum = thumbsNode.querySelector('div');
+                        try {
+                            thumbsImg.classList.add('thumbsActive');
+                            const params = new URL(window.location.href).searchParams;
+                            let jsonObj = null;
+                            let promise = new Promise(function(end) {
+                                let xmlhttp = new XMLHttpRequest();
+                                xmlhttp.onreadystatechange = function() {
+                                    if (xmlhttp.readyState == 4) {
+                                        if (xmlhttp.status == 200) {
+                                            jsonObj = JSON.parse(xmlhttp.responseText);
+                                        }
+                                        end();
+                                    }
+                                }
+                                xmlhttp.open('POST', 'favorite.php');
+                                xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                xmlhttp.send(new URLSearchParams({f:fluctuationFlg?1:0,id:listId}).toString());
+                            });
+                            await promise;
+                            if (jsonObj != null) {
+                                if (jsonObj.success) {
+                                    if (fluctuationFlg) {
+                                        thumbsImg.src = './img/thumbsup_active.png';
+                                        thumbsNum.innerText = Number(thumbsNum.innerText) + 1;
+                                    } else {
+                                        thumbsImg.src = './img/thumbsup.png';
+                                        thumbsNum.innerText = Number(thumbsNum.innerText) - 1;
+                                    }
+                                    fluctuationFlg = !fluctuationFlg;
+                                } else if (!jsonObj.isLogin) {
+                                    send_login_page();
+                                }
+                            }
+                        } finally {
+                            thumbsImg.classList.remove('thumbsActive');
+                        }
+                    } finally {
+                        submitFlg = true;
+                    }
+                }
+            }
+
+
+
+            async function addCart(i) {
+                if (submitFlg) {
+                    submitFlg = false;
+                    try {
+                        const bookId = document.getElementById('bi_' + i).value;
+                        const bookNum = document.getElementById('bn_' + i).value;
+                        let jsonObj = null;
+                        let promise = new Promise(function(end) {
+                            let xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4) {
+                                    if (xmlhttp.status == 200) {
+                                        try {
+                                            jsonObj = JSON.parse(xmlhttp.responseText);
+                                        } catch (e) {}
+                                    }
+                                    end();
+                                }
+                            }
+                            xmlhttp.open('POST', 'cart_conf.php');
+                            xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xmlhttp.send(new URLSearchParams({bid:bookId,num:bookNum}).toString());
+                        });
+                        await promise;
+                        if (jsonObj != null) {
+                            if (jsonObj.success) {
+                                location.href = 'cart_conf.php?bid=' + bookId + '&lid=' + listId;
+                                return;
+                            } else if (!jsonObj.isLogin) {
+                                send_login_page();
+                                return;
+                            }
+                        }
+                        alert('処理に失敗しました。時間をおいて再度実行してください。');
+                    } finally {
+                        submitFlg = true;
+                    }
+                }
+            }
+
+            function send_login_page() {
+                location.href = 'user_login.php?path=' + encodeURIComponent('list_detail.php?id=' + listId);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const statusNode = document.getElementById('status');
+                if (statusNode != null) {
+                    const status = statusNode.value;
+                    if (status != '') {
+                        const flg = status == 1;
+                        fluctuationFlg = flg;
+                        if (!flg) {
+                            document.getElementById('thumbs').querySelector('img').src =
+                            './img/thumbsup_active.png';
+                        }
+                    }
+                    listId = new URL(window.location.href).searchParams.get('id');
+                }
+            });
+        </script>
+    {/literal}
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="./img/bungo_tabicon.png">
+  <link href="./css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./css/profile_config.css" rel="stylesheet" />
+  <link href="./css/header.css" rel="stylesheet">
+  <link href="./css/myPage_menu.css" rel="stylesheet">
+  <link href="./css/footer.css" rel="stylesheet">
+  <title>マイページ</title>
+</head>
+
+<body>
+  {include file="./header.tmpl"}
+  <main class="d-flex">
+    <div class="container row">
+      {include file="./mypage_sidebar.tmpl"}
+      <div id="Prf" class="col-9">
+        {if isset($alert)}
+          {$alert}
+        {/if}
+        <div class="_all row">
+          <div class="col-11">
+            <form action="myPage.php" name="form1" method="post" enctype="multipart/form-data">
+              <h1>プロフィール</h1>
+              <div class="profile">
+                <div class="d-flex">
+                  <div class="profile-img col-2 col-md-4">
+                    <div class="profile-icon">
+                      <img id="profile-image" src="{if $icon_img === null}./img/default_icon.png{else}{$icon_img}{/if}">
+                    </div>
+                    <div class="change-icon">
+                      <a href="javascript:void(0)" id="change-icon-link">Icon change</a>
+                    </div>
+                    <input type="file" name="input-iconfile" accept="image/png, image/jpeg, image/jpg, image/gif"
+                      class="d-none">
+                  </div>
+                  <div class="cp_iptxt col-7">
+                    <input class="ef" type="text" placeholder="名前を入力してください" name="profile_name"
+                      value="{$user_name|escape}">
+                    <input type="hidden" name="func" value="profile_name">
+                    <label for="name">name</label>
+                    <span class="focus_line"></span>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="save-button" onclick="save(1,event)">保存する</button>
+                </div>
+                <div id="dangerDiv1" class="text-danger"></div>
+              </div>
+            </form>
+            <form action="myPage.php" name="form2" method="post">
+              <div class="profile_comment">
+                <div class="profile_nt">
+                  <textarea id="myTextarea" rows="7" cols="50" placeholder="自己紹介を書いてみましょう"
+                    name="profile_comment">{$comment|escape}</textarea>
+                  <input type="hidden" name="func" value="profile_comment">
+                  <button type="submit" class="save-button" onclick="save(2,event)">保存する</button>
+                  <div id="dangerDiv2" class="text-danger"></div>
+                </div>
+              </div>
+            </form>
+            <form action="myPage.php" name="form3" method="post">
+              <div class="profile_category">
+                <h1>好きなジャンルを選択してください</h1>
+                <div class="tag-cloud">
+                  <div class="tag-row">
+                    <label class="tag">
+                      <input type="radio" name="category" value="2" onclick="toggleTag(this)" />
+                      ホラー
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="3" onclick="toggleTag(this)" />
+                      エッセイ
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="4" onclick="toggleTag(this)" />
+                      ファンタジー
+                    </label>
+                  </div>
+                  <div class="tag-row">
+                    <label class="tag">
+                      <input type="radio" name="category" value="5" onclick="toggleTag(this)" />
+                      歴史
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="6" onclick="toggleTag(this)" />
+                      ミステリー
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="7" onclick="toggleTag(this)" />
+                      SF
+                    </label>
+                  </div>
+                  <div class="tag-row">
+                    <label class="tag">
+                      <input type="radio" name="category" value="8" onclick="toggleTag(this)" />
+                      図鑑
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="9" onclick="toggleTag(this)" />
+                      ビジネス
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="10" onclick="toggleTag(this)" />
+                      参考書
+                    </label>
+                  </div>
+                  <div class="tag-row">
+                    <label class="tag">
+                      <input type="radio" name="category" value="11" onclick="toggleTag(this)" />
+                      専門書
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="12" onclick="toggleTag(this)" />
+                      コミック
+                    </label>
+                    <label class="tag">
+                      <input type="radio" name="category" value="1" onclick="toggleTag(this)" />
+                      その他
+                    </label>
+                  </div>
+                </div>
+                <input type="hidden" name="func" value="profile_category">
+                <button type="submit" class="save-button" onclick="save(3,event)">保存する</button>
+                <input type="hidden" id="default_category" value="{$favorite_genre}">
+                <p id="warning-message" style="display: none; color: red">カテゴリーを選択してください</p>
+                <p id="selected-category" style="display: none">選択されたカテゴリー: <span id="category-name"></span></p>
+                <p id="success-message" style="display: none; color: green">保存が完了しました！</p>
+              </div>
+            </form>
+            <form action="myPage.php" name="form5" method="post">
+              <div class="profile_favoriteBook">
+                <h1>好きな本を登録してください</h1>
+                {if isset($favorite_book)}
+                  <a href="javascript:void(0)" onclick="modalOpen()" id="favorite_book_img"><img src="{$favorite_book_img|escape}"></a>
+                  <input type="hidden" name="favorite_book_id" value="{$favorite_book}">
+                  <h4 class="mt-2" id="favorite_book_title">{$favorite_book_title|escape}</h4>
+                {else}
+                  <a href="javascript:void(0)" onclick="modalOpen()" class="favorite_default_book" id="favorite_book_img"></a>
+                  <input type="hidden" name="favorite_book_id" value="">
+                  <h4 class="mt-2" id="favorite_book_title"></h4>
+                {/if}
+                <input type="hidden" name="func" value="favorite_book">
+                <button type="button" class="def-button" onclick="favoritBookDef()">取り消す</button>
+                <button type="submit" class="save-button" onclick="save(5,event)">保存する</button>
+              </div>
+            </form>
+            <form action="myPage.php" name="form4" method="post">
+              <div class="book_count">
+                <h1>今まで読んだ本の数を入力してください</h1>
+                <input class="count" type="number" placeholder="数値を入力してください" name="profile_count"
+                  value="{$book_count|escape}" />
+                <input type="hidden" name="func" value="profile_count">
+                <button type="submit" class="save-button" onclick="save(4,event)">保存する</button>
+                <div id="dangerDiv4" class="text-danger"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="easyModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title" class="m-0">本検索</h2>
+        <span class="modalClose" onclick="modalClose()">×</span>
+      </div>
+      <div class="modal-body">
+        <div id="search_box">
+          <button type="button" class="btn btn-primary" id="return_regi" onclick="back_regi()">戻る</button>
+          <div class="mx-auto input-group">
+            <input type="search" class="form-control" placeholder="書籍キーワードを入力" id="search_keyword">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false" id="s_drop_btn">タイトル</button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="javascript:void(0)" id="sd_0" onclick="sDropClick(0)">タイトル</a>
+              </li>
+              <li><a class="dropdown-item" href="javascript:void(0)" id="sd_1" onclick="sDropClick(1)">著者</a>
+              </li>
+              <li><a class="dropdown-item" href="javascript:void(0)" id="sd_2" onclick="sDropClick(2)">ISBN</a></li>
+            </ul>
+            <button class="btn btn-outline-success bg-success text-white" type="button" onclick="bookSearchClick()"
+              id="s_btn">&emsp;検索&emsp;</button>
+          </div>
+        </div>
+        <div id="search" class="main_scroll">
+          <div id="search_result">
+
+          </div>
+          <nav id="pager">
+            <ul class="pagination">
+              <li class="page-item" id="page_0" style="display: none;">
+                <a class="page-link" href="javascript:void(0)" onclick="searchPageListener(0)">1 ..</a>
+              </li>
+              <li class="page-item" id="page_1" style="display: none;"><a class="page-link" href="javascript:void(0)"
+                  onclick="searchPageListener(1)">1</a></li>
+              <li class="page-item" id="page_2" style="display: none;"><a class="page-link" href="javascript:void(0)"
+                  onclick="searchPageListener(2)">2</a></li>
+              <li class="page-item" id="page_3" style="display: none;"><a class="page-link" href="javascript:void(0)"
+                  onclick="searchPageListener(3)">3</a></li>
+              <li class="page-item" id="page_4" style="display: none;">
+                <a class="page-link" href="javascript:void(0)" onclick="searchPageListener(4)">..
+                  <span><span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="submit_id" value="{$submit_id}"> 
+  {include file="./footer.tmpl"}
+  <script src="./js/profile_config.js"></script>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/header.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <title>ユーザー詳細</title>
+  <style>
+    .error-message {
+      color: red;
+      display: inline-block;
+      margin-left: 10px;
+    }
+  </style>
+  {literal}
+    <script src="../js/ajaxzip3.js" charset="UTF-8"></script>
+  {/literal}
+</head>
+
+<body>
+  <!-- 全体コンテナ　-->
+  <div id="container">
+    {include file='./gmenu.tmpl'}
+    <div id="headTitle">
+      <h2>ユーザー詳細</h2>
+    </div>
+    <!-- コンテンツ　-->
+    <div id="inquiry">
+      {if $err_flag != ''}
+        <p>{$err_flag}</p>
+      {/if}
+
+      <form name="form1" action="{$smarty.server.PHP_SELF}" method="post" enctype="multipart/form-data">
+        <a href="user_list.php{$page}">一覧に戻る</a><br />
+        <span class="red">＊</span>は必須項目
+        <table>
+          <tr>
+            <th>ユーザーID</th>
+            <td width="70%">{$user_id_txt}</td>
+          </tr>
+          <tr>
+            <th>ユーザー名<span class="red">＊</span></th>
+            <td width="70%">
+              <input type="text" name="user_name" size="50" value="{$smarty.post.user_name|escape}" />
+              <span id="uname-error" class="error-message"></span>
+              {if isset($err_array.user_name)}<br /><span class="red">{$err_array.user_name}</span>{/if}
+            </td>
+          </tr>
+
+          <tr>
+            <th>メールアドレス<span class="red">＊</span></th>
+            <td width="70%">
+              <input type="text" name="mail" value="{$smarty.post.mail|escape}" onblur="validateEmail()" />
+              <span id="email-error" class="error-message"></span>
+              {if isset($err_array.mail)}<br /><span class="red">{$err_array.mail}</span>{/if}
+            </td>
+          </tr>
+
+          <tr>
+            <th>パスワード（変更するとき入力）<span class="red">＊</span></th>
+            <td width="70%">
+              <input type="password" name="password" value="{$smarty.post.password|escape}"/>
+              <span id="password-error" class="error-message"></span>
+            </td>
+          </tr>
+          <tr>
+            <th>パスワード確認（変更するとき入力）<span class="red">＊</span></th>
+            <td width="70%"><input type="password" name="password_chk" value="{$smarty.post.password_chk|escape}"></td>
+          </tr>
+
+          <tr>
+            <th>郵便番号</th>
+            <td width="70%">
+              <input type="text" name="post_code" onKeyUp="AjaxZip3.zip2addr(this,'','address','address')"
+                value="{$smarty.post.post_code|escape}">
+              <span id="zipcode-error" class="error-message"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <th>住所</th>
+            <td width="70%"><input type="text" name="address" size="80" value="{$smarty.post.address|escape}" />
+              {if isset($err_array.address)}<br /><span class="red">{$err_array.address}</span>{/if}
+            </td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+            <td width="70%">
+              <input type="tel" name="phone_num" value="{$smarty.post.phone_num|escape}" onblur="validatePhoneNumber()">
+              <span id="phone-error" class="error-message"></span>
+              {if isset($err_array.phone_num)}<br /><span class="red">{$err_array.phone_num}</span>{/if}
+            </td>
+          </tr>
+
+          <tr>
+            <th>アイコン画像</th>
+            <td width="70%">
+              {if $smarty.post.icon_img != ''}
+                <img src="{$updir}{$smarty.post.icon_img}" width="200px" /><br />
+              {/if}
+              <input type="hidden" name="icon_img" value="{$smarty.post.icon_img|escape}" />
+              <input type="file" name="icon_img">
+            </td>
+          </tr>
+          <tr>
+            <th>アカウントタイプ</th>
+            <td width="70%">
+              <input type="radio" name="is_admin" value="1" {if $smarty.post.is_admin == 1}checked="checked" {/if}
+                class="account-type" id="is_admin_1"/><label for="is_admin_1">管理者</label>&nbsp;
+              <input type="radio" name="is_admin" value="0" {if $smarty.post.is_admin == 0}checked="checked" {/if}
+                class="account-type" id="is_admin_2"/><label for="is_admin_2">ユーザー</label>
+              {if isset($err_array.is_admin)}<br /><span class="red">{$err_array.is_admin}</span>{/if}
+            </td>
+          </tr>
+        </table>
+        <input type="hidden" name="func" value="" />
+        <input type="hidden" name="param" value="" />
+        <input type="hidden" name="user_id" value="{$user_id}" />
+        <p class="center">
+          <input type="button" value="確認" onClick="javascript:set_func_form('conf','')" />
+        </p>
+      </form>
+
+    </div>
+    <!-- /コンテンツ　-->
+  </div>
+  <!-- /全体コンテナ　-->
+  {literal}
+
+
+    <script>
+      function set_func_form(fn, pm) {
+        var errors = [];
+
+        var userInput = document.form1.user_name;
+        var userName = userInput.value.trim();
+        var userRegex = /^.{1,20}$/;
+        var unameErrorElement = document.getElementById("uname-error");
+
+        if (!userRegex.test(userName)) {
+          errors.push("ユーザー名は１文字以上２０文字以内で入力してください。");
+          userInput.classList.add("error");
+          unameErrorElement.textContent = "ユーザー名は１文字以上２０文字以内で入力してください。";
+        } else {
+          userInput.classList.remove("error");
+          unameErrorElement.textContent = "";
+        }
+
+        var emailInput = document.form1.mail;
+        var email = emailInput.value.trim();
+        var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        var emailErrorElement = document.getElementById("email-error");
+
+        if (!emailRegex.test(email)) {
+          errors.push("有効なメールアドレスを入力してください。");
+          emailInput.classList.add("error");
+          emailErrorElement.textContent = "有効なメールアドレスを入力してください。";
+        } else {
+          emailInput.classList.remove("error");
+          emailErrorElement.textContent = "";
+        }
+
+        var passwordInput = document.form1.password;
+        var password = passwordInput.value.trim();
+        var passwordRegex = /^[\x21-\x7e]{8,}$/;
+        var passwordErrorElement = document.getElementById("password-error");
+
+        if (!passwordRegex.test(password)) {
+          errors.push("パスワードは8文字以上を使用してください。");
+          passwordInput.classList.add("error");
+          passwordErrorElement.textContent = "パスワードは8文字以上を使用してください。";
+        } else {
+          var passcheckInput = document.form1.password_chk;
+          var passwordcheck = passcheckInput.value.trim();
+          if(password != passwordcheck) {
+            errors.push("パスワードが一致しません。");
+            passwordInput.classList.add("error");
+            passwordErrorElement.textContent = "パスワードが一致しません。";
+          }else {
+            passwordInput.classList.remove("error");
+            passwordErrorElement.textContent = "";
+          }
+        }
+
+
+        if (errors.length > 0) {
+          // エラーメッセージを表示する
+          var errorContainer = document.getElementById("error-container");
+          errorContainer.innerHTML = "";
+          errors.forEach(function(error) {
+            var errorElement = document.createElement("span");
+            errorElement.textContent = error;
+            errorElement.classList.add("error-message");
+            zipCodeInput.parentNode.appendChild(errorElement);
+          });
+
+          return;
+        }
+
+        document.form1.target = "_self";
+        document.form1.func.value = fn;
+        document.form1.param.value = pm;
+        document.form1.submit();
+
+
+      }
+
+    </script>
+  {/literal}
+</body>
+
+</html>

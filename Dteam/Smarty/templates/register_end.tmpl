@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/login.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+
+</head>
+
+<body>
+<title>新規登録</title>
+    <nav class="navbar navbar-expand-sm" id="nav_style">
+        <a href="index.php" class="navbar-brand"><img src="./img/logo1.png" id="site_logo" /></a>
+    </nav>
+    <div class="form-wrapper" style="margin-top: 10%;">
+        <h1>登録が完了しました</h1>
+        <div class="mt-3">
+            <h3>続けてログインを行ってください</h3>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <div class="form-wrapper" style="margin-top: 10%;">
+            <button onclick="location.href='user_login.php{if $path !== false}?path={$path}{/if}'" class="btn btn-success">ログイン</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

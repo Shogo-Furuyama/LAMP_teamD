@@ -1,0 +1,28 @@
+.child {
+  float: left;
+}
+
+#book_lists {
+  border: solid gray 1px; 
+  border-radius: 40px;
+}
+
+#pager {
+  margin-inline: auto;
+  max-width: 75%;
+}
+
+.book_list {
+  margin-block: 3%;
+  margin-inline: auto;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}

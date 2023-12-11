@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="profile.css" rel="stylesheet" />
+    <title>Document</title>
+    {literal}<style></style>{/literal}
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2 nav_border"
+    >
+      <a href="#" class="navbar-brand"
+        ><img
+          src="./img/ロゴ1.png"
+          style="display: flex; height: 6rem; width: auto"
+      /></a>
+      <form class="nav_input">
+        <div>
+          <input
+            type="search"
+            placeholder="キーワードを入力"
+            aria-label="Search"
+          />
+          <button type="submit">検索</button>
+        </div>
+      </form>
+      <div class="collapse navbar-collapse justify-content-end" id="navmenu">
+        <div class="navbar-nav nav_a_style">
+          <a class="nav-item nav-link" href="#">サービス概要</a>
+          <a class="nav-item nav-link" href="#">新規登録</a>
+          <a class="nav-item nav-link" href="#">ログイン</a>
+          <!--<a class="nav-item nav-link active disabled" href="#">ログイン</a>-->
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div id="items">
+        <div>
+          <div class="B_style">
+            <a class="a_style" href="#">プロフィール</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">投稿したリスト</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">いいね</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">個人情報</a><br />
+          </div>
+
+          <div class="B_style">
+            <a class="a_style" href="#">支払情報</a>
+          </div>
+        </div>
+      </div>
+      <div id="Prf">
+        <div class="profile_all">
+          <h1>プロフィール</h1>
+
+          <div class="profile">
+            <p><input type="text" name="name" /></p>
+            <div class="profile_name"></div>
+
+            <div class="profile_comment"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

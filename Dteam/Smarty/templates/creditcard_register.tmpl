@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+
+    {literal}
+    <style>
+        .tableSize > tr > th {
+            width: 25%;
+        }
+
+        .tableSize > tr > td {
+            width: 100%;
+        }
+
+        .error {
+            color: #ff0000;
+            text-align: start;
+        } 
+        
+        .sub_p{
+            font-size: 1.3rem !important;
+        }
+        .span{
+            color: #ff0000;
+        }
+        .card_number{
+            display: flex;
+            height: 2em;
+            width: 14%;
+        }
+    </style>
+    {/literal}
+</head>
+
+<body>
+    <header class="nav_image hr">
+        <div class="nav_bg">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light px-3 py-2" >
+                <a href="#" class="navbar-brand"><img src="./img/ロゴ1.png" style="display: flex; height: 4rem; width: auto;"/></a>
+            </nav>
+        </div>
+        
+    </header>
+            
+    <div class="container col-xs-12 col-sm-10 col-lg-7 mx-auto mt-5  p-5">
+        <div class="p-2 mx-3">
+            <form method="post" asp-controller="Home" asp-action="Login" novalidate>
+                <table class="table ">
+                    <tbody class="tableSize">
+                        <tr class="align-middle">
+                            <th>
+                                カード番号<span class="span">*</span>
+                            </th>
+                            <td>
+                                <div class="d-flex">
+                                <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+                                <div id="id_error"></div>
+                                &nbsp;-
+                                <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+                                <div id="id_error"></div>
+                                &nbsp;-
+                                <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+                                <div id="id_error"></div>
+                                &nbsp;-
+                                <input type="text" name="id" id="id" class="card_number form-control" maxlength="4">
+                                <div id="id_error"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="align-middle">
+                            <th>
+                                クレジットカード<br>名義人<span class="span">*</span>
+                            </th>
+                            <td>
+                                <input type="text" name="name" id="name" class="form-control" >
+                                <div id="pass_error"></div>
+                            </td>
+                        </tr>
+                        <tr class="align-middle">
+                            <th>
+                                有効期限<span class="span">*</span>
+                            </th>
+                            <td>
+                                <select name="month">
+                                    <option slot="month">--</option>
+                                    <option slot="month">01</option>
+                                    <option slot="month">02</option>
+                                    <option slot="month">03</option>
+                                    <option slot="month">04</option>
+                                    <option slot="month">05</option>
+                                    <option slot="month">06</option>
+                                    <option slot="month">07</option>
+                                    <option slot="month">08</option>
+                                    <option slot="month">09</option>
+                                    <option slot="month">11</option>
+                                    <option slot="month">12</option>
+                                </select>
+                                &nbsp;月
+                                <select name="year">
+                                    <option slot="year">--</option>
+                                    <option slot="year">2023</option>
+                                    <option slot="year">2024</option>
+                                    <option slot="year">2025</option>
+                                    <option slot="year">2026</option>
+                                    <option slot="year">2027</option>
+                                    <option slot="year">2028</option>
+                                    <option slot="year">2029</option>
+                                    <option slot="year">2030</option>
+                                    <option slot="year">2031</option>
+                                    <option slot="year">2032</option>
+                                    <option slot="year">2033</option>
+                                    <option slot="year">2034</option>
+                                    <option slot="year">2035</option>
+                                    <option slot="year">2036</option>
+                                    <option slot="year">2037</option>
+                                    <option slot="year">2038</option>
+                                    <option slot="year">2039</option>
+                                    <option slot="year">2040</option>
+                                    <option slot="year">2041</option>
+                                    <option slot="year">2042</option>
+                                    <option slot="year">2043</option>
+                                </select>
+                                &nbsp;年
+                            </td>
+                    </tbody>
+                </table>
+                <div class="button text-light w-100 py-5" style="text-align: end;">
+                    <button type="button" class="btn btn-success btn-lg ">キャンセル</button>
+                    <button type="button" class="btn btn-success btn-lg ">カードを追加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        
+    
+
+
+    
+    <footer><a class="copy textdanger">copyright</a></footer>
+
+</body>
+</html>
+

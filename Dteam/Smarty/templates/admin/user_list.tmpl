@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>ユーザー一覧</title>
+    {literal}
+        <script type="text/javascript">
+            <!--
+        function set_func_form(fn, pm) {
+            document.form1.target = "_self";
+            document.form1.func.value = fn;
+            document.form1.param.value = pm;
+            document.form1.submit();
+        }
+
+        function del_func_form(pm, mess) {
+            var message = "本当に\r\n";
+            message += mess;
+            message += "\r\nを削除しますか？";
+            if (confirm(message)) {
+                document.form1.target = "_self";
+                document.form1.func.value = 'del';
+                document.form1.param.value = pm;
+                document.form1.submit();
+            }
+        }
+        // 
+        -->
+        </script>
+
+    {/literal}
+
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>ユーザー一覧</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            {if $ERR_STR != ''}
+                <p>{$ERR_STR}</p>
+            {/if}
+            <form name="form1" action="{$tgt_uri}" method="post">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <p style="display: inline;"><a href="user_detail.php">新規</a></p>
+                        <select name="accountType" id="accountType">
+                            <option value="all">全件</option>
+                            <option value="admin">管理者</option>
+                            <option value="user">ユーザー</option>
+                        </select>
+                    </div>
+                </div>
+
+                <p>{$pager_arr}</p>
+                <table id="table">
+                    <tr>
+                        <th>ユーザーID</th>
+                        <th>ユーザー名</th>
+                        <th>メールアドレス</th>
+                        <th>アカウントタイプ</th>
+                        <th>削除</th>
+                    </tr>
+
+
+                    {foreach from=$rows key=k item=value}
+                        <tr data-account-type="{if $value.is_admin == 1}admin{else}user{/if}">
+                            <td width="10%" class="center">
+                                <a href="user_detail.php?mid={$value.user_id}">{$value.user_id}</a>
+                            </td>
+                            <td width="30%" class="center">
+                                {$value.user_name}
+                            </td>
+                            <td width="30%" class="center">
+                                {$value.mail}
+                            </td>
+
+                            <td width="20%" class="center">
+                                {if $value.is_admin == 1}
+                                    <span style="background-color: 	#9BF9CC; border-radius: 5px; text-align: center; padding: 2px;">管理者</span>
+                                {else}
+                                    <span style="background-color: #FFABCE; border-radius: 5px; text-align: center; padding: 2px;">ユーザー</span>
+                                {/if}
+                            </td>
+                            <td width="10%" class="center">
+                                <input type="button" value="削除確認"
+                                    onClick="javascript:del_func_form({$value.user_id},'【{$value.user_name}】')" />
+                            </td>
+                        </tr>
+                    {foreachelse}
+                        <tr>
+                            <td colspan="3" class="nobottom">ユーザーが見つかりません</td>
+                        </tr>
+                    {/foreach}
+                </table>
+                <input type="hidden" name="func" value="" />
+                <input type="hidden" name="param" value="" />
+
+                {literal}
+            
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                // プルダウン要素を取得
+                                var accountTypeSelect = document.getElementById('accountType');
+
+                                // プルダウンの変更イベントを監視
+                                accountTypeSelect.addEventListener('change', function() {
+                                    var selectedValue = accountTypeSelect.value; // 選択された値を取得
+
+                                    // ユーザーリストの行を取得
+                                    var userRows = document.querySelectorAll('#table tr[data-account-type]');
+
+                                    // 選択された値に応じて行を表示/非表示にする
+                                    userRows.forEach(function(row) {
+                                        var accountType = row.getAttribute('data-account-type');
+                                        if (selectedValue === 'all' || accountType === selectedValue) {
+                                            row.style.display = ''; // 表示
+                                        } else {
+                                            row.style.display = 'none'; // 非表示
+                                        }
+                                    });
+                                });
+                            });
+                    </script>
+                {/literal}
+            </form>
+            <p>&nbsp;</p>
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+</body>
+
+</html>

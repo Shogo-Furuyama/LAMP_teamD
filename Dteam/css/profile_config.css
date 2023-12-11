@@ -1,0 +1,526 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  /*
+  display: flex;
+  flex-grow: 1;
+  float: right;
+  */
+}
+
+/*右のプロフィール*/
+
+#Prf {
+  /* width: 70%; */
+  /* float: right; */
+  /*margin-top: 50px;*/
+}
+
+#Prf h1 {
+  padding-top: 50px;
+}
+
+.profile_all {
+  /*margin-top: 7%;*/
+  /* margin-left: 400px; */
+}
+
+.profile {
+  margin-top: 4%;
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+  /* float: right; */
+  /* margin-right: 90px;*/
+  padding: 30px;
+}
+
+/*名前入力欄*/
+
+.cp_iptxt {
+  position: relative;
+  /* width: 300px; */
+  margin: auto;
+}
+.cp_iptxt input[type="text"] {
+  font: 15px/24px sans-serif;
+  width: 100%;
+  letter-spacing: 1px;
+  padding-left: 4em;
+}
+.cp_iptxt /*input[type="number"]*/:focus {
+  outline: none;
+}
+
+.ef {
+  padding: 4px 0;
+  border: 0;
+  border-bottom: 1px solid #1b2538;
+  background-color: transparent;
+}
+
+.ef ~ .focus_line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: 0.6s;
+  background-color: #000000;
+}
+.ef:focus ~ .focus_line,
+.cp_iptxt.ef ~ .focus_line {
+  width: 100%;
+  transition: 0.6s;
+}
+.ef ~ label {
+  position: absolute;
+  z-index: -1;
+  top: 4px;
+  left: 0;
+  width: 100%;
+  transition: 0.3s;
+  letter-spacing: 0.5px;
+  color: #aaaaaa;
+}
+.ef:focus ~ label,
+.cp_iptxt.ef ~ label {
+  font-size: 12px;
+  top: -16px;
+  transition: 0.3s;
+  color: #c0c0c0;
+}
+
+._all {
+  > div {
+    margin: auto;
+  }
+}
+
+/*アイコン*/
+.profile-image {
+  margin-right: 50px;
+}
+
+.profile-icon {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* border: 1px solid #c0c0c0; */
+  width: 116px;
+  margin-inline: auto;
+  margin-bottom: 10px;
+}
+.icon_image {
+  width: 116px;
+  height: 116px;
+  /*display: inline-block;*/
+}
+
+#profile-image {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-inline: auto;
+}
+
+.change-icon {
+  width: 116px;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin-inline: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#change-icon-link {
+  width: 116px;
+  color: #fff;
+  /*padding: 5px 10px;*/
+  text-decoration: none;
+}
+
+.profile_comment {
+  margin-top: 25px;
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.profile_nt {
+  /*
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+  */
+}
+
+/*コメント入力*/
+
+textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  margin: 15px 20px;
+  border-radius: 30px;
+  width: calc(100% - 40px);
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(147, 147, 151, 0.6);
+  transition: 0.3s;
+}
+
+.profile_category,
+.profile_favoriteBook,
+.book_count {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 25px;
+  color: #c0c0c0;
+}
+/*--------------------------------------------------------*/
+.tag input[type="radio"] {
+  display: none;
+}
+
+.tag.selected {
+  background-color: #ffcc00;
+}
+
+.tag-cloud {
+  /*width: 520px;*/
+
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tag-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tag {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  cursor: pointer;
+  /* タグのスタイルを追加する場合はここに記述 */
+}
+
+.tag.active {
+  background-color: #ffcc00;
+}
+
+.save-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  /* ボタンのスタイルを追加する場合はここに記述 */
+}
+
+.save-button:hover {
+  color: #fff;
+  background: #5bc8ac;
+  transition: 0.4s;
+}
+.save-button.clicked {
+  /*background-color: #f2f2f2;*/
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#selected-category,
+#warning-message {
+  margin-top: 25px;
+}
+
+#favorite_book_img {
+  height: 150px;
+  margin-top: 20px;
+  margin-inline: auto;
+  display: flex;
+  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+#favorite_book_img>img {
+  height: 100%;
+  width: auto;
+  margin-inline: auto;
+}
+
+#favorite_book_img:hover {
+  filter: opacity(80%);
+}
+
+#favorite_book_img::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  opacity: 0;
+}
+
+#favorite_book_img:hover::after {
+  color: black;
+  border-color: black;
+  opacity: 1;
+}
+
+.favorite_default_book::after {
+  color: dimgray;
+  padding-inline: 35px;
+  padding-block: 30px;
+  border: solid 2px dimgray;
+  border-radius: 10px;
+  opacity: 1!important;
+}
+
+
+/*--------------------------------------------------------*/
+
+.book_count input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  margin-top: 40px;
+}
+
+.book_count input:focus {
+  outline: none;
+  box-shadow: 0 0 5px 2px rgba(147, 147, 151, 0.6);
+  transition: 0.3s;
+}
+
+.count {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.alert {
+  animation-name: alertAnimation;
+  animation-duration: 6s;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+}
+
+@keyframes alertAnimation {
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.modal {
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: auto;
+  width: 750px;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalClose {
+  font-size: 2rem;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.modal-body {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  color: black;
+}
+
+.def-button {
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  /* ボタンのスタイルを追加する場合はここに記述 */
+}
+
+.def-button:hover {
+  color: #fff;
+  background: red;
+  transition: 0.4s;
+}
+
+#search_box {
+  display: flex;
+  align-items: center;
+}
+
+#search_box>* {
+  width: 80%;
+}
+
+#return_regi {
+  display: none;
+  width: 10%;
+  font-size: 2.2vw;
+}
+
+#search {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: 1%;
+  overflow-y: scroll;
+  padding-right: 2vw;
+}
+
+#pager {
+  margin-inline: auto;
+  margin-block: 10px;
+}
+
+#search_result {
+  flex-grow: 1;
+}
+
+#search_result>p {
+  padding-left: 1%;
+}
+
+#search_result>div {
+  padding: 1%;
+  aspect-ratio: 3 / 1;
+  position: relative;
+  z-index: 1;
+}
+
+#search_result>div>div {
+  background-color: white;
+  border: solid 0.1rem gainsboro;
+  border-radius: 1rem;
+  padding: 1%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#search_result>div>span {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  position: absolute;
+}
+
+.search_img {
+  width: 35%;
+  overflow: hidden;
+  display: flex;
+}
+
+.search_img>img {
+  height: 90%;
+  width: auto;
+  margin: auto;
+}
+
+.search_info {
+  width: 65%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.search_info>h3 {
+  width: 100%;
+  margin-bottom: 2%;
+  max-height: 70%;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+}
+
+.search_info>h5 {
+  margin: 0;
+  color: dimgray;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+.search_info>button {
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+  height: 22%;
+  padding: 0 1rem;
+}

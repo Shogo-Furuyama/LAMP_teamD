@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/header.css" rel="stylesheet">
+    <link href="./css/footer.css" rel="stylesheet">
+    <link href="./css/book_list.css" rel="stylesheet">
+    <title>リスト検索</title>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        #book_lists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        #dropdown_style>div {
+            margin-inline: 0.5vw;
+        }
+
+        #dropdown_style>div>button {
+            border: solid 1px darkgray;
+            border-radius: 1rem;
+        }
+
+        #dropdown_style>div>button.show {
+            box-shadow: none;
+            background-color: gainsboro;            
+        }
+
+        #dropdown_style>div>button:hover {
+            background-color: gainsboro;
+        }
+
+        #pager {
+            max-width: 75%;
+            margin-inline: auto;
+        }
+    </style>
+</head>
+
+<body>
+    {include file="./header.tmpl"}
+    <div class="ps-3 ps-md-5 pt-3 pb-3">
+        <div class="mb-4" id="dropdown_style">
+            {include file="./genre_dropdown.tmpl"}
+            {include file="./target_dropdown.tmpl"}
+        </div>
+        <h4>{$condOthers}</h4>
+        {if isset($keyword)}
+        <h3>{$keyword}に関する検索結果</h3>
+        {/if}
+        <h5>&emsp;&emsp;約{$key_count}件のリスト</h5>
+    </div>
+    <div id="book_lists">
+        {foreach from=$result key=k item=value}
+            <div class="book_list">
+                <a class="list_anchor" href="list_detail.php?id={$value.list_id}">
+                    <div class="book_list_title">
+                        <h3>{$value.list_title|escape}</h3>
+                        <h5><img src="./img/genre_icon.png">{$value.genre_name}&emsp;<img src="./img/target_icon.png">{$value.target_name}</h5>
+                    </div>
+                    <div class="book_list_img">
+                    {if $value.img_link0 != null}
+                        <img src="{if $value.img_link0 == ''}./img/book_no_image.jpg{else}{$value.img_link0|escape}{/if}" />
+                    {/if}
+                    {if $value.img_link1 != null}
+                        <img src="{if $value.img_link1 == ''}./img/book_no_image.jpg{else}{$value.img_link1|escape}{/if}" />
+                    {/if}
+                    {if $value.book_count > 2}
+                        <span>...+{$value.book_count - 2}</span>
+                    {/if}
+                    </div>
+                    <div class="list_user">
+                        <div class="list_user_info">
+                            <div style="background-image: url('{if $value.icon_img === null}./img/default_icon.png{else}{$FILEUP_DIR}{$value.icon_img}{/if}');"></div>
+                            <span>{$value.user_name|escape}</span>
+                        </div>
+                        <img class="list_user_thumbs" src="./img/thumbsup.png" />
+                        <span class="list_user_thumbs_num">
+                            {$value.favorite}
+                        </span>
+                    </div>
+                </a>
+            </div>
+        {foreachelse}
+            <h1>該当する結果が見つかりませんでした。</h1>
+        {/foreach}
+    </div>
+    <div class="d-flex mt-5">
+        <nav id="pager" aria-label="Page navigation example">
+            <ul class="pagination flex-wrap">
+            {$pager_arr}
+            </ul>
+        </nav>
+    </div>
+    {include file="./footer.tmpl"}
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/header.js"></script>
+    {literal}
+    <script>
+        function selectGenre(i) {
+            pageUpdate('g',i);
+        }
+
+        function selectTarget(i) {
+            pageUpdate('t',i);
+        }
+
+        function pageUpdate(key,value) {
+            const params = new URL(location.href).searchParams;
+            params.set(key,value);
+            location.href = 'search_list.php?' + params.toString();
+        }
+        
+        function parDel(key) {
+            return function() {
+                const params = new URL(location.href).searchParams;
+                params.delete(key);
+                location.href = 'search_list.php?' + params.toString();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded',function(){
+            const params = new URL(location.href).searchParams; 
+            let gId = params.get('g');
+            let tId = params.get('t');
+            if(gId != null) {
+                gId = 'gl_' + gId; 
+                const nodeList = document.querySelectorAll('.g_anker');
+                for(let i = 0,length = nodeList.length;i < length; ++i) {
+                    if(nodeList[i].id == gId) {
+                        nodeList[i].classList.add('active');
+                        document.getElementById("g_btn").innerText = nodeList[i].innerText;
+                        document.getElementById('g_dropmenu').prepend(createCancelAnker('g'),createDropdownHr());
+                        break;
+                    }
+                }
+            }
+            if(tId != null) {
+                tId = 'tl_' + tId; 
+                const nodeList = document.querySelectorAll('.t_anker');
+                for(let i = 0,length = nodeList.length;i < length; ++i) {
+                    if(nodeList[i].id == tId) {
+                        nodeList[i].classList.add('active');
+                        document.getElementById("t_btn").innerText = nodeList[i].innerText;
+                        document.getElementById('t_dropmenu').prepend(createCancelAnker('t'),createDropdownHr());
+                        break;
+                    }
+                }
+            }
+        });
+
+        function createCancelAnker(value) {
+            const li = document.createElement('li');
+            const anker = document.createElement('a');
+            anker.classList.add('dropdown-item');
+            anker.href = 'javascript:void(0)';
+            anker.addEventListener('click',parDel(value));
+            anker.innerText = '取り消す';
+            li.append(anker);
+            return li;            
+        }
+
+        function createDropdownHr() {
+            const li = document.createElement('li');
+            const hr = document.createElement('hr');
+            hr.classList.add('dropdown-divider');
+            li.append(hr);
+            return li;
+        }
+    </script>
+    {/literal}
+</body>
+
+</html>

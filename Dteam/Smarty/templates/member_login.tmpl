@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<title>メンバーログイン</title>
+<script type="text/javascript">
+<!--
+
+
+// -->
+</script>
+</head>
+<body>
+<!-- 全体コンテナ　-->
+<div id="container">
+<div id="headTitle">
+<h2>メンバーログイン</h2>
+</div>
+<!-- コンテンツ　-->
+<div id="inquiry">
+<p class="red">{$ERR_STR|nl2br}</p>
+<form action="member_login.php" method="post">
+<table>
+<tr>
+<th>メンバーログインID</th>
+<td width="60%"><input type="text" size="10" maxlength="10" name="member_login" value="" style="ime-mode: disabled;"/></td>
+</tr>
+<tr>
+<th class="nobottom">パスワード</th>
+<td width="60%" class="nobottom"><input type="password" size="10" maxlength="10" name="member_password" value="" style="ime-mode: disabled;"/></td>
+</tr>
+</table>
+<p class="center"><input type="submit" value="ログイン"/></p>
+</form>
+</div>
+<!-- /コンテンツ　-->
+</div>
+<!-- /全体コンテナ　-->
+</body>
+</html>
+

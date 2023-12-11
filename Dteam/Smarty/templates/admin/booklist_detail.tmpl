@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>リスト詳細</title>
+    {literal}
+        <style>
+            .big_input {
+                width: 80%;
+            }
+
+            #container {
+                padding-bottom: 5px;
+            }
+
+            #top_bar>a {
+                float: left;
+            }
+
+            #top_bar>button {
+                float: right;
+                background-color: red;
+                color: white;
+                margin-bottom: 3px;
+                border: solid 1px black;
+
+            }
+
+            #top_bar>button:hover {
+                background-color: crimson;
+            }
+        </style>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>リスト詳細</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            <form name="form1" action="{$smarty.server.PHP_SELF}" method="post">
+                <div id="top_bar">
+                    <a href="booklist_list.php">一覧に戻る</a>
+                    <button type="button" onclick="delJob()">削除</button>
+                </div>
+                <table>
+                    <tr>
+                        <th>リストID</th>
+                        <td width="70%">
+                            {$list_id}
+                            <input type="hidden" name="list_id" value="{$list_id}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>タイトル</th>
+                        <td width="70%">
+                            <input type="text" class="big_input" value="{$list_title|escape}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>書籍数</th>
+                        <td width="70%">
+                            <input type="text" value="{$book_count}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>リストコメント</th>
+                        <td width="70%">
+                            <textarea class="big_input" disabled>{$list_comment|escape}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ジャンル</th>
+                        <td width="70%">
+                            ID:&nbsp;{$genre_id}&emsp;{$genre_name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ターゲット</th>
+                        <td width="70%">
+                            ID:&nbsp;{$target_id}&emsp;{$target_name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>お気に入り数</th>
+                        <td width="70%">
+                            <input type="tel" value="{$favorite}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>作成ユーザー</th>
+                        <td width="70%">
+                            ID:&nbsp;<a href="user_detail.php?mid={$user_id}">{$user_id}</a>&emsp;{$user_name}
+                        </td>
+                    </tr>
+                </table>
+                <h2>登録書籍</h2>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>ID</th>
+                        <th>タイトル</th>
+                        <th>書籍コメント</th>
+                    </tr>
+                    {foreach from=$books key=k item=value}
+                        <tr>
+                            <td width="4%" class="center">{$value.index}</td>
+                            <td width="10%" class="center">
+                                {if $value.is_alive}
+                                    <a href="book_detail.php?bid={$value.book_id}">{$value.book_id}</a>
+                                {else}
+                                    {$value.book_id}
+                                {/if}
+                            </td>
+                            <td width="43%" class="center{if !$value.is_alive} red{/if}">{$value.book_title|escape}</td>
+                            <td width="43%" class="center">
+                                <textarea class="big_input"
+                                    disabled>{if $value.comment !== false}{$value.comment.comment|escape}{/if}</textarea>
+                            </td>
+                        </tr>
+                    {/foreach}
+                </table>
+                <input type="hidden" name="func" value="">
+            </form>
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+    {literal}
+        <script type="text/javascript">
+            function delJob() {
+                let result = window.confirm('このリストを削除します。よろしいでしょうか？');
+                if (result) {
+                    document.querySelector('[name="func"]').value = 'del';
+                    document.form1.submit();
+                }
+            }
+        </script>
+    {/literal}
+</body>
+
+</html>

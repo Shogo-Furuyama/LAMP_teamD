@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./img/bungo_tabicon.png">
+    <link href = "./css/bootstrap.min.css" rel = "stylesheet" />
+    <link href = "./css/header.css" rel = "stylesheet">
+    <link href = "./css/footer.css" rel = "stylesheet">
+    <link href = "./css/myPage_public.css" rel = "stylesheet">
+    <link href="./css/book_list.css" rel="stylesheet">
+    <title>マイページ</title>
+</head>
+
+<body>
+    {include file="./header.tmpl"}
+    <main>
+        <div>
+            <div class = "Mypage col-5">
+                <div class="profile-icon"> 
+                    <img id="profile-image" src="{if $icon_img === null}./img/default_icon.png{else}{$icon_img}{/if}">
+                </div>
+                
+                <h3>{$user_name|escape}</h3>
+                <!----
+                <P class = "a">このしたに投稿したリストがあれば表示</P>
+
+                <P class = "a">なければなんか「投稿はありません」みたいなことを表示する</P>
+                --->
+            </div>
+
+            <!---この下に投稿したリストを表示するコードを書く---->
+
+            <div id="wrapper">
+
+
+              <div class="container">
+                <ul class="custom-tabs" style="margin-top: 30px">
+                  <li class="active"><a href="#tab1">プロフィール</a></li>
+                  <li><a href="#tab2">投稿</a></li>
+                </ul>
+
+                <div class="tab-content">
+                  <div id="tab1" class="content-pane is-active col-6">
+                    <div class = "myPage_comment">
+                      <p>{$comment|escape|nl2br}</p>
+                    </div>
+
+                    <div class = "myPage_genre">
+                        <h5>好きなジャンル</h5>
+                        {if $genre_result !== false}
+                        <h7>{$genre_result.genre_name}</h7>
+                        {else}
+                        <h7>設定されていません</h7>
+                        {/if}
+                    </div>
+
+                    <div class = "myPage_book">
+                        <h5>好きな本</h5>
+                        <div>
+                          {if isset($favorite_book)}
+                          <p>{$favorite_book_title|escape}</p>
+                          <img src = "{$favorite_book_img|escape}">
+                          {else}
+                          <p>設定されていません</p>  
+                          {/if}
+                        </div>
+                    </div>
+                  </div>
+                  <div id="tab2" class="content-pane">
+                    {if $count == 0}
+                    <div class = "myPage_count">
+                      <h5>投稿数 0 件</h5>
+                    </div>
+                    {else}
+                    <div class = "myPage_count">
+                      <h5>投稿数 {$count} 件</h5>
+                    </div>
+                    <div id="book_lists">
+                    {foreach from=$lists key=k item=value}
+                      <div class="book_list">
+                        <a class="list_anchor" href="list_detail.php?id={$value.list_id}">
+                          <div class="book_list_title">
+                            <h3>{$value.list_title|escape}</h3>
+                            <h5><img src="./img/genre_icon.png">{$value.genre_name}&emsp;<img
+                                src="./img/target_icon.png">{$value.target_name}</h5>
+                          </div>
+                          <div class="book_list_img">
+                            {if $value.img_link0 != null}
+                              <img
+                                src="{if $value.img_link0 == ''}./img/book_no_image.jpg{else}{$value.img_link0|escape}{/if}" />
+                            {/if}
+                            {if $value.img_link1 != null}
+                              <img
+                                src="{if $value.img_link1 == ''}./img/book_no_image.jpg{else}{$value.img_link1|escape}{/if}" />
+                            {/if}
+                            {if $value.book_count > 2}
+                              <span>...+{$value.book_count - 2}</span>
+                            {/if}
+                          </div>
+                          <div class="list_user">
+                            <div class="list_user_info">
+                              <div
+                                style="background-image: url('{if $value.icon_img === null}./img/default_icon.png{else}{$FILEUP_DIR}{$value.icon_img}{/if}');">
+                              </div>
+                              <span>{$value.user_name|escape}</span>
+                            </div>
+                            <img class="list_user_thumbs" src="./img/thumbsup.png" />
+                            <span class="list_user_thumbs_num">
+                              {$value.favorite}
+                            </span>
+                          </div>
+                        </a>
+                      </div> 
+                    {/foreach}
+                    </div>
+                    {/if}
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+        </div>
+    </main>
+    {include file="./footer.tmpl"}
+    <script src="./js/myPage_public.js"></script>
+
+    
+</body>
+
+
+</html>

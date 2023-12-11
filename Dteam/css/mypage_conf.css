@@ -1,0 +1,110 @@
+
+.child {
+  float: left;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal {
+  margin-top: 4%;
+  margin-right: 10%;
+}
+
+.personal_comment {
+  padding: 2% 15% 15% 15%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+
+}
+
+.personal_individual {
+  padding: 2% 15% 15% 15%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0.5px solid #c0c0c0;
+  border-radius: 30px;
+}
+
+.profile_row {
+  display: flex;
+  align-items: center;
+
+  >p {
+    margin: 0;
+    width: 90%;
+  }
+
+  >a {
+    width: 6%;
+    margin-inline: 2%; 
+    >img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: auto;
+  width: 50%;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+@keyframes modalopen {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal-header h1 {
+  margin: 1rem 0;
+}
+
+.modal-header {
+  background: lightblue;
+  padding: 3px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalClose {
+  font-size: 2rem;
+}
+
+.modalClose:hover {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  color: black;
+}
+
+#post_1 {
+  width: 25%;
+}
+
+#post_2 {
+  width: 40%;
+}

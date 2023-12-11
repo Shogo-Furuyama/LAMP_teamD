@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <title>売上照会詳細</title>
+    {literal}
+        <style>
+            .big_input {
+                width: 80%;
+            }
+
+            #container {
+                padding-bottom: 5px;
+            }
+
+            .book_img {
+                height: auto;
+                width: 100%;
+            }
+        </style>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>売上照会詳細</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            <a href="phistory_list.php">一覧に戻る</a>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td width="70%">{$his_id}</td>
+                </tr>
+                <tr>
+                    <th>決済方法</th>
+                    <td width="70%">{$payment_name|escape}</td>
+                </tr>
+                <tr>
+                    <th>合計金額</th>
+                    <td width="70%">{$total_amount}</td>
+                </tr>
+                <tr>
+                    <th>届け先住所</th>
+                    <td width="70%">
+                        <textarea class="big_input" disabled>{$address|escape}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>購入日</th>
+                    <td width="70%">
+                        {$purchase_date|escape}
+                    </td>
+                </tr>
+                <tr>
+                    <th>作成ユーザー</th>
+                    <td width="70%">
+                        {if $user_alive}
+                        ID:&nbsp;<a href="user_detail.php?mid={$user_id}">{$user_id}</a>&emsp;{$user_name}    
+                        {else}
+                        ID:&nbsp;{$user_id}&emsp;<span class="red">{$user_name}</span>
+                        {/if}
+                    </td>
+                </tr>
+            </table>
+            <h2>購入書籍</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>表紙</th>
+                    <th>タイトル</th>
+                    <th>購入冊数</th>
+                </tr>
+                {foreach from=$books key=k item=value}
+                    <tr>
+                        <td width="10%" class="center">
+                            {if $value.is_alive}
+                                <a href="book_detail.php?bid={$value.book_id}">{$value.book_id}</a>
+                            {else}
+                                {$value.book_id}
+                            {/if}
+                        </td>
+                        <td width="10%" class="center"><img class="book_img" src="{$value.image_link|escape}"></td>
+                        <td width="75%" class="center{if !$value.is_alive} red{/if}">{$value.book_title|escape}</td>
+                        <td width="5%" class="center"><input type="number" min="1" max="100" value="{$value.b_count}" disabled></td>
+                    </tr>
+                {/foreach}
+            </table>
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+</body>
+
+</html>

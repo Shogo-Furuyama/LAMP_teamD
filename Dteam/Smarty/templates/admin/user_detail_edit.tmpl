@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <title>ユーザー詳細</title> 
+</head>
+
+<body>
+  <!-- 全体コンテナ　-->
+  <div id="container">
+    {include file='./gmenu.tmpl'}
+    <div id="headTitle">
+      <h2>ユーザー詳細</h2>
+    </div>
+    <!-- コンテンツ　-->
+    <div id="inquiry">
+      {if $err_flag != ''}
+        <p>{$err_flag}</p>
+      {/if}
+
+      <form name="form1" action="{$smarty.server.PHP_SELF}" method="post">
+        <a href="user_list.php{$page}">一覧に戻る</a><br />
+        <table>
+          <tr>
+            <th>ユーザーID</th>
+            <td width="70%">{$user_id_txt}</td>
+          </tr>
+          <tr>
+            <th>ユーザー名</th>
+            <td width="70%">
+              <input type="text" name="user_name" size="50" value="{$smarty.post.user_name|escape}" disabled/>  
+            </td>
+          </tr>
+
+          <tr>
+            <th>メールアドレス</th>
+            <td width="70%">
+              <input type="text" name="mail" value="{$smarty.post.mail|escape}" disabled/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>郵便番号</th>
+            <td width="70%">
+              <input type="text" name="post_code" value="{$smarty.post.post_code|escape}" disabled>
+            </td>
+          </tr>
+
+          <tr>
+            <th>住所</th>
+            <td width="70%">
+              <input type="text" name="address" size="80" value="{$smarty.post.address|escape}" disabled/>
+            </td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+            <td width="70%">
+              <input type="tel" name="phone_num" value="{$smarty.post.phone_num|escape}" disabled>
+            </t
+            d>
+          </tr>
+
+          <tr>
+            <th>アイコン画像</th>
+            <td width="70%">
+              {if $smarty.post.icon_img != ''}
+                <img src="{$updir}{$smarty.post.icon_img}" style="max-height: 200px; width: auto;" /><br />
+              {/if}
+            </td>
+          </tr>
+          <tr>
+            <th>アカウントタイプ</th>
+            <td width="70%">
+              <input type="radio" name="is_admin" value="1" {if $smarty.post.is_admin == 1}checked="checked" {/if}
+                class="account-type" id="is_admin_1"/><label for="is_admin_1">管理者</label>&nbsp;
+              <input type="radio" name="is_admin" value="0" {if $smarty.post.is_admin == 0}checked="checked" {/if}
+                class="account-type" id="is_admin_2"/><label for="is_admin_2">ユーザー</label>&nbsp;  
+              <input type="submit" value="変更"/>
+            </td>
+          </tr>
+        </table>
+        <input type="hidden" name="func" value="ctype" />
+        <input type="hidden" name="user_id" value="{$user_id}" />
+      </form>
+
+    </div>
+    <!-- /コンテンツ　-->
+  </div>
+  <!-- /全体コンテナ　-->
+  {literal}
+    <script>
+      
+    </script>
+  {/literal}
+</body>
+
+</html>

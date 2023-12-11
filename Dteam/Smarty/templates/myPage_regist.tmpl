@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./img/bungo_tabicon.png">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/mypage_regist.css" rel="stylesheet">
+  <link href="./css/header.css" rel="stylesheet">
+  <link href="./css/footer.css" rel="stylesheet">
+  <link href="./css/myPage_menu.css" rel="stylesheet">
+  <link href="./css/book_list.css" rel="stylesheet">
+  <title>投稿したリスト</title>
+</head>
+
+<body>
+  {include file="./header.tmpl"}
+  <main class="d-flex">
+    <div class="container row">
+      {include file="./mypage_sidebar.tmpl"}
+      <div id="Prf" class="col-9">
+        <div class="personal_all">
+          <section>
+            <div class="container py-5">
+              {if isset($alert)}
+                {$alert}
+              {/if}
+              <h1>投稿したリスト</h1>
+              {if $count == 0}
+                <h5>見つかりませんでした</h5>
+              {else}
+                <h5>{$count}件リストが見つかりました</h5>
+                <div>
+                  <div id="book_lists">
+                    {foreach from=$lists key=k item=value}
+                      <div class="book_list_outline">
+                        <div class="book_list">
+                          <a class="list_anchor" href="list_detail.php?id={$value.list_id}">
+                            <div class="book_list_title">
+                              <h3 id="title_{$value.index}">{$value.list_title|escape}</h3>
+                              <h5><img src="./img/genre_icon.png">{$value.genre_name}&emsp;<img
+                                  src="./img/target_icon.png">{$value.target_name}</h5>
+                            </div>
+                            <div class="book_list_img">
+                              {if $value.img_link0 != null}
+                                <img
+                                  src="{if $value.img_link0 == ''}./img/book_no_image.jpg{else}{$value.img_link0|escape}{/if}" />
+                              {/if}
+                              {if $value.img_link1 != null}
+                                <img
+                                  src="{if $value.img_link1 == ''}./img/book_no_image.jpg{else}{$value.img_link1|escape}{/if}" />
+                              {/if}
+                              {if $value.book_count > 2}
+                                <span>...+{$value.book_count - 2}</span>
+                              {/if}
+                            </div>
+                            <div class="list_user">
+                              <div class="list_user_info">
+                                <div
+                                  style="background-image: url('{if $value.icon_img === null}./img/default_icon.png{else}{$FILEUP_DIR}{$value.icon_img}{/if}');">
+                                </div>
+                                <span>{$value.user_name|escape}</span>
+                              </div>
+                              <img class="list_user_thumbs" src="./img/thumbsup.png" />
+                              <span class="list_user_thumbs_num">
+                                {$value.favorite}
+                              </span>
+                            </div>
+                          </a>
+                        </div>
+                        <div class="book_list_edit">
+                          <button type="button" class="btn btn-primary"
+                            onclick="location.href='create_list.php?id={$value.list_id}'">編集</button>
+                          <button type="button" class="btn btn-danger" onclick="delJob({$value.index})">削除</button>
+                        </div>
+                        <input type="hidden" id="lid_{$value.index}" value="{$value.list_id}">
+                      </div>
+                    {/foreach}
+                    <div class="d-flex">
+                      <nav id="pager" aria-label="Page navigation example">
+                        <ul class="pagination flex-wrap">
+                        {$pager_arr}
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              {/if}
+            </div>
+          </section>
+        </div>
+      </div>
+  </main>
+  {include file="./footer.tmpl"}
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="./js/header.js"></script>
+  {literal}
+    <script>
+      function delJob(i) {
+        const title = document.getElementById('title_' + i).innerText;
+        let result = window.confirm(title + '\n\nこのリストを削除します。よろしいでしょうか？');
+        if (result) {
+          const form = document.createElement('form');
+          form.method = 'POST';
+          const idNode = document.getElementById('lid_' + i);
+          idNode.name = "delId";
+          form.append(idNode);
+          document.body.append(form);
+          form.submit();
+        }
+      }
+    </script>
+  {/literal}
+</body>
+
+</html>

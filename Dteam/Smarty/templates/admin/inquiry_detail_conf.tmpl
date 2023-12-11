@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <style>
+        label {
+            display: inline-block;
+            text-align: right;
+            width: 50px;
+        }
+
+        input::placeholder {
+            font-size: 10px;
+        }
+
+
+
+        label {
+            display: inline-block;
+            text-align: right;
+            width: 50px;
+        }
+
+        input::placeholder {
+            font-size: 10px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 2px;
+            /* 上下の間隔を狭くするための値 */
+        }
+
+        .flex-item {
+            flex: 1 1 auto;
+            margin-top: 1px;
+            /* 上部の間隔を狭くするための値 */
+            margin-bottom: 1px;
+            /* 下部の間隔を狭くするための値 */
+        }
+    </style>
+    <title>お問い合わせ詳細</title>
+    {literal}
+
+
+        <script type="text/javascript">
+            < !-
+            function set_func_form(fn, pm) {
+                document.form1.target = "_self";
+                document.form1.func.value = fn;
+                document.form1.param.value = pm;
+                document.form1.submit();
+            }
+
+
+
+            // -->
+        </script>
+    {/literal}
+</head>
+
+<body>
+    <!-- 全体コンテナ　-->
+    <div id="container">
+        {include file='./gmenu.tmpl'}
+        <div id="headTitle">
+            <h2>お問い合わせ詳細</h2>
+        </div>
+        <!-- コンテンツ　-->
+        <div id="inquiry">
+            {if $err_flag != '' }
+                <p>{$err_flag}</p>
+            {/if}
+            <form name="form1" action="{$smarty.server.PHP_SELF}" method="post">
+                <a href="inquiry_list.php">一覧に戻る</a><br />
+                <table>
+                    <tr>
+                        <th>お問い合わせID</th>
+                        <td width="70%">{$inquiry_id_txt}</td>
+                    </tr>
+                    <tr>
+                        <th>名前</th>
+                        <td width="70%"><strong>{$smarty.post.inquiry_name|escape}</strong>
+                            <input type="hidden" name="inquiry_name" value="{$smarty.post.inquiry_name|escape}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>フリガナ</th>
+                        <td width="70%"><strong>{$smarty.post.inquiry_kana|escape}</strong>
+                            <input type="hidden" name="inquiry_kana" value="{$smarty.post.inquiry_kana|escape}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td width="70%"><strong>{$smarty.post.inquiry_mail|escape}</strong>
+                            <input type="hidden" name="inquiry_mail" value="{$smarty.post.inquiry_mail|escape}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>電話番号</th>
+                        <td width="70%"><strong>{$smarty.post.inquiry_tel|escape}</strong>
+                            <input type="hidden" name="inquiry_tel" value="{$smarty.post.inquiry_tel|escape}">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th class="bobottom">お問い合わせ内容</th>
+                        <td width="70%" class="bobottom">
+                            <strong>{$smarty.post.inquiry_comment|escape|nl2br}</strong>
+                            <input type="hidden" name="inquiry_comment" value="{$smarty.post.inquiry_comment|escape}" />
+                        </td>
+                    </tr>
+
+
+
+                </table>
+                <div id="headTitle">
+                    <h2>回答詳細</h2>
+                </div>
+                <table>
+
+                    <th>差出人</th>
+                    <td width="70%"> <strong>{$smarty.post.mail|escape}</strong>
+                        <input type="hidden" name="mail" id="mail" value="{$mail}" />
+                    </td>
+                    </tr>
+
+                    <tr>
+                        <th>宛先</th>
+                        <td width="70%"> <strong>{$smarty.post.inquiry_mail|escape}</strong>
+                            <input type="hidden" name="inquiry_mail" id="inquiry_mail"
+                                value="{$smarty.post.inquiry_mail|escape}" />
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+                        <th>件名</th>
+                        <td width="70%"> <strong>{$smarty.post.reply_title|escape}</strong>
+                            <input type="hidden" name="reply_title" id="reply_title" size="60"
+                                placeholder="回答件名をご記入ください。" value="{$smarty.post.reply_title|escape}" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>回答内容</th>
+                        <td width="70%">
+                        <strong>{$smarty.post.reply|escape|nl2br}</strong>
+                        <input type="hidden" name="reply"id="reply"  value="{$smarty.post.reply|escape}" />
+
+
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+
+
+                <script>
+                    function msgdsp() {
+                        alert("お問い合わせに回答します。回答はメールで送られます。");
+                    }
+                </script>
+
+
+
+                </table>
+                <input type="hidden" name="func" value="conf" />
+                <input type="hidden" name="param" value="" />
+                <input type="hidden" name="inquiry_id" value="{$inquiry_id}" />
+                <p class="center">
+                    <input type="button" value="戻る" onClick="javascript:set_func_form('edit','')" />&nbsp;
+                    
+                </p>
+
+            </form>
+        </div>
+        <!-- /コンテンツ　-->
+    </div>
+    <!-- /全体コンテナ　-->
+</body>
+
+</html>
